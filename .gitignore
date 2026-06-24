@@ -1,0 +1,38 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Java / Maven
+backend/**/target/
+*.class
+*.jar
+*.war
+*.log
+
+# Flutter
+frontend/**/.dart_tool/
+frontend/**/.pub/
+frontend/**/build/
+frontend/**/*.lock
+frontend/**/pubspec.lock
+
+# Node
+node_modules/
+
+# Environment
+.env
+*.pem
+*.key
+
+# Database
+*.db
+*.sqlite
+
+# 日志
+logs/
+*.log
+
+# 操作系统
+Thumbs.db
