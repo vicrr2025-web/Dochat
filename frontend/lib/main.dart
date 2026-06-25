@@ -8,6 +8,7 @@ import 'package:dochat_app/providers/friend_provider.dart';
 import 'package:dochat_app/providers/location_provider.dart';
 import 'package:dochat_app/providers/post_provider.dart';
 import 'package:dochat_app/providers/service_hub_provider.dart';
+import 'package:dochat_app/providers/guarantee_provider.dart';
 import 'package:dochat_app/providers/settings_provider.dart';
 import 'package:dochat_app/pages/auth/splash_page.dart';
 
@@ -28,6 +29,7 @@ class DochatApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => PostProvider()),
         ChangeNotifierProvider(create: (_) => ServiceHubProvider()),
+        ChangeNotifierProvider(create: (_) => GuaranteeProvider()),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
       child: CupertinoApp(

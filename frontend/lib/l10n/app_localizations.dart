@@ -275,6 +275,44 @@ class AppLocalizations {
   String get copperCredit => _strings['copperCredit'] ?? '铜牌';
   String get save => _strings['save'] ?? '保存';
 
+  String get createTrade => _strings['createTrade'] ?? '创建交易';
+  String get tradeList => _strings['tradeList'] ?? '交易列表';
+  String get tradeDetail => _strings['tradeDetail'] ?? '交易详情';
+  String get productName => _strings['productName'] ?? '商品名称';
+  String get productDesc => _strings['productDesc'] ?? '商品描述';
+  String get tradeAmount => _strings['tradeAmount'] ?? '交易金额';
+  String get selectCounterparty => _strings['selectCounterparty'] ?? '选择交易对方';
+  String get pending => _strings['pending'] ?? '待确认';
+  String get confirmed => _strings['confirmed'] ?? '已确认';
+  String get frozen => _strings['frozen'] ?? '已冻结';
+  String get verifying => _strings['verifying'] ?? '验号中';
+  String get verifyPassed => _strings['verifyPassed'] ?? '已验号';
+  String get completed => _strings['completed'] ?? '已完成';
+  String get cancelled => _strings['cancelled'] ?? '已关闭';
+  String get disputed => _strings['disputed'] ?? '纠纷中';
+  String get confirmTrade => _strings['confirmTrade'] ?? '确认交易';
+  String get freezeFunds => _strings['freezeFunds'] ?? '冻结资金';
+  String get initiateVerify => _strings['initiateVerify'] ?? '发起验号';
+  String get releaseFunds => _strings['releaseFunds'] ?? '确认收货';
+  String get initiateDispute => _strings['initiateDispute'] ?? '发起纠纷';
+  String get juryVoting => _strings['juryVoting'] ?? '陪审团投票';
+  String get juryVerdict => _strings['juryVerdict'] ?? '陪审团裁决';
+  String get chatWithCounterparty => _strings['chatWithCounterparty'] ?? '联系对方';
+  String get noTrades => _strings['noTrades'] ?? '暂无交易';
+  String get createTradeTitle => _strings['createTradeTitle'] ?? '创建交易';
+  String get buyer => _strings['buyer'] ?? '买方';
+  String get seller => _strings['seller'] ?? '卖方';
+  String get disputeDetail => _strings['disputeDetail'] ?? '纠纷详情';
+  String get viewDispute => _strings['viewDispute'] ?? '查看纠纷';
+  String get columnReason => _strings['columnReason'] ?? '纠纷原因';
+  String get initiator => _strings['initiator'] ?? '发起方';
+  String get verifyStatus => _strings['verifyStatus'] ?? '验证状态';
+  String get votes => _strings['votes'] ?? '票';
+  String get all => _strings['all'] ?? '全部';
+  String get active => _strings['active'] ?? '进行中';
+  String get closed => _strings['closed'] ?? '已关闭';
+
+
 
 }
 
@@ -527,6 +565,43 @@ class _AppLocalizationsDelegate
       'silverCredit': isZh ? '银牌' : 'Silver',
       'copperCredit': isZh ? '铜牌' : 'Bronze',
       'save': isZh ? '保存' : 'Save',
+
+      'createTrade': isZh ? '创建交易' : 'Create Trade',
+      'tradeList': isZh ? '交易列表' : 'Trade List',
+      'tradeDetail': isZh ? '交易详情' : 'Trade Detail',
+      'productName': isZh ? '商品名称' : 'Product Name',
+      'productDesc': isZh ? '商品描述' : 'Product Description',
+      'tradeAmount': isZh ? '交易金额' : 'Trade Amount',
+      'selectCounterparty': isZh ? '选择交易对方' : 'Select Counterparty',
+      'pending': isZh ? '待确认' : 'Pending',
+      'confirmed': isZh ? '已确认' : 'Confirmed',
+      'frozen': isZh ? '已冻结' : 'Frozen',
+      'verifying': isZh ? '验号中' : 'Verifying',
+      'verifyPassed': isZh ? '已验号' : 'Verified',
+      'completed': isZh ? '已完成' : 'Completed',
+      'cancelled': isZh ? '已关闭' : 'Cancelled',
+      'disputed': isZh ? '纠纷中' : 'Disputed',
+      'confirmTrade': isZh ? '确认交易' : 'Confirm Trade',
+      'freezeFunds': isZh ? '冻结资金' : 'Freeze Funds',
+      'initiateVerify': isZh ? '发起验号' : 'Initiate Verify',
+      'releaseFunds': isZh ? '确认收货' : 'Release Funds',
+      'initiateDispute': isZh ? '发起纠纷' : 'Initiate Dispute',
+      'juryVoting': isZh ? '陪审团投票' : 'Jury Voting',
+      'juryVerdict': isZh ? '陪审团裁决' : 'Jury Verdict',
+      'chatWithCounterparty': isZh ? '联系对方' : 'Chat with Counterparty',
+      'noTrades': isZh ? '暂无交易' : 'No Trades',
+      'createTradeTitle': isZh ? '创建交易' : 'Create Trade',
+      'buyer': isZh ? '买方' : 'Buyer',
+      'seller': isZh ? '卖方' : 'Seller',
+      'disputeDetail': isZh ? '纠纷详情' : 'Dispute Detail',
+      'viewDispute': isZh ? '查看纠纷' : 'View Dispute',
+      'columnReason': isZh ? '纠纷原因' : 'Reason',
+      'initiator': isZh ? '发起方' : 'Initiator',
+      'verifyStatus': isZh ? '验证状态' : 'Verify Status',
+      'votes': isZh ? '票' : 'Votes',
+      'all': isZh ? '全部' : 'All',
+      'active': isZh ? '进行中' : 'Active',
+      'closed': isZh ? '已关闭' : 'Closed',
       'wrongPassword': isZh ? '密码错误' : 'Wrong password',
     });
     return localizations;

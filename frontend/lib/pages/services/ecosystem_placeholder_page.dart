@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:dochat_app/l10n/app_localizations.dart';
+import 'package:dochat_app/pages/services/guarantee_list_page.dart';
 
 IconData _iconForKey(String key) {
   switch (key) {
@@ -37,6 +38,15 @@ class EcosystemPlaceholderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+
+    if (ecosystemKey == 'guarantee') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (_) => const GuaranteeListPage()),
+        );
+      });
+    }
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
