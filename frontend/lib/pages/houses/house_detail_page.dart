@@ -378,7 +378,7 @@ class _HouseDetailPageState extends State<HouseDetailPage> {
             ],
           ),
           const SizedBox(height: 12),
-          _buildCommunityRow('小区名称', info['name']?.toString() ?? '--'),
+          _buildCommunityRow('小区名称', info['communityName']?.toString() ?? '--'),
           _buildCommunityRow('建造年份', info['builtYear']?.toString() ?? '--'),
           _buildCommunityRow('物业费', info['propertyFee']?.toString() ?? '--'),
           _buildCommunityRow('停车位', info['parkingRate']?.toString() ?? '--'),
