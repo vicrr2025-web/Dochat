@@ -49,6 +49,11 @@ class JobService {
     return res.data['data'] as Map<String, dynamic>;
   }
 
+  Future<List<dynamic>> getApplications() async {
+    final res = await _api.client.get('/job/applications');
+    return res.data['data'] ?? [];
+  }
+
   Future<Map<String, dynamic>> publishPosition(Map<String, dynamic> body) async {
     final res = await _api.client.post('/job/publish', data: body);
     return res.data['data'] as Map<String, dynamic>;

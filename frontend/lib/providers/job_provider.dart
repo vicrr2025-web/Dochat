@@ -101,10 +101,28 @@ class JobProvider extends ChangeNotifier {
     _loading = true;
     notifyListeners();
     try {
-      // Use positions list to derive applications or fetch separately
-    } catch (_) {
-      _errorMessage = 'networkError';
-    }
+      final apps = await _service.getApplications();
+      // applications are returned as List<dynamic> from server
+      _applications = apps.map((a) => JobApplication(
+        applicationId: a['applicationId'] ?? '',
+        positionId: a['positionId'] ?? '',
+        userId: a['userId'] ?? '',
+        resumeId: a['resumeId'],
+        status: a['status'] ?? 'applied',
+        greeting: a['greeting'],
+        createdAt: a['createdAt'],
+      )).toList();
+    } catch (_) {}
+    _loading = false;
+    notifyListeners();
+  }
+
+  Future<void> loadMessages() async {
+    _loading = true;
+    notifyListeners();
+    try {
+      await _service.getMessages();
+    } catch (_) {}
     _loading = false;
     notifyListeners();
   }

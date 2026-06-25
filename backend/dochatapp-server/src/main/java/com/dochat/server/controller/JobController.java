@@ -68,6 +68,19 @@ public class JobController {
 
     // ==================== 3. Apply ====================
 
+    @GetMapping("/applications")
+    public ResponseEntity<ApiResponse<List<JobApplication>>> getApplications(
+            @AuthenticationPrincipal String userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        try {
+            List<JobApplication> applications = jobService.getApplications(userId, page, size);
+            return ResponseEntity.ok(ApiResponse.success(applications));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(8001, e.getMessage()));
+        }
+    }
+
     @PostMapping("/apply")
     public ResponseEntity<ApiResponse<JobApplication>> applyPosition(
             @AuthenticationPrincipal String userId,

@@ -152,6 +152,12 @@ public class JobService {
         return application;
     }
 
+    // ==================== getApplications ====================
+
+    public List<JobApplication> getApplications(String userId, int page, int size) {
+        return applicationRepository.findByUserIdOrderByCreatedAtDesc(userId);
+    }
+
     // ==================== 5. publishPosition ====================
 
     @Transactional
