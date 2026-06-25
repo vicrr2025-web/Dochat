@@ -284,14 +284,15 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _showPlaceholder(BuildContext context, String title) {
+    final l10n = AppLocalizations.of(context);
     showCupertinoDialog(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
         title: Text(title),
-        content: const Text('即将上线'),
+        content: Text(l10n.comingSoon),
         actions: [
           CupertinoDialogAction(
-            child: const Text('确定'),
+            child: Text(l10n.confirm),
             onPressed: () => Navigator.of(ctx).pop(),
           ),
         ],

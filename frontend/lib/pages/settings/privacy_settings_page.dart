@@ -7,11 +7,11 @@ import 'package:dochat_app/providers/settings_provider.dart';
 
 String _privacyLabel(String key, AppLocalizations l10n) {
   switch (key) {
-    case 'everyone':
+    case 'all':
       return l10n.everyone;
     case 'friends':
       return l10n.friendsOnly;
-    case 'nobody':
+    case 'none':
       return l10n.nobody;
     default:
       return key;
@@ -50,18 +50,18 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.of(ctx).pop();
-              final updated = updateValue(provider.privacy ?? PrivacySettings(), 'everyone');
+              final updated = updateValue(provider.privacy ?? PrivacySettings(), 'all');
               provider.updatePrivacy(updated);
             },
             child: Row(
               children: [
-                if (currentValue == 'everyone')
+                if (currentValue == 'all')
                   const Icon(CupertinoIcons.checkmark, size: 18, color: CupertinoColors.systemBlue),
                 const SizedBox(width: 8),
                 Text(
                   l10n.everyone,
                   style: TextStyle(
-                    color: currentValue == 'everyone'
+                    color: currentValue == 'all'
                         ? CupertinoColors.systemBlue
                         : CupertinoColors.label,
                   ),
@@ -94,18 +94,18 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.of(ctx).pop();
-              final updated = updateValue(provider.privacy ?? PrivacySettings(), 'nobody');
+              final updated = updateValue(provider.privacy ?? PrivacySettings(), 'none');
               provider.updatePrivacy(updated);
             },
             child: Row(
               children: [
-                if (currentValue == 'nobody')
+                if (currentValue == 'none')
                   const Icon(CupertinoIcons.checkmark, size: 18, color: CupertinoColors.systemBlue),
                 const SizedBox(width: 8),
                 Text(
                   l10n.nobody,
                   style: TextStyle(
-                    color: currentValue == 'nobody'
+                    color: currentValue == 'none'
                         ? CupertinoColors.systemBlue
                         : CupertinoColors.label,
                   ),

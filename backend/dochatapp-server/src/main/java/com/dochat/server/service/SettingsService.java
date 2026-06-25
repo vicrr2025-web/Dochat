@@ -78,11 +78,11 @@ public class SettingsService {
         boolean success = Math.random() < 0.7;
         Map<String, Object> result = new HashMap<>();
         if (success) {
-            user.setIsVerified(true);
-            // Set creditLevel to "copper" on first verify
+            // Set creditLevel on first verify BEFORE setting verified
             if (!user.getIsVerified()) {
-                user.setCreditLevel("铜牌");
+                user.setCreditLevel("copper");
             }
+            user.setIsVerified(true);
             userRepository.save(user);
             result.put("status", "success");
             result.put("message", "实名认证成功");
