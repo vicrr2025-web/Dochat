@@ -312,6 +312,54 @@ class AppLocalizations {
   String get active => _strings['active'] ?? '进行中';
   String get closed => _strings['closed'] ?? '已关闭';
 
+  // ======== M8 商城 ========
+  String get mallTab => _strings['mallTab'] ?? '商城';
+  String get farmProducts => _strings['farmProducts'] ?? '农产品';
+  String get factoryDirect => _strings['factoryDirect'] ?? '工厂直供';
+  String get idleItems => _strings['idleItems'] ?? '闲置';
+  String get publishProduct => _strings['publishProduct'] ?? '发布商品';
+  String get productTitle => _strings['productTitle'] ?? '商品标题';
+  String get productPrice => _strings['productPrice'] ?? '商品价格';
+  String get productCategory => _strings['productCategory'] ?? '商品分类';
+  String get productImages => _strings['productImages'] ?? '商品图片';
+  String get addToCart => _strings['addToCart'] ?? '加入购物车';
+  String get myCart => _strings['myCart'] ?? '我的购物车';
+  String get cartEmpty => _strings['cartEmpty'] ?? '购物车空空如也';
+  String get checkout => _strings['checkout'] ?? '去结算';
+  String get selectAll => _strings['selectAll'] ?? '全选';
+  String get totalAmount => _strings['totalAmount'] ?? '合计';
+  String get myOrders => _strings['myOrders'] ?? '我的订单';
+  String get toPayStatus => _strings['toPayStatus'] ?? '待付款';
+  String get toShipStatus => _strings['toShipStatus'] ?? '待发货';
+  String get toReceiveStatus => _strings['toReceiveStatus'] ?? '待收货';
+  String get toReviewStatus => _strings['toReviewStatus'] ?? '待评价';
+  String get payNow => _strings['payNow'] ?? '立即支付';
+  String get shipOrder => _strings['shipOrder'] ?? '发货';
+  String get confirmReceipt => _strings['confirmReceipt'] ?? '确认收货';
+  String get trackingNo => _strings['trackingNo'] ?? '物流单号';
+  String get applyRefund => _strings['applyRefund'] ?? '申请退款';
+  String get refundReason => _strings['refundReason'] ?? '退款原因';
+  String get myFavorites => _strings['myFavorites'] ?? '我的收藏';
+  String get addFavorite => _strings['addFavorite'] ?? '收藏';
+  String get removeFavorite => _strings['removeFavorite'] ?? '取消收藏';
+  String get contactSellerLabel => _strings['contactSellerLabel'] ?? '联系卖家';
+  String get shopInfo => _strings['shopInfo'] ?? '店铺信息';
+  String get openShop => _strings['openShop'] ?? '开店';
+  String get shopName => _strings['shopName'] ?? '店铺名称';
+  String get recycleEstimate => _strings['recycleEstimate'] ?? '估价';
+  String get submitRecycle => _strings['submitRecycle'] ?? '提交回收';
+  String get relistItem => _strings['relistItem'] ?? '重新发布';
+  String get writeReview => _strings['writeReview'] ?? '写评价';
+  String get rating => _strings['rating'] ?? '评分';
+  String get browseHistory => _strings['browseHistory'] ?? '浏览历史';
+  String get clearHistory => _strings['clearHistory'] ?? '清空历史';
+  String get coupons => _strings['coupons'] ?? '优惠券';
+  String get claimCoupon => _strings['claimCoupon'] ?? '领取';
+  String get myCoupons => _strings['myCoupons'] ?? '我的优惠券';
+  String get noProductsHint => _strings['noProductsHint'] ?? '暂无商品';
+  String get noOrdersHint => _strings['noOrdersHint'] ?? '暂无订单';
+
+
 
 
 }
@@ -603,6 +651,53 @@ class _AppLocalizationsDelegate
       'active': isZh ? '进行中' : 'Active',
       'closed': isZh ? '已关闭' : 'Closed',
       'wrongPassword': isZh ? '密码错误' : 'Wrong password',
+
+      'mallTab': isZh ? '商城' : 'Mall',
+      'farmProducts': isZh ? '农产品' : 'Farm Products',
+      'factoryDirect': isZh ? '工厂直供' : 'Factory Direct',
+      'idleItems': isZh ? '闲置' : 'Idle Items',
+      'publishProduct': isZh ? '发布商品' : 'Publish Product',
+      'productTitle': isZh ? '商品标题' : 'Product Title',
+      'productPrice': isZh ? '商品价格' : 'Product Price',
+      'productCategory': isZh ? '商品分类' : 'Category',
+      'productImages': isZh ? '商品图片' : 'Images',
+      'addToCart': isZh ? '加入购物车' : 'Add to Cart',
+      'myCart': isZh ? '我的购物车' : 'My Cart',
+      'cartEmpty': isZh ? '购物车空空如也' : 'Cart is empty',
+      'checkout': isZh ? '去结算' : 'Checkout',
+      'selectAll': isZh ? '全选' : 'Select All',
+      'totalAmount': isZh ? '合计' : 'Total',
+      'myOrders': isZh ? '我的订单' : 'My Orders',
+      'toPayStatus': isZh ? '待付款' : 'To Pay',
+      'toShipStatus': isZh ? '待发货' : 'To Ship',
+      'toReceiveStatus': isZh ? '待收货' : 'To Receive',
+      'toReviewStatus': isZh ? '待评价' : 'To Review',
+      'payNow': isZh ? '立即支付' : 'Pay Now',
+      'shipOrder': isZh ? '发货' : 'Ship',
+      'confirmReceipt': isZh ? '确认收货' : 'Confirm Receipt',
+      'trackingNo': isZh ? '物流单号' : 'Tracking No.',
+      'applyRefund': isZh ? '申请退款' : 'Apply Refund',
+      'refundReason': isZh ? '退款原因' : 'Refund Reason',
+      'myFavorites': isZh ? '我的收藏' : 'My Favorites',
+      'addFavorite': isZh ? '收藏' : 'Add Favorite',
+      'removeFavorite': isZh ? '取消收藏' : 'Remove Favorite',
+      'contactSellerLabel': isZh ? '联系卖家' : 'Contact Seller',
+      'shopInfo': isZh ? '店铺信息' : 'Shop Info',
+      'openShop': isZh ? '开店' : 'Open Shop',
+      'shopName': isZh ? '店铺名称' : 'Shop Name',
+      'recycleEstimate': isZh ? '估价' : 'Estimate',
+      'submitRecycle': isZh ? '提交回收' : 'Submit Recycle',
+      'relistItem': isZh ? '重新发布' : 'Relist',
+      'writeReview': isZh ? '写评价' : 'Write Review',
+      'rating': isZh ? '评分' : 'Rating',
+      'browseHistory': isZh ? '浏览历史' : 'Browse History',
+      'clearHistory': isZh ? '清空历史' : 'Clear History',
+      'coupons': isZh ? '优惠券' : 'Coupons',
+      'claimCoupon': isZh ? '领取' : 'Claim',
+      'myCoupons': isZh ? '我的优惠券' : 'My Coupons',
+      'noProductsHint': isZh ? '暂无商品' : 'No products',
+      'noOrdersHint': isZh ? '暂无订单' : 'No orders',
+
     });
     return localizations;
   }

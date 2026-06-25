@@ -5,6 +5,7 @@ import 'package:dochat_app/models/service_models.dart';
 import 'package:dochat_app/providers/service_hub_provider.dart';
 import 'package:dochat_app/pages/services/ecosystem_placeholder_page.dart';
 import 'package:dochat_app/pages/services/guarantee_list_page.dart';
+import 'package:dochat_app/pages/services/mall_list_page.dart';
 
 String _ecosystemName(String key, AppLocalizations l10n) {
   switch (key) {
@@ -149,11 +150,11 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                 onTap: () {
                   final badge = _badgeForKey(r.ecosystemKey, badges);
                   context.read<ServiceHubProvider>().addToRecent(badge);
-                  if (r.ecosystemKey == 'guarantee') {
+                  if (r.ecosystemKey == 'guarantee' || r.ecosystemKey == 'mall') {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (_) => const GuaranteeListPage(),
+                        builder: (_) => r.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : const MallListPage(),
                       ),
                     );
                   } else {
@@ -216,11 +217,11 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (_) => const GuaranteeListPage(),
+                    builder: (_) => badge.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : const MallListPage(),
                   ),
                 );
               } else {
