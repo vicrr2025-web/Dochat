@@ -75,6 +75,46 @@ class AppLocalizations {
     final en = 'Wrong password, $remaining attempts remaining';
     return locale.languageCode == 'zh' ? zh : en;
   }
+
+  // ======== M2 聊天核心 ========
+  String get chat => _strings['chat'] ?? '聊天';
+  String get sessions => _strings['sessions'] ?? '会话';
+  String get newChat => _strings['newChat'] ?? '新建聊天';
+  String get selectFriend => _strings['selectFriend'] ?? '选择好友';
+  String get send => _strings['send'] ?? '发送';
+  String get holdToTalk => _strings['holdToTalk'] ?? '按住 说话';
+  String get releaseToCancel => _strings['releaseToCancel'] ?? '松手 取消';
+  String get recordingTooShort => _strings['recordingTooShort'] ?? '录音时间太短';
+  String get copy => _strings['copy'] ?? '复制';
+  String get revoke => _strings['revoke'] ?? '撤回';
+  String get delete => _strings['delete'] ?? '删除';
+  String get pin => _strings['pin'] ?? '置顶';
+  String get mute => _strings['mute'] ?? '静音';
+  String get search => _strings['search'] ?? '搜索';
+  String get picture => _strings['picture'] ?? '图片';
+  String get camera => _strings['camera'] ?? '拍照';
+  String get file => _strings['file'] ?? '文件';
+  String get takePhoto => _strings['takePhoto'] ?? '拍照';
+  String get chooseFromAlbum => _strings['chooseFromAlbum'] ?? '从相册选择';
+  String get youRecalled => _strings['youRecalled'] ?? '你撤回了一条消息';
+  String get otherRecalled => _strings['otherRecalled'] ?? '对方撤回了一条消息';
+  String get image => _strings['image'] ?? '图片';
+  String get voice => _strings['voice'] ?? '语音';
+  String get fileMessage => _strings['fileMessage'] ?? '文件';
+  String get comingSoon => _strings['comingSoon'] ?? '即将上线';
+  String get read => _strings['read'] ?? '已读';
+  String get unread => _strings['unread'] ?? '未读';
+  String get justNow => _strings['justNow'] ?? '刚刚';
+  String get yesterday => _strings['yesterday'] ?? '昨天';
+  String get copied => _strings['copied'] ?? '已复制';
+  String get clearChat => _strings['clearChat'] ?? '清空聊天记录';
+  String get clearChatConfirm => _strings['clearChatConfirm'] ?? '确定要清空聊天记录吗？';
+  String get dismiss => _strings['dismiss'] ?? '解除';
+  String get unpin => _strings['unpin'] ?? '取消置顶';
+  String get unmute => _strings['unmute'] ?? '取消静音';
+  String get noMessages => _strings['noMessages'] ?? '暂无消息';
+  String get typing => _strings['typing'] ?? '对方正在输入...';
+
 }
 
 class _AppLocalizationsDelegate
@@ -141,6 +181,43 @@ class _AppLocalizationsDelegate
       'tokenExpired': isZh ? '登录已过期，请重新登录' : 'Session expired, please sign in again',
       'verifyCodeSent': isZh ? '验证码已发送' : 'Verification code sent',
       'sendFailed': isZh ? '发送失败，请重试' : 'Send failed, please try again',
+      'chat': isZh ? '聊天' : 'Chat',
+      'sessions': isZh ? '会话' : 'Sessions',
+      'newChat': isZh ? '新建聊天' : 'New Chat',
+      'selectFriend': isZh ? '选择好友' : 'Select Friend',
+      'send': isZh ? '发送' : 'Send',
+      'holdToTalk': isZh ? '按住 说话' : 'Hold to Talk',
+      'releaseToCancel': isZh ? '松手 取消' : 'Release to Cancel',
+      'recordingTooShort': isZh ? '录音时间太短' : 'Recording too short',
+      'copy': isZh ? '复制' : 'Copy',
+      'revoke': isZh ? '撤回' : 'Revoke',
+      'delete': isZh ? '删除' : 'Delete',
+      'pin': isZh ? '置顶' : 'Pin',
+      'mute': isZh ? '静音' : 'Mute',
+      'search': isZh ? '搜索' : 'Search',
+      'picture': isZh ? '图片' : 'Picture',
+      'camera': isZh ? '拍照' : 'Camera',
+      'file': isZh ? '文件' : 'File',
+      'takePhoto': isZh ? '拍照' : 'Take Photo',
+      'chooseFromAlbum': isZh ? '从相册选择' : 'Choose from Album',
+      'youRecalled': isZh ? '你撤回了一条消息' : 'You recalled a message',
+      'otherRecalled': isZh ? '对方撤回了一条消息' : 'The other party recalled a message',
+      'image': isZh ? '图片' : 'Image',
+      'voice': isZh ? '语音' : 'Voice',
+      'fileMessage': isZh ? '文件' : 'File',
+      'comingSoon': isZh ? '即将上线' : 'Coming Soon',
+      'read': isZh ? '已读' : 'Read',
+      'unread': isZh ? '未读' : 'Unread',
+      'justNow': isZh ? '刚刚' : 'Just now',
+      'yesterday': isZh ? '昨天' : 'Yesterday',
+      'copied': isZh ? '已复制' : 'Copied',
+      'clearChat': isZh ? '清空聊天记录' : 'Clear Chat History',
+      'clearChatConfirm': isZh ? '确定要清空聊天记录吗？' : 'Are you sure you want to clear chat history?',
+      'dismiss': isZh ? '解除' : 'Dismiss',
+      'unpin': isZh ? '取消置顶' : 'Unpin',
+      'unmute': isZh ? '取消静音' : 'Unmute',
+      'noMessages': isZh ? '暂无消息' : 'No messages',
+      'typing': isZh ? '对方正在输入...' : 'Typing...',
     });
     return localizations;
   }

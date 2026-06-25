@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:dochat_app/l10n/app_localizations.dart';
 import 'package:dochat_app/providers/auth_provider.dart';
+import 'package:dochat_app/providers/chat_provider.dart';
 import 'package:dochat_app/pages/auth/splash_page.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class DochatApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
       ],
       child: CupertinoApp(
         debugShowCheckedModeBanner: false,
