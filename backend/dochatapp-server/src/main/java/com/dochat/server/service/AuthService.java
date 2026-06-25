@@ -60,6 +60,20 @@ public class AuthService {
     }
 
     public Map<String, Object> sendSms(String phone, String type) {
+        String rateKey = "sms_rate:" + phone + ":" + type;
+        String dailyKey = "sms_daily:" + phone + ":" + type;
+        String lastSend = redisTemplate.opsForValue().get(rateKey);
+        if (lastSend != null) {
+            throw new RuntimeException("操作过于频繁，请60秒后重试");
+        }
+        String dailyCount = redisTemplate.opsForValue().get(dailyKey);
+        int count = dailyCount == null ? 0 : Integer.parseInt(dailyCount);
+        if (count >= 10) {
+            throw new RuntimeException("今日验证码发送次数已达上限");
+        }
+        redisTemplate.opsForValue().set(rateKey, "1", Duration.ofSeconds(60));
+        redisTemplate.opsForValue().increment(dailyKey, 1);
+        redisTemplate.expire(dailyKey, Duration.ofDays(1));
         String code = String.format("%06d", RANDOM.nextInt(1_000_000));
         String key = SMS_PREFIX + phone + ":" + type;
         redisTemplate.opsForValue().set(key, code, Duration.ofSeconds(300));

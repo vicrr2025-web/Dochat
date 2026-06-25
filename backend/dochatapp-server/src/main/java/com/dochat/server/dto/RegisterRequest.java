@@ -2,7 +2,7 @@ package com.dochat.server.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 public class RegisterRequest {
 
@@ -14,7 +14,7 @@ public class RegisterRequest {
     private String smsCode;
 
     @NotBlank(message = "密码不能为空")
-    @Size(min = 8, max = 64, message = "密码长度8-64位")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d).{8,20}$", message = "密码需8-20位，包含字母和数字")
     private String password;
 
     public String getPhone() { return phone; }

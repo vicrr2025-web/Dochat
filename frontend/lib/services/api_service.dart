@@ -11,6 +11,10 @@ class ApiService {
 
   static const String baseUrl = 'http://localhost:8080/api';
 
+  // 防止并发刷新
+  bool _isRefreshing = false;
+  
+
   ApiService._internal() {
     dio = Dio(BaseOptions(
       baseUrl: baseUrl,
@@ -28,32 +32,55 @@ class ApiService {
         return handler.next(options);
       },
       onError: (error, handler) async {
-        if (error.response?.statusCode == 401 && error.requestOptions.path != '/auth/refresh') {
-          final refreshToken = await _storage.read(key: 'refreshToken');
-          if (refreshToken != null) {
+        if (error.response?.statusCode == 401 &&
+            error.requestOptions.path != '/auth/refresh') {
+          if (!_isRefreshing) {
+            _isRefreshing = true;
             try {
-              final refreshResponse = await Dio(BaseOptions(
-                baseUrl: baseUrl,
-                connectTimeout: const Duration(seconds: 10),
-                receiveTimeout: const Duration(seconds: 10),
-              )).post('/auth/refresh', data: {'refreshToken': refreshToken});
+              final refreshToken = await _storage.read(key: 'refreshToken');
+              if (refreshToken != null) {
+                final refreshDio = Dio(BaseOptions(
+                  baseUrl: baseUrl,
+                  connectTimeout: const Duration(seconds: 10),
+                ));
+                final refreshResponse = await refreshDio.post(
+                  '/auth/refresh',
+                  options: Options(
+                    headers: {'Authorization': 'Bearer $refreshToken'},
+                  ),
+                );
 
-              if (refreshResponse.statusCode == 200) {
-                final authResp = AuthResponse.fromJson(refreshResponse.data['data']);
-                await _storage.write(key: 'token', value: authResp.token);
-                await _storage.write(key: 'refreshToken', value: authResp.refreshToken);
+                if (refreshResponse.statusCode == 200) {
+                  final authResp =
+                      AuthResponse.fromJson(refreshResponse.data['data']);
+                  await _storage.write(key: 'token', value: authResp.token);
+                  await _storage.write(
+                      key: 'refreshToken', value: authResp.refreshToken);
 
-                final retryOptions = error.requestOptions;
-                retryOptions.headers['Authorization'] = 'Bearer ${authResp.token}';
+                  // 重试原始请求
+                  final retryOptions = error.requestOptions;
+                  retryOptions.headers['Authorization'] =
+                      'Bearer ${authResp.token}';
+                  final retryResponse = await dio.fetch(retryOptions);
 
-                final retryResponse = await dio.fetch(retryOptions);
-                return handler.resolve(retryResponse);
+                  _isRefreshing = false;
+                  return handler.resolve(retryResponse);
+                }
               }
             } catch (_) {
               await _storage.deleteAll();
             }
+            _isRefreshing = false;
           } else {
-            await _storage.deleteAll();
+            // 等待刷新完成后重试
+            await Future.delayed(const Duration(milliseconds: 100));
+            final newToken = await _storage.read(key: 'token');
+            if (newToken != null) {
+              final retryOptions = error.requestOptions;
+              retryOptions.headers['Authorization'] = 'Bearer $newToken';
+              final retryResponse = await dio.fetch(retryOptions);
+              return handler.resolve(retryResponse);
+            }
           }
         }
         return handler.next(error);

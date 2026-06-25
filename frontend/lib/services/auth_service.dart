@@ -13,7 +13,7 @@ class AuthService {
 
   Future<ApiResponse> sendSms(String phone, String type) async {
     try {
-      final response = await _api.client.post('/auth/send-sms', data: {
+      final response = await _api.client.post('/api/auth/sms/send', data: {
         'phone': phone,
         'type': type,
       });
@@ -24,7 +24,7 @@ class AuthService {
   }
 
   Future<AuthResponse> register(String phone, String smsCode, String password) async {
-    final response = await _api.client.post('/auth/register', data: {
+    final response = await _api.client.post('/api/auth/register', data: {
       'phone': phone,
       'smsCode': smsCode,
       'password': password,
@@ -35,7 +35,7 @@ class AuthService {
   }
 
   Future<AuthResponse> login(String phone, String password) async {
-    final response = await _api.client.post('/auth/login', data: {
+    final response = await _api.client.post('/api/auth/login', data: {
       'phone': phone,
       'password': password,
     });
@@ -45,7 +45,7 @@ class AuthService {
   }
 
   Future<AuthResponse> loginBySms(String phone, String smsCode) async {
-    final response = await _api.client.post('/auth/login-by-sms', data: {
+    final response = await _api.client.post('/api/auth/login/sms', data: {
       'phone': phone,
       'smsCode': smsCode,
     });
@@ -55,28 +55,27 @@ class AuthService {
   }
 
   Future<AuthResponse> refreshToken(String refreshToken) async {
-    final response = await _api.client.post('/auth/refresh', data: {
-      'refreshToken': refreshToken,
-    });
+    final response = await _api.client.post('/api/auth/refresh',
+        options: Options(headers: {'Authorization': 'Bearer $refreshToken'}));
     return AuthResponse.fromJson(response.data['data']);
   }
 
   Future<void> logout() async {
     try {
-      await _api.client.post('/auth/logout');
+      await _api.client.post('/api/auth/logout');
     } catch (_) {}
     await clearTokens();
   }
 
   Future<void> changePassword(String oldPassword, String newPassword) async {
-    await _api.client.post('/auth/change-password', data: {
+    await _api.client.put('/api/auth/password', data: {
       'oldPassword': oldPassword,
       'newPassword': newPassword,
     });
   }
 
   Future<void> resetPassword(String phone, String smsCode, String newPassword) async {
-    await _api.client.post('/auth/reset-password', data: {
+    await _api.client.post('/api/auth/password/reset', data: {
       'phone': phone,
       'smsCode': smsCode,
       'newPassword': newPassword,
