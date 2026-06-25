@@ -393,6 +393,46 @@ class AppLocalizations {
   String get workAuth => _strings['workAuth'] ?? '工作认证';
   String get eduAuth => _strings['eduAuth'] ?? '学历认证';
   String get noRecommend => _strings['noRecommend'] ?? '暂无推荐';
+  String get houseTab => _strings['houseTab'] ?? '找房';
+  String get newHouse => _strings['newHouse'] ?? '新房';
+  String get secondHouse => _strings['secondHouse'] ?? '二手房';
+  String get rentHouse => _strings['rentHouse'] ?? '租房';
+  String get commercialHouse => _strings['commercialHouse'] ?? '商业地产';
+  String get houseType => _strings['houseType'] ?? '房屋类型';
+  String get houseLayout => _strings['houseLayout'] ?? '户型';
+  String get houseArea => _strings['houseArea'] ?? '面积';
+  String get houseFloor => _strings['houseFloor'] ?? '楼层';
+  String get houseDirection => _strings['houseDirection'] ?? '朝向';
+  String get houseDecoration => _strings['houseDecoration'] ?? '装修';
+  String get housePrice => _strings['housePrice'] ?? '价格';
+  String get totalPriceLabel => _strings['totalPriceLabel'] ?? '总价';
+  String get unitPriceLabel => _strings['unitPriceLabel'] ?? '单价';
+  String get monthlyRent => _strings['monthlyRent'] ?? '月租';
+  String get publishHouse => _strings['publishHouse'] ?? '发布房源';
+  String get publishHouseTitle => _strings['publishHouseTitle'] ?? '发布房源';
+  String get appointmentViewing => _strings['appointmentViewing'] ?? '预约看房';
+  String get appointmentTime => _strings['appointmentTime'] ?? '预约时间';
+  String get freeBus => _strings['freeBus'] ?? '免费专车';
+  String get communityInfo => _strings['communityInfo'] ?? '小区信息';
+  String get communityReview => _strings['communityReview'] ?? '小区评测';
+  String get ownerService => _strings['ownerService'] ?? '房东服务';
+  String get houseValuation => _strings['houseValuation'] ?? '房屋估价';
+  String get quickSell => _strings['quickSell'] ?? '快速卖房';
+  String get sellVip => _strings['sellVip'] ?? '速卖VIP';
+  String get renovationService => _strings['renovationService'] ?? '装修服务';
+  String get renovationEstimate => _strings['renovationEstimate'] ?? '装修估价';
+  String get mortgageCalc => _strings['mortgageCalc'] ?? '房贷计算';
+  String get taxCalc => _strings['taxCalc'] ?? '税费计算';
+  String get downPayment => _strings['downPayment'] ?? '首付';
+  String get loanRate => _strings['loanRate'] ?? '利率';
+  String get loanYears => _strings['loanYears'] ?? '年限';
+  String get monthlyPayment => _strings['monthlyPayment'] ?? '月供';
+  String get totalInterest => _strings['totalInterest'] ?? '总利息';
+  String get microChat => _strings['microChat'] ?? '微聊';
+  String get noHouseHint => _strings['noHouseHint'] ?? '暂无房源';
+  String get contactLandlord => _strings['contactLandlord'] ?? '联系房东';
+  String get houseTags => _strings['houseTags'] ?? '标签';
+  String get aiTitle => _strings['aiTitle'] ?? 'AI 生成标题';
   String get messagesLabel => _strings['messagesLabel'] ?? '消息';
 
 
@@ -767,6 +807,46 @@ class _AppLocalizationsDelegate
       'workAuth': isZh ? '工作认证' : 'Work Verify',
       'eduAuth': isZh ? '学历认证' : 'Edu Verify',
       'noRecommend': isZh ? '暂无推荐' : 'No Recommendations',
+      'houseTab': isZh ? '找房' : 'Housing',
+      'newHouse': isZh ? '新房' : 'New Homes',
+      'secondHouse': isZh ? '二手房' : 'Resale',
+      'rentHouse': isZh ? '租房' : 'Rent',
+      'commercialHouse': isZh ? '商业地产' : 'Commercial',
+      'houseType': isZh ? '房屋类型' : 'Type',
+      'houseLayout': isZh ? '户型' : 'Layout',
+      'houseArea': isZh ? '面积' : 'Area',
+      'houseFloor': isZh ? '楼层' : 'Floor',
+      'houseDirection': isZh ? '朝向' : 'Direction',
+      'houseDecoration': isZh ? '装修' : 'Decoration',
+      'housePrice': isZh ? '价格' : 'Price',
+      'totalPriceLabel': isZh ? '总价' : 'Total Price',
+      'unitPriceLabel': isZh ? '单价' : 'Unit Price',
+      'monthlyRent': isZh ? '月租' : 'Monthly Rent',
+      'publishHouse': isZh ? '发布房源' : 'Publish',
+      'publishHouseTitle': isZh ? '发布房源' : 'Publish Listing',
+      'appointmentViewing': isZh ? '预约看房' : 'Book Viewing',
+      'appointmentTime': isZh ? '预约时间' : 'Time',
+      'freeBus': isZh ? '免费专车' : 'Free Shuttle',
+      'communityInfo': isZh ? '小区信息' : 'Community',
+      'communityReview': isZh ? '小区评测' : 'Review',
+      'ownerService': isZh ? '房东服务' : 'Owner Services',
+      'houseValuation': isZh ? '房屋估价' : 'Valuation',
+      'quickSell': isZh ? '快速卖房' : 'Quick Sell',
+      'sellVip': isZh ? '速卖VIP' : 'Sell VIP',
+      'renovationService': isZh ? '装修服务' : 'Renovation',
+      'renovationEstimate': isZh ? '装修估价' : 'Estimate',
+      'mortgageCalc': isZh ? '房贷计算' : 'Mortgage',
+      'taxCalc': isZh ? '税费计算' : 'Tax Calc',
+      'downPayment': isZh ? '首付' : 'Down Payment',
+      'loanRate': isZh ? '利率' : 'Rate',
+      'loanYears': isZh ? '年限' : 'Years',
+      'monthlyPayment': isZh ? '月供' : 'Monthly',
+      'totalInterest': isZh ? '总利息' : 'Total Interest',
+      'microChat': isZh ? '微聊' : 'Chat',
+      'noHouseHint': isZh ? '暂无房源' : 'No listings',
+      'contactLandlord': isZh ? '联系房东' : 'Contact',
+      'houseTags': isZh ? '标签' : 'Tags',
+      'aiTitle': isZh ? 'AI 生成标题' : 'AI Title',
       'messagesLabel': isZh ? '消息' : 'Messages',
       'noOrdersHint': isZh ? '暂无订单' : 'No orders',
 

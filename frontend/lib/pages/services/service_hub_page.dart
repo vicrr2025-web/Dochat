@@ -7,6 +7,7 @@ import 'package:dochat_app/pages/services/ecosystem_placeholder_page.dart';
 import 'package:dochat_app/pages/services/guarantee_list_page.dart';
 import 'package:dochat_app/pages/services/mall_list_page.dart';
 import 'package:dochat_app/pages/dating/dating_profile_page.dart';
+import 'package:dochat_app/pages/houses/house_home_page.dart';
 
 String _ecosystemName(String key, AppLocalizations l10n) {
   switch (key) {
@@ -218,11 +219,16 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (_) => badge.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : badge.ecosystemKey == 'mall' ? const MallListPage() : const DatingProfilePage(),
+                    builder: (_) {
+                    if (badge.ecosystemKey == 'guarantee') return const GuaranteeListPage();
+                    if (badge.ecosystemKey == 'mall') return const MallListPage();
+                    if (badge.ecosystemKey == 'dating') return const DatingProfilePage();
+                    return const HouseHomePage();
+                  },
                   ),
                 );
               } else {
