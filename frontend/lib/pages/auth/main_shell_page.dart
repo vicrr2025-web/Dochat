@@ -5,6 +5,7 @@ import 'package:dochat_app/providers/service_hub_provider.dart';
 import 'package:dochat_app/pages/auth/home_page.dart';
 import 'package:dochat_app/pages/square/square_page.dart';
 import 'package:dochat_app/pages/services/service_hub_page.dart';
+import 'package:dochat_app/pages/settings/settings_page.dart';
 
 class MainShellPage extends StatefulWidget {
   const MainShellPage({super.key});
@@ -117,6 +118,11 @@ class _MainShellPageState extends State<MainShellPage> {
             ),
             label: l10n.services,
           ),
+          BottomNavigationBarItem(
+            icon: const Icon(CupertinoIcons.gear),
+            activeIcon: const Icon(CupertinoIcons.gear_alt_fill),
+            label: l10n.settings,
+          ),
         ],
       ),
       tabBuilder: (context, index) {
@@ -129,6 +135,8 @@ class _MainShellPageState extends State<MainShellPage> {
             return const SquarePage();
           case 3:
             return const ServiceHubPage();
+          case 4:
+            return const SettingsPage();
           default:
             return const HomePage();
         }

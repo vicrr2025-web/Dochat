@@ -55,6 +55,7 @@ class AppLocalizations {
   String get passwordInvalid => _strings['passwordInvalid'] ?? '密码需6-20位，包含字母和数字';
   String get passwordMismatch => _strings['passwordMismatch'] ?? '两次密码不一致';
   String get passwordWrong => _strings['passwordWrong'] ?? '密码错误';
+  String get wrongPassword => _strings['wrongPassword'] ?? '密码错误';
   String get accountLocked => _strings['accountLocked'] ?? '账号已锁定，请30分钟后重试';
   String get accountBanned => _strings['accountBanned'] ?? '账号已被禁用，请联系客服';
   String get registerSuccess => _strings['registerSuccess'] ?? '注册成功';
@@ -225,6 +226,55 @@ class AppLocalizations {
   String get emailService => _strings['emailService'] ?? '邮箱';
   String get shipping => _strings['shipping'] ?? '速运';
   String get homeService => _strings['homeService'] ?? '到家';
+
+  String get settings => _strings['settings'] ?? '设置';
+  String get account => _strings['account'] ?? '账号';
+  String get general => _strings['general'] ?? '通用';
+  String get storage_label => _strings['storage_label'] ?? '存储';
+  String get about => _strings['about'] ?? '关于';
+  String get realNameVerify => _strings['realNameVerify'] ?? '实名认证';
+  String get verified => _strings['verified'] ?? '已认证';
+  String get unverified => _strings['unverified'] ?? '未认证';
+  String get deviceManagement => _strings['deviceManagement'] ?? '设备管理';
+  String get currentDevice => _strings['currentDevice'] ?? '当前设备';
+  String get darkMode => _strings['darkMode'] ?? '深色模式';
+  String get language => _strings['language'] ?? '多语言';
+  String get paymentSettings => _strings['paymentSettings'] ?? '支付设置';
+  String get storageManagement => _strings['storageManagement'] ?? '存储管理';
+  String get clearCache => _strings['clearCache'] ?? '清除缓存';
+  String get feedback => _strings['feedback'] ?? '帮助与反馈';
+  String get aboutUs => _strings['aboutUs'] ?? '关于我们';
+  String get userAgreement => _strings['userAgreement'] ?? '用户协议';
+  String get privacyPolicy => _strings['privacyPolicy'] ?? '隐私政策';
+  String get deleteAccount => _strings['deleteAccount'] ?? '注销账号';
+  String get onlineVisibility => _strings['onlineVisibility'] ?? '在线状态';
+  String get avatarVisibility => _strings['avatarVisibility'] ?? '头像可见';
+  String get bioVisibility => _strings['bioVisibility'] ?? '简介可见';
+  String get messagePermission => _strings['messagePermission'] ?? '消息权限';
+  String get everyone => _strings['everyone'] ?? '所有人';
+  String get nobody => _strings['nobody'] ?? '无人';
+  String get blacklist => _strings['blacklist'] ?? '黑名单';
+  String get noBlacklist => _strings['noBlacklist'] ?? '暂无黑名单';
+  String get creditScoreLabel => _strings['creditScoreLabel'] ?? '信誉分';
+  String get signOutMessage => _strings['signOutMessage'] ?? '退出后需要重新登录';
+  String get version => _strings['version'] ?? '版本';
+  String get copyright => _strings['copyright'] ?? 'Copyright 2025 Dochat';
+  String get unbind => _strings['unbind'] ?? '解绑';
+  String get bind => _strings['bind'] ?? '绑定';
+  String get notBound => _strings['notBound'] ?? '未绑定';
+  String get faceVerify => _strings['faceVerify'] ?? '人脸识别';
+  String get faceVerifyHint => _strings['faceVerifyHint'] ?? '人脸ID（开发中）';
+  String get realName => _strings['realName'] ?? '真实姓名';
+  String get idNumber => _strings['idNumber'] ?? '身份证号';
+  String get submitVerify => _strings['submitVerify'] ?? '提交认证';
+  String get verifyPending => _strings['verifyPending'] ?? '审核中';
+  String get verifyRejected => _strings['verifyRejected'] ?? '审核未通过';
+  String get other => _strings['other'] ?? '其他';
+  String get goldCredit => _strings['goldCredit'] ?? '金牌';
+  String get silverCredit => _strings['silverCredit'] ?? '银牌';
+  String get copperCredit => _strings['copperCredit'] ?? '铜牌';
+  String get save => _strings['save'] ?? '保存';
+
 
 }
 
@@ -429,6 +479,55 @@ class _AppLocalizationsDelegate
       'emailService': isZh ? '邮箱' : 'Email',
       'shipping': isZh ? '速运' : 'Shipping',
       'homeService': isZh ? '到家' : 'Home Service',
+
+      'settings': isZh ? '设置' : 'Settings',
+      'account': isZh ? '账号' : 'Account',
+      'general': isZh ? '通用' : 'General',
+      'storage_label': isZh ? '存储' : 'Storage',
+      'about': isZh ? '关于' : 'About',
+      'realNameVerify': isZh ? '实名认证' : 'Real-Name Verify',
+      'verified': isZh ? '已认证' : 'Verified',
+      'unverified': isZh ? '未认证' : 'Unverified',
+      'deviceManagement': isZh ? '设备管理' : 'Device Management',
+      'currentDevice': isZh ? '当前设备' : 'Current Device',
+      'darkMode': isZh ? '深色模式' : 'Dark Mode',
+      'language': isZh ? '多语言' : 'Language',
+      'paymentSettings': isZh ? '支付设置' : 'Payment Settings',
+      'storageManagement': isZh ? '存储管理' : 'Storage Management',
+      'clearCache': isZh ? '清除缓存' : 'Clear Cache',
+      'feedback': isZh ? '帮助与反馈' : 'Help & Feedback',
+      'aboutUs': isZh ? '关于我们' : 'About Us',
+      'userAgreement': isZh ? '用户协议' : 'User Agreement',
+      'privacyPolicy': isZh ? '隐私政策' : 'Privacy Policy',
+      'deleteAccount': isZh ? '注销账号' : 'Delete Account',
+      'onlineVisibility': isZh ? '在线状态' : 'Online Visibility',
+      'avatarVisibility': isZh ? '头像可见' : 'Avatar Visibility',
+      'bioVisibility': isZh ? '简介可见' : 'Bio Visibility',
+      'messagePermission': isZh ? '消息权限' : 'Message Permission',
+      'everyone': isZh ? '所有人' : 'Everyone',
+      'nobody': isZh ? '无人' : 'Nobody',
+      'blacklist': isZh ? '黑名单' : 'Blacklist',
+      'noBlacklist': isZh ? '暂无黑名单' : 'No blacklisted users',
+      'creditScoreLabel': isZh ? '信誉分' : 'Credit Score',
+      'signOutMessage': isZh ? '退出后需要重新登录' : 'You will need to sign in again',
+      'version': isZh ? '版本' : 'Version',
+      'copyright': isZh ? 'Copyright 2025 Dochat' : 'Copyright 2025 Dochat',
+      'unbind': isZh ? '解绑' : 'Unbind',
+      'bind': isZh ? '绑定' : 'Bind',
+      'notBound': isZh ? '未绑定' : 'Not Bound',
+      'faceVerify': isZh ? '人脸识别' : 'Face Verify',
+      'faceVerifyHint': isZh ? '人脸ID（开发中）' : 'Face ID (WIP)',
+      'realName': isZh ? '真实姓名' : 'Real Name',
+      'idNumber': isZh ? '身份证号' : 'ID Number',
+      'submitVerify': isZh ? '提交认证' : 'Submit',
+      'verifyPending': isZh ? '审核中' : 'Pending',
+      'verifyRejected': isZh ? '审核未通过' : 'Rejected',
+      'other': isZh ? '其他' : 'Other',
+      'goldCredit': isZh ? '金牌' : 'Gold',
+      'silverCredit': isZh ? '银牌' : 'Silver',
+      'copperCredit': isZh ? '铜牌' : 'Bronze',
+      'save': isZh ? '保存' : 'Save',
+      'wrongPassword': isZh ? '密码错误' : 'Wrong password',
     });
     return localizations;
   }
