@@ -55,22 +55,22 @@ class _GuaranteeListPageState extends State<GuaranteeListPage> {
                     context.read<GuaranteeProvider>().loadTradeList(status: _statusFromTab(v));
                   }
                 },
-                children: const {
+                children: {
                   0: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Text('全部'),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: Text(l10n.all),
                   ),
                   1: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Text('进行中'),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: Text(l10n.active),
                   ),
                   2: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Text('已完成'),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: Text(l10n.completed),
                   ),
                   3: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Text('已关闭'),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: Text(l10n.closed),
                   ),
                 },
               ),
