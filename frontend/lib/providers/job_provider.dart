@@ -213,6 +213,24 @@ class JobProvider extends ChangeNotifier {
     }
   }
 
+  Future<bool> upgradeVip(String role) async {
+    try {
+      final result = await _service.upgradeVip(role);
+      _vip = JobVip(
+        vipId: result['vipId'] ?? '',
+        userId: result['userId'] ?? '',
+        role: result['role'] ?? role,
+        level: result['level'],
+        expiresAt: result['expiresAt'],
+      );
+      notifyListeners();
+      return true;
+    } catch (_) {
+      notifyListeners();
+      return false;
+    }
+  }
+
   Future<bool> buyBoost(String positionId) async {
     try {
       await _service.buyBoost(positionId);
