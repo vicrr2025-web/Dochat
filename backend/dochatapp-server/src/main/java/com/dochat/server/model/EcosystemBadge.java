@@ -1,0 +1,59 @@
+package com.dochat.server.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "ecosystem_badges")
+public class EcosystemBadge {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 32)
+    private String userId;
+
+    @Column(nullable = false, length = 32)
+    private String ecosystemKey;
+
+    @Column(nullable = false)
+    private int badgeCount = 0;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public EcosystemBadge() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+
+    public String getEcosystemKey() { return ecosystemKey; }
+    public void setEcosystemKey(String ecosystemKey) { this.ecosystemKey = ecosystemKey; }
+
+    public int getBadgeCount() { return badgeCount; }
+    public void setBadgeCount(int badgeCount) { this.badgeCount = badgeCount; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+}

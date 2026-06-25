@@ -212,6 +212,19 @@ class AppLocalizations {
   String get share => _strings['share'] ?? '转发';
   String get profile => _strings['profile'] ?? '我的';
 
+  String get chats => _strings['chats'] ?? '聊天';
+  String get services => _strings['services'] ?? '服务';
+  String get recentlyUsed => _strings['recentlyUsed'] ?? '最近使用';
+  String get serviceHub => _strings['serviceHub'] ?? '服务中心';
+  String get guarantee => _strings['guarantee'] ?? '担保';
+  String get mall => _strings['mall'] ?? '商城';
+  String get dating => _strings['dating'] ?? '婚恋';
+  String get housing => _strings['housing'] ?? '找房';
+  String get recruit => _strings['recruit'] ?? '直聘';
+  String get emailService => _strings['emailService'] ?? '邮箱';
+  String get shipping => _strings['shipping'] ?? '速运';
+  String get homeService => _strings['homeService'] ?? '到家';
+
 }
 
 class _AppLocalizationsDelegate
@@ -402,6 +415,18 @@ class _AppLocalizationsDelegate
       'comment': isZh ? '评论' : 'Comment',
       'share': isZh ? '转发' : 'Share',
       'profile': isZh ? '我的' : 'Profile',
+      'chats': isZh ? '聊天' : 'Chats',
+      'services': isZh ? '服务' : 'Services',
+      'recentlyUsed': isZh ? '最近使用' : 'Recently Used',
+      'serviceHub': isZh ? '服务中心' : 'Service Hub',
+      'guarantee': isZh ? '担保' : 'Guarantee',
+      'mall': isZh ? '商城' : 'Mall',
+      'dating': isZh ? '婚恋' : 'Dating',
+      'housing': isZh ? '找房' : 'Housing',
+      'recruit': isZh ? '直聘' : 'Recruit',
+      'emailService': isZh ? '邮箱' : 'Email',
+      'shipping': isZh ? '速运' : 'Shipping',
+      'homeService': isZh ? '到家' : 'Home Service',
     });
     return localizations;
   }
