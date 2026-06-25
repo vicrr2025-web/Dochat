@@ -158,6 +158,43 @@ class AppLocalizations {
   String get userNotFound => _strings['userNotFound'] ?? '未找到该用户';
   String get requestMessageHint => _strings['requestMessageHint'] ?? '你好，我想加你为好友';
 
+  String get square => _strings['square'] ?? '动态';
+  String get recommend => _strings['recommend'] ?? '推荐';
+  String get following => _strings['following'] ?? '关注';
+  String get moments => _strings['moments'] ?? '动态';
+  String get follow => _strings['follow'] ?? '关注';
+  String get followingLabel => _strings['following_label'] ?? '已关注';
+  String get unfollow => _strings['unfollow'] ?? '取消关注';
+  String get newPost => _strings['newPost'] ?? '发布动态';
+  String get shareThoughts => _strings['shareThoughts'] ?? '分享你的想法...';
+  String get publish => _strings['publish'] ?? '发布';
+  String get addPhotos => _strings['addPhotos'] ?? '添加图片';
+  String get addVideo => _strings['addVideo'] ?? '添加视频';
+  String get addLocation => _strings['addLocation'] ?? '添加位置';
+  String get locationComingSoon => _strings['locationComingSoon'] ?? '位置功能即将上线';
+  String get public => _strings['public'] ?? '公开';
+  String get friendsOnly => _strings['friendsOnly'] ?? '好友';
+  String get private => _strings['private'] ?? '私密';
+  String get expand => _strings['expand'] ?? '全文';
+  String get collapse => _strings['collapse'] ?? '收起';
+  String get noComments => _strings['noComments'] ?? '暂无评论';
+  String get comments => _strings['comments'] ?? '评论';
+  String get saySomething => _strings['saySomething'] ?? '说点什么...';
+  String get drafts => _strings['drafts'] ?? '草稿箱';
+  String get noDrafts => _strings['noDrafts'] ?? '暂无草稿';
+  String get myPosts => _strings['myPosts'] ?? '我的动态';
+  String get myFollowing => _strings['myFollowing'] ?? '我的关注';
+  String get myFollowers => _strings['myFollowers'] ?? '我的粉丝';
+  String get favorites => _strings['favorites'] ?? '收藏';
+  String get viewHistory => _strings['viewHistory'] ?? '浏览记录';
+  String get editProfile => _strings['editProfile'] ?? '编辑资料';
+  String get noPosts => _strings['noPosts'] ?? '暂无动态';
+  String get videoMode => _strings['videoMode'] ?? '视频模式';
+  String get like => _strings['like'] ?? '赞';
+  String get comment => _strings['comment'] ?? '评论';
+  String get share => _strings['share'] ?? '转发';
+  String get profile => _strings['profile'] ?? '我的';
+
 }
 
 class _AppLocalizationsDelegate
@@ -301,6 +338,43 @@ class _AppLocalizationsDelegate
       'noPendingRequests': isZh ? '暂无好友申请' : 'No pending requests',
       'userNotFound': isZh ? '未找到该用户' : 'User not found',
       'requestMessageHint': isZh ? '你好，我想加你为好友' : 'Hi, I would like to add you as a friend',
+
+      'square': isZh ? '广场' : 'Square',
+      'recommend': isZh ? '推荐' : 'Recommend',
+      'following': isZh ? '关注' : 'Following',
+      'moments': isZh ? '动态' : 'Moments',
+      'follow': isZh ? '关注' : 'Follow',
+      'following_label': isZh ? '已关注' : 'Following',
+      'unfollow': isZh ? '取消关注' : 'Unfollow',
+      'newPost': isZh ? '发布动态' : 'New Post',
+      'shareThoughts': isZh ? '分享你的想法...' : 'Share your thoughts...',
+      'publish': isZh ? '发布' : 'Publish',
+      'addPhotos': isZh ? '添加图片' : 'Add Photos',
+      'addVideo': isZh ? '添加视频' : 'Add Video',
+      'addLocation': isZh ? '添加位置' : 'Add Location',
+      'locationComingSoon': isZh ? '位置功能即将上线' : 'Location feature coming soon',
+      'public': isZh ? '公开' : 'Public',
+      'friendsOnly': isZh ? '好友' : 'Friends',
+      'private': isZh ? '私密' : 'Private',
+      'expand': isZh ? '全文' : 'Expand',
+      'collapse': isZh ? '收起' : 'Collapse',
+      'noComments': isZh ? '暂无评论' : 'No comments',
+      'comments': isZh ? '评论' : 'Comments',
+      'saySomething': isZh ? '说点什么...' : 'Say something...',
+      'drafts': isZh ? '草稿箱' : 'Drafts',
+      'noDrafts': isZh ? '暂无草稿' : 'No drafts',
+      'myPosts': isZh ? '我的动态' : 'My Posts',
+      'myFollowing': isZh ? '我的关注' : 'My Following',
+      'myFollowers': isZh ? '我的粉丝' : 'My Followers',
+      'favorites': isZh ? '收藏' : 'Favorites',
+      'viewHistory': isZh ? '浏览记录' : 'View History',
+      'editProfile': isZh ? '编辑资料' : 'Edit Profile',
+      'noPosts': isZh ? '暂无动态' : 'No posts',
+      'videoMode': isZh ? '视频模式' : 'Video Mode',
+      'like': isZh ? '赞' : 'Like',
+      'comment': isZh ? '评论' : 'Comment',
+      'share': isZh ? '转发' : 'Share',
+      'profile': isZh ? '我的' : 'Profile',
     });
     return localizations;
   }
