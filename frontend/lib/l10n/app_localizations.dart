@@ -1,5 +1,5 @@
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 
 class AppLocalizations {
@@ -115,6 +115,32 @@ class AppLocalizations {
   String get noMessages => _strings['noMessages'] ?? '暂无消息';
   String get typing => _strings['typing'] ?? '对方正在输入...';
 
+  // ======== M3 好友 & 定位 ========
+  String get friends => _strings['friends'] ?? '好友';
+  String get groups => _strings['groups'] ?? '群聊';
+  String get friendRequests => _strings['friendRequests'] ?? '好友申请';
+  String get addFriend => _strings['addFriend'] ?? '添加好友';
+  String get searchFriend => _strings['searchFriend'] ?? '搜索好友';
+  String get enterPhone => _strings['enterPhone'] ?? '输入手机号';
+  String get sendRequest => _strings['sendRequest'] ?? '发送好友申请';
+  String get accept => _strings['accept'] ?? '接受';
+  String get reject => _strings['reject'] ?? '拒绝';
+  String get accepted => _strings['accepted'] ?? '已接受';
+  String get rejected => _strings['rejected'] ?? '已拒绝';
+  String get removeFriend => _strings['removeFriend'] ?? '删除好友';
+  String get removeFriendConfirm => _strings['removeFriendConfirm'] ?? '确定要删除该好友吗？';
+  String get friendRequestSent => _strings['friendRequestSent'] ?? '好友申请已发送';
+  String get alreadyFriends => _strings['alreadyFriends'] ?? '已经是好友';
+  String get liveLocation => _strings['liveLocation'] ?? '实时定位';
+  String get trajectory => _strings['trajectory'] ?? '轨迹回放';
+  String get geofence => _strings['geofence'] ?? '电子围栏';
+  String get shareLocation => _strings['shareLocation'] ?? '共享位置';
+  String get distance => _strings['distance'] ?? '距离';
+  String get battery => _strings['battery'] ?? '电量';
+  String get noPendingRequests => _strings['noPendingRequests'] ?? '暂无好友申请';
+  String get userNotFound => _strings['userNotFound'] ?? '未找到该用户';
+  String get requestMessageHint => _strings['requestMessageHint'] ?? '你好，我想加你为好友';
+
 }
 
 class _AppLocalizationsDelegate
@@ -218,6 +244,30 @@ class _AppLocalizationsDelegate
       'unmute': isZh ? '取消静音' : 'Unmute',
       'noMessages': isZh ? '暂无消息' : 'No messages',
       'typing': isZh ? '对方正在输入...' : 'Typing...',
+      'friends': isZh ? '好友' : 'Friends',
+      'groups': isZh ? '群聊' : 'Groups',
+      'friendRequests': isZh ? '好友申请' : 'Friend Requests',
+      'addFriend': isZh ? '添加好友' : 'Add Friend',
+      'searchFriend': isZh ? '搜索好友' : 'Search Friend',
+      'enterPhone': isZh ? '输入手机号' : 'Enter Phone',
+      'sendRequest': isZh ? '发送好友申请' : 'Send Request',
+      'accept': isZh ? '接受' : 'Accept',
+      'reject': isZh ? '拒绝' : 'Reject',
+      'accepted': isZh ? '已接受' : 'Accepted',
+      'rejected': isZh ? '已拒绝' : 'Rejected',
+      'removeFriend': isZh ? '删除好友' : 'Remove Friend',
+      'removeFriendConfirm': isZh ? '确定要删除该好友吗？' : 'Are you sure you want to remove this friend?',
+      'friendRequestSent': isZh ? '好友申请已发送' : 'Friend request sent',
+      'alreadyFriends': isZh ? '已经是好友' : 'Already friends',
+      'liveLocation': isZh ? '实时定位' : 'Live Location',
+      'trajectory': isZh ? '轨迹回放' : 'Trajectory',
+      'geofence': isZh ? '电子围栏' : 'Geo-Fence',
+      'shareLocation': isZh ? '共享位置' : 'Share Location',
+      'distance': isZh ? '距离' : 'Distance',
+      'battery': isZh ? '电量' : 'Battery',
+      'noPendingRequests': isZh ? '暂无好友申请' : 'No pending requests',
+      'userNotFound': isZh ? '未找到该用户' : 'User not found',
+      'requestMessageHint': isZh ? '你好，我想加你为好友' : 'Hi, I would like to add you as a friend',
     });
     return localizations;
   }
