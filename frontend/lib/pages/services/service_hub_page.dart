@@ -5,6 +5,20 @@ import 'package:dochat_app/models/service_models.dart';
 import 'package:dochat_app/providers/service_hub_provider.dart';
 import 'package:dochat_app/pages/services/ecosystem_placeholder_page.dart';
 
+String _ecosystemName(String key, AppLocalizations l10n) {
+  switch (key) {
+    case 'guarantee': return l10n.guarantee;
+    case 'mall': return l10n.mall;
+    case 'dating': return l10n.dating;
+    case 'housing': return l10n.housing;
+    case 'recruit': return l10n.recruit;
+    case 'emailService': return l10n.emailService;
+    case 'shipping': return l10n.shipping;
+    case 'homeService': return l10n.homeService;
+    default: return key;
+  }
+}
+
 IconData _iconForKey(String key) {
   switch (key) {
     case 'guarantee':
@@ -17,7 +31,7 @@ IconData _iconForKey(String key) {
       return CupertinoIcons.house_fill;
     case 'recruit':
       return CupertinoIcons.briefcase_fill;
-    case 'email':
+    case 'emailService':
       return CupertinoIcons.mail_solid;
     case 'shipping':
       return CupertinoIcons.cube_box_fill;
@@ -57,7 +71,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
       child: SafeArea(
         child: Consumer<ServiceHubProvider>(
           builder: (context, provider, _) {
-            if (provider.isLoading) {
+            if (provider.isLoading && provider.badges.isEmpty) {
               return const Center(child: CupertinoActivityIndicator());
             }
 
@@ -106,7 +120,15 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
         ),
         SizedBox(
           height: 72,
-          child: ListView.separated(
+          child: recent.isEmpty
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  l10n.noRecent,
+                  style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey),
+                ),
+              )
+            : ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -180,7 +202,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                 context,
                 CupertinoPageRoute(
                   builder: (_) => EcosystemPlaceholderPage(
-                    ecosystemName: badge.ecosystemName,
+                    ecosystemName: _ecosystemName(badge.ecosystemKey, l10n),
                     ecosystemKey: badge.ecosystemKey,
                   ),
                 ),
@@ -208,7 +230,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          badge.ecosystemName,
+                          _ecosystemName(badge.ecosystemKey, l10n),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

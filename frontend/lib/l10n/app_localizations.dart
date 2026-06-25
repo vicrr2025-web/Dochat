@@ -215,6 +215,7 @@ class AppLocalizations {
   String get chats => _strings['chats'] ?? '聊天';
   String get services => _strings['services'] ?? '服务';
   String get recentlyUsed => _strings['recentlyUsed'] ?? '最近使用';
+  String get noRecent => _strings['noRecent'] ?? '暂无使用记录';
   String get serviceHub => _strings['serviceHub'] ?? '服务中心';
   String get guarantee => _strings['guarantee'] ?? '担保';
   String get mall => _strings['mall'] ?? '商城';
@@ -418,6 +419,7 @@ class _AppLocalizationsDelegate
       'chats': isZh ? '聊天' : 'Chats',
       'services': isZh ? '服务' : 'Services',
       'recentlyUsed': isZh ? '最近使用' : 'Recently Used',
+      'noRecent': isZh ? '暂无使用记录' : 'No recent usage',
       'serviceHub': isZh ? '服务中心' : 'Service Hub',
       'guarantee': isZh ? '担保' : 'Guarantee',
       'mall': isZh ? '商城' : 'Mall',
