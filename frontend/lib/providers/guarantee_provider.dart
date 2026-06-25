@@ -3,6 +3,7 @@ import 'package:dochat_app/models/guarantee_models.dart';
 import 'package:dochat_app/services/guarantee_service.dart';
 
 class GuaranteeProvider extends ChangeNotifier {
+  String currentUserId = '';
   final GuaranteeService _service = GuaranteeService();
 
   List<TradeInfo> _trades = [];

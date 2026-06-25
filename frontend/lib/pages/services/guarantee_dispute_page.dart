@@ -275,8 +275,8 @@ class _GuaranteeDisputePageState extends State<GuaranteeDisputePage> {
   }
 
   Widget _buildVerdictCard(AppLocalizations l10n, dispute) {
-    final winnerLabel = dispute.verdict == 'buyer' ? l10n.buyer : l10n.seller;
-    final color = dispute.verdict == 'buyer'
+    final winnerLabel = dispute.verdict == 'buyer_win' ? l10n.buyer : l10n.seller;
+    final color = dispute.verdict == 'buyer_win'
         ? const Color(0xFF007AFF)
         : const Color(0xFF34C759);
 

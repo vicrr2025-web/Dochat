@@ -530,11 +530,13 @@ class _GuaranteeDetailPageState extends State<GuaranteeDetailPage> {
   }
 
   bool _isSeller(TradeInfo trade) {
-    return true;
+    final currentUserId = context.read<GuaranteeProvider>().currentUserId;
+    return trade.sellerId == currentUserId;
   }
 
   bool _isBuyer(TradeInfo trade) {
-    return true;
+    final currentUserId = context.read<GuaranteeProvider>().currentUserId;
+    return trade.buyerId == currentUserId;
   }
 
   void _showToast(BuildContext context, String message) {
