@@ -80,6 +80,14 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
 
             return CustomScrollView(
               slivers: [
+                CupertinoSliverRefreshControl(
+                  onRefresh: () async {
+                    await Future.wait([
+                      provider.loadBadges(),
+                      provider.loadRecent(),
+                    ]);
+                  },
+                ),
                 if (recent.isNotEmpty)
                   SliverToBoxAdapter(
                     child: _buildRecentSection(l10n, recent, badges),

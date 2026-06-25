@@ -25,7 +25,7 @@ public class ServiceHubService {
         ECOSYSTEM_MAP.put("dating",        new EcosystemInfo("婚恋",   "heart",                  "/services/dating"));
         ECOSYSTEM_MAP.put("housing",       new EcosystemInfo("找房",   "house",                  "/services/housing"));
         ECOSYSTEM_MAP.put("recruit",       new EcosystemInfo("直聘",   "briefcase",              "/services/recruit"));
-        ECOSYSTEM_MAP.put("email",         new EcosystemInfo("邮箱",   "envelope",               "/services/email"));
+        ECOSYSTEM_MAP.put("emailService",         new EcosystemInfo("邮箱",   "envelope",               "/services/email"));
         ECOSYSTEM_MAP.put("shipping",      new EcosystemInfo("速运",   "shippingbox",            "/services/shipping"));
         ECOSYSTEM_MAP.put("homeService",   new EcosystemInfo("到家",   "house_circle",           "/services/homeService"));
     }
