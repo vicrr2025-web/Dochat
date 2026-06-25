@@ -434,6 +434,49 @@ class AppLocalizations {
   String get houseTags => _strings['houseTags'] ?? '标签';
   String get aiTitle => _strings['aiTitle'] ?? 'AI 生成标题';
   String get messagesLabel => _strings['messagesLabel'] ?? '消息';
+  String get jobTab => _strings['jobTab'] ?? '直聘';
+  String get jobSearch => _strings['jobSearch'] ?? '搜索职位';
+  String get jobResume => _strings['jobResume'] ?? '我的简历';
+  String get jobApplications => _strings['jobApplications'] ?? '投递管理';
+  String get jobRecruiter => _strings['jobRecruiter'] ?? '招聘者';
+  String get jobCandidates => _strings['jobCandidates'] ?? '人才搜索';
+  String get jobInterviews => _strings['jobInterviews'] ?? '面试管理';
+  String get jobCompany => _strings['jobCompany'] ?? '企业信息';
+  String get jobExpert => _strings['jobExpert'] ?? '专家服务';
+  String get jobCommunity => _strings['jobCommunity'] ?? '职Q社区';
+  String get switchRole => _strings['switchRole'] ?? '切换身份';
+  String get candidateRole => _strings['candidateRole'] ?? '求职者';
+  String get recruiterRole => _strings['recruiterRole'] ?? '招聘者';
+  String get applyNow => _strings['applyNow'] ?? '立即投递';
+  String get applied => _strings['applied'] ?? '已投递';
+  String get viewed => _strings['viewed'] ?? '已查看';
+  String get communicating => _strings['communicating'] ?? '沟通中';
+  String get interviewInvite => _strings['interviewInvite'] ?? '面试邀请';
+  String get sendGreeting => _strings['sendGreeting'] ?? '打招呼';
+  String get resumeOptimize => _strings['resumeOptimize'] ?? '简历优化';
+  String get resumePrivacy => _strings['resumePrivacy'] ?? '求职隐私';
+  String get jobIntention => _strings['jobIntention'] ?? '求职意向';
+  String get salaryRange => _strings['salaryRange'] ?? '薪资范围';
+  String get publishPosition => _strings['publishPosition'] ?? '发布职位';
+  String get positionTitle => _strings['positionTitle'] ?? '职位名称';
+  String get companyAuth => _strings['companyAuth'] ?? '企业认证';
+  String get positionStats => _strings['positionStats'] ?? '职位统计';
+  String get aiInvite => _strings['aiInvite'] ?? 'AI 批量邀约';
+  String get boostPosition => _strings['boostPosition'] ?? '曝光加油';
+  String get expertResumeSubmit => _strings['expertResumeSubmit'] ?? '简历代投';
+  String get expertResumeCustom => _strings['expertResumeCustom'] ?? '简历定制';
+  String get expertCareerConsult => _strings['expertCareerConsult'] ?? '职业咨询';
+  String get expertJobButler => _strings['expertJobButler'] ?? '求职管家';
+  String get jobSubscription => _strings['jobSubscription'] ?? '职位订阅';
+  String get subscribeKeyword => _strings['subscribeKeyword'] ?? '订阅关键词';
+  String get noPositionHint => _strings['noPositionHint'] ?? '暂无职位';
+  String get noResumeHint => _strings['noResumeHint'] ?? '暂无简历';
+  String get enterpriseScale => _strings['enterpriseScale'] ?? '企业规模';
+  String get licenseUpload => _strings['licenseUpload'] ?? '上传营业执照';
+  String get interviewTime => _strings['interviewTime'] ?? '面试时间';
+  String get interviewType => _strings['interviewType'] ?? '面试方式';
+  String get creditScoreChange => _strings['creditScoreChange'] ?? '信誉分变动';
+
 
 
 
@@ -848,6 +891,49 @@ class _AppLocalizationsDelegate
       'houseTags': isZh ? '标签' : 'Tags',
       'aiTitle': isZh ? 'AI 生成标题' : 'AI Title',
       'messagesLabel': isZh ? '消息' : 'Messages',
+      'jobTab': isZh ? '直聘' : 'Jobs',
+      'jobSearch': isZh ? '搜索职位' : 'Search Jobs',
+      'jobResume': isZh ? '我的简历' : 'My Resume',
+      'jobApplications': isZh ? '投递管理' : 'Applications',
+      'jobRecruiter': isZh ? '招聘者' : 'Recruiter',
+      'jobCandidates': isZh ? '人才搜索' : 'Candidates',
+      'jobInterviews': isZh ? '面试管理' : 'Interviews',
+      'jobCompany': isZh ? '企业信息' : 'Company',
+      'jobExpert': isZh ? '专家服务' : 'Expert',
+      'jobCommunity': isZh ? '职Q社区' : 'Community',
+      'switchRole': isZh ? '切换身份' : 'Switch Role',
+      'candidateRole': isZh ? '求职者' : 'Candidate',
+      'recruiterRole': isZh ? '招聘者' : 'Recruiter',
+      'applyNow': isZh ? '立即投递' : 'Apply Now',
+      'applied': isZh ? '已投递' : 'Applied',
+      'viewed': isZh ? '已查看' : 'Viewed',
+      'communicating': isZh ? '沟通中' : 'Chatting',
+      'interviewInvite': isZh ? '面试邀请' : 'Interview',
+      'sendGreeting': isZh ? '打招呼' : 'Say Hi',
+      'resumeOptimize': isZh ? '简历优化' : 'Optimize',
+      'resumePrivacy': isZh ? '求职隐私' : 'Privacy',
+      'jobIntention': isZh ? '求职意向' : 'Intention',
+      'salaryRange': isZh ? '薪资范围' : 'Salary',
+      'publishPosition': isZh ? '发布职位' : 'Post Job',
+      'positionTitle': isZh ? '职位名称' : 'Title',
+      'companyAuth': isZh ? '企业认证' : 'Verify',
+      'positionStats': isZh ? '职位统计' : 'Stats',
+      'aiInvite': isZh ? 'AI 批量邀约' : 'AI Invite',
+      'boostPosition': isZh ? '曝光加油' : 'Boost',
+      'expertResumeSubmit': isZh ? '简历代投' : 'Resume Submit',
+      'expertResumeCustom': isZh ? '简历定制' : 'Resume Custom',
+      'expertCareerConsult': isZh ? '职业咨询' : 'Career Consult',
+      'expertJobButler': isZh ? '求职管家' : 'Job Butler',
+      'jobSubscription': isZh ? '职位订阅' : 'Subscribe',
+      'subscribeKeyword': isZh ? '订阅关键词' : 'Keywords',
+      'noPositionHint': isZh ? '暂无职位' : 'No positions',
+      'noResumeHint': isZh ? '暂无简历' : 'No resume',
+      'enterpriseScale': isZh ? '企业规模' : 'Scale',
+      'licenseUpload': isZh ? '上传营业执照' : 'License',
+      'interviewTime': isZh ? '面试时间' : 'Time',
+      'interviewType': isZh ? '面试方式' : 'Type',
+      'creditScoreChange': isZh ? '信誉分变动' : 'Credit Change',
+
       'noOrdersHint': isZh ? '暂无订单' : 'No orders',
 
     });

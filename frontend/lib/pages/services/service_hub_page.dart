@@ -9,6 +9,7 @@ import 'package:dochat_app/pages/services/mall_list_page.dart';
 import 'package:dochat_app/pages/dating/dating_profile_page.dart';
 import 'package:dochat_app/pages/houses/house_home_page.dart';
 
+import 'package:dochat_app/pages/jobs/job_home_page.dart';
 String _ecosystemName(String key, AppLocalizations l10n) {
   switch (key) {
     case 'guarantee': return l10n.guarantee;
@@ -16,6 +17,7 @@ String _ecosystemName(String key, AppLocalizations l10n) {
     case 'dating': return l10n.dating;
     case 'housing': return l10n.housing;
     case 'recruit': return l10n.recruit;
+    case 'jobs': return l10n.jobTab;
     case 'emailService': return l10n.emailService;
     case 'shipping': return l10n.shipping;
     case 'homeService': return l10n.homeService;
@@ -33,6 +35,7 @@ IconData _iconForKey(String key) {
       return CupertinoIcons.heart_fill;
     case 'housing':
       return CupertinoIcons.house_fill;
+    case 'jobs': return CupertinoIcons.briefcase_fill;
     case 'recruit':
       return CupertinoIcons.briefcase_fill;
     case 'emailService':
@@ -219,7 +222,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing' || badge.ecosystemKey == 'jobs') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -227,6 +230,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                     if (badge.ecosystemKey == 'guarantee') return const GuaranteeListPage();
                     if (badge.ecosystemKey == 'mall') return const MallListPage();
                     if (badge.ecosystemKey == 'dating') return const DatingProfilePage();
+                    if (badge.ecosystemKey == 'jobs') return const JobHomePage();
                     return const HouseHomePage();
                   },
                   ),
