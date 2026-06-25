@@ -147,10 +147,10 @@ public class LocationService {
     @Scheduled(cron = "0 0 3 * * ?")
     public void scheduleTrajectoryCleanup() {
         log.info("Starting trajectory cleanup...");
-        // Cleanup is handled by JPA delete query — for simplicity we just log
-        log.info("Trajectory cleanup completed (older than 7 days)");
+        Timestamp cutoff = new Timestamp(System.currentTimeMillis() - 7L * 24 * 60 * 60 * 1000);
+        int deleted = locationRecordRepository.deleteByRecordedAtBefore(cutoff);
+        log.info("Trajectory cleanup completed: {} records older than 7 days deleted", deleted);
     }
-
     private LocationResponse mapToLocationResponse(Map<String, Object> data) {
         LocationResponse resp = new LocationResponse();
         resp.setLatitude(getDouble(data, "latitude"));

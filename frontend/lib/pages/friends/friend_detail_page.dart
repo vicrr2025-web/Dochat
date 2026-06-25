@@ -61,7 +61,7 @@ class FriendDetailPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '信誉分 100',
+                    '${l10n.creditScore} 100',
                     style: const TextStyle(
                       fontSize: 13,
                       color: CupertinoColors.systemGrey,
@@ -74,7 +74,7 @@ class FriendDetailPage extends StatelessWidget {
             CupertinoListSection.insetGrouped(
               children: [
                 CupertinoListTile(
-                  title: Text('发消息'),
+                  title: Text(l10n.sendMessage),
                   trailing: const CupertinoListTileChevron(),
                   onTap: () {
                     Navigator.of(context).push(
@@ -132,7 +132,7 @@ class FriendDetailPage extends StatelessWidget {
                   },
                 ),
                 CupertinoListTile(
-                  title: Text('环境监听'),
+                  title: Text(l10n.envMonitor),
                   subtitle: Text(l10n.comingSoon),
                   trailing: const Icon(
                     CupertinoIcons.lock,
@@ -141,7 +141,7 @@ class FriendDetailPage extends StatelessWidget {
                   ),
                 ),
                 CupertinoListTile(
-                  title: Text('摄像头查看'),
+                  title: Text(l10n.cameraView),
                   subtitle: Text(l10n.comingSoon),
                   trailing: const Icon(
                     CupertinoIcons.lock,

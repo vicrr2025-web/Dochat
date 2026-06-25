@@ -54,7 +54,7 @@ class _GeofencePageState extends State<GeofencePage> {
                   : provider.geoFences.isEmpty
                       ? Center(
                           child: Text(
-                            '暂无电子围栏',
+                            l10n.noGeoFences,
                             style: const TextStyle(
                               color: CupertinoColors.systemGrey,
                               fontSize: 15,
@@ -135,7 +135,7 @@ class _GeofencePageState extends State<GeofencePage> {
                 child: CupertinoButton.filled(
                   onPressed: () => _showAddFenceDialog(context),
                   child: Text(
-                    '添加围栏',
+                    l10n.addGeoFence,
                     style: const TextStyle(color: CupertinoColors.white),
                   ),
                 ),
@@ -157,7 +157,7 @@ class _GeofencePageState extends State<GeofencePage> {
     showCupertinoDialog(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text('添加围栏'),
+        title: Text(l10n.addGeoFence),
         content: Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Column(
@@ -165,24 +165,24 @@ class _GeofencePageState extends State<GeofencePage> {
             children: [
               CupertinoTextField(
                 controller: _nameController,
-                placeholder: '围栏名称',
+                placeholder: l10n.fenceName,
               ),
               const SizedBox(height: 8),
               CupertinoTextField(
                 controller: _latController,
-                placeholder: '纬度 (latitude)',
+                placeholder: l10n.latitude,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
               ),
               const SizedBox(height: 8),
               CupertinoTextField(
                 controller: _lngController,
-                placeholder: '经度 (longitude)',
+                placeholder: l10n.longitude,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
               ),
               const SizedBox(height: 8),
               CupertinoTextField(
                 controller: _radiusController,
-                placeholder: '半径 (米)',
+                placeholder: '${l10n.radius} (${l10n.radiusUnit})',
                 keyboardType: TextInputType.number,
               ),
             ],

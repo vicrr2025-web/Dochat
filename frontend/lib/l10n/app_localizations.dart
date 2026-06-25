@@ -70,6 +70,23 @@ class AppLocalizations {
   String get verifyCodeSent => _strings['verifyCodeSent'] ?? '验证码已发送';
   String get sendFailed => _strings['sendFailed'] ?? '发送失败，请重试';
 
+  
+  String get sendMessage => _strings['sendMessage'] ?? '发消息';
+  String get creditScore => _strings['creditScore'] ?? '信誉分';
+  String get envMonitor => _strings['envMonitor'] ?? '环境监听';
+  String get cameraView => _strings['cameraView'] ?? '摄像头查看';
+  String get noGeoFences => _strings['noGeoFences'] ?? '暂无电子围栏';
+  String get addGeoFence => _strings['addGeoFence'] ?? '添加围栏';
+  String get fenceName => _strings['fenceName'] ?? '围栏名称';
+  String get latitude => _strings['latitude'] ?? '纬度';
+  String get longitude => _strings['longitude'] ?? '经度';
+  String get radius => _strings['radius'] ?? '半径';
+  String get radiusUnit => _strings['radiusUnit'] ?? '米';
+  String get playing => _strings['playing'] ?? '播放中...';
+  String get play => _strings['play'] ?? '播放';
+  String get points => _strings['points'] ?? '点';
+  String get noTrajectoryData => _strings['noTrajectoryData'] ?? '暂无轨迹数据';
+
   String tryCount(int remaining) {
     final zh = '密码错误，还剩$remaining次尝试机会';
     final en = 'Wrong password, $remaining attempts remaining';
@@ -207,6 +224,22 @@ class _AppLocalizationsDelegate
       'tokenExpired': isZh ? '登录已过期，请重新登录' : 'Session expired, please sign in again',
       'verifyCodeSent': isZh ? '验证码已发送' : 'Verification code sent',
       'sendFailed': isZh ? '发送失败，请重试' : 'Send failed, please try again',
+
+      'sendMessage': isZh ? '发消息' : 'Send Message',
+      'creditScore': isZh ? '信誉分' : 'Credit Score',
+      'envMonitor': isZh ? '环境监听' : 'Environment Monitor',
+      'cameraView': isZh ? '摄像头查看' : 'Camera View',
+      'noGeoFences': isZh ? '暂无电子围栏' : 'No Geo-Fences',
+      'addGeoFence': isZh ? '添加围栏' : 'Add Geo-Fence',
+      'fenceName': isZh ? '围栏名称' : 'Fence Name',
+      'latitude': isZh ? '纬度' : 'Latitude',
+      'longitude': isZh ? '经度' : 'Longitude',
+      'radius': isZh ? '半径' : 'Radius',
+      'radiusUnit': isZh ? '米' : 'm',
+      'playing': isZh ? '播放中...' : 'Playing...',
+      'play': isZh ? '播放' : 'Play',
+      'points': isZh ? '点' : 'pts',
+      'noTrajectoryData': isZh ? '暂无轨迹数据' : 'No trajectory data',
       'chat': isZh ? '聊天' : 'Chat',
       'sessions': isZh ? '会话' : 'Sessions',
       'newChat': isZh ? '新建聊天' : 'New Chat',

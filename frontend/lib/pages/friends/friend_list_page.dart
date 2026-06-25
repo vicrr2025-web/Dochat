@@ -225,8 +225,8 @@ class _FriendListPageState extends State<FriendListPage> {
                                 ),
                               );
                             },
-                            child: const Text(
-                              '发消息',
+                            child: Text(
+                              l10n.sendMessage,
                               style: TextStyle(fontSize: 13, color: CupertinoColors.activeBlue),
                             ),
                           ),

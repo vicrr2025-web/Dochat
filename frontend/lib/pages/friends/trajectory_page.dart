@@ -214,7 +214,7 @@ class _TrajectoryPageState extends State<TrajectoryPage> {
             CupertinoButton.filled(
               onPressed: points.isEmpty ? null : () => _playTrajectory(),
               child: Text(
-                _isPlaying ? '播放中...' : '播放',
+                _isPlaying ? l10n.playing : l10n.play,
                 style: const TextStyle(color: CupertinoColors.white),
               ),
             ),
@@ -232,7 +232,7 @@ class _TrajectoryPageState extends State<TrajectoryPage> {
                   : points.isEmpty
                       ? Center(
                           child: Text(
-                            '暂无轨迹数据',
+                            l10n.noTrajectoryData,
                             style: const TextStyle(
                               color: CupertinoColors.systemGrey,
                               fontSize: 15,
