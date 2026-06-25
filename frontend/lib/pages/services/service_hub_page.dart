@@ -6,6 +6,7 @@ import 'package:dochat_app/providers/service_hub_provider.dart';
 import 'package:dochat_app/pages/services/ecosystem_placeholder_page.dart';
 import 'package:dochat_app/pages/services/guarantee_list_page.dart';
 import 'package:dochat_app/pages/services/mall_list_page.dart';
+import 'package:dochat_app/pages/dating/dating_profile_page.dart';
 
 String _ecosystemName(String key, AppLocalizations l10n) {
   switch (key) {
@@ -150,11 +151,11 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                 onTap: () {
                   final badge = _badgeForKey(r.ecosystemKey, badges);
                   context.read<ServiceHubProvider>().addToRecent(badge);
-                  if (r.ecosystemKey == 'guarantee' || r.ecosystemKey == 'mall') {
+                  if (r.ecosystemKey == 'guarantee' || r.ecosystemKey == 'mall' || r.ecosystemKey == 'dating') {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (_) => r.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : const MallListPage(),
+                        builder: (_) => r.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : r.ecosystemKey == 'mall' ? const MallListPage() : const DatingProfilePage(),
                       ),
                     );
                   } else {
@@ -217,11 +218,11 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (_) => badge.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : const MallListPage(),
+                    builder: (_) => badge.ecosystemKey == 'guarantee' ? const GuaranteeListPage() : badge.ecosystemKey == 'mall' ? const MallListPage() : const DatingProfilePage(),
                   ),
                 );
               } else {

@@ -359,6 +359,42 @@ class AppLocalizations {
   String get noProductsHint => _strings['noProductsHint'] ?? '暂无商品';
   String get noOrdersHint => _strings['noOrdersHint'] ?? '暂无订单';
 
+  String get datingTab => _strings['datingTab'] ?? '婚恋';
+  String get gender => _strings['gender'] ?? '性别';
+  String get maleLabel => _strings['maleLabel'] ?? '男士';
+  String get femaleLabel => _strings['femaleLabel'] ?? '女士';
+  String get birthdayLabel => _strings['birthdayLabel'] ?? '生日';
+  String get heightLabel => _strings['heightLabel'] ?? '身高';
+  String get educationLabel => _strings['educationLabel'] ?? '学历';
+  String get incomeLabel => _strings['incomeLabel'] ?? '月收入';
+  String get maritalStatusLabel => _strings['maritalStatusLabel'] ?? '婚姻状况';
+  String get tagsLabel => _strings['tagsLabel'] ?? '标签';
+  String get aboutMeLabel => _strings['aboutMeLabel'] ?? '关于我';
+  String get aiGenerate => _strings['aiGenerate'] ?? 'AI 生成';
+  String get matchRecommend => _strings['matchRecommend'] ?? '推荐';
+  String get likeDating => _strings['likeDating'] ?? '喜欢';
+  String get superLikeLabel => _strings['superLikeLabel'] ?? '超级喜欢';
+  String get matchedLabel => _strings['matchedLabel'] ?? '匹配成功';
+  String get noteLabel => _strings['noteLabel'] ?? '小纸条';
+  String get sendNote => _strings['sendNote'] ?? '发小纸条';
+  String get datingFeed => _strings['datingFeed'] ?? '缘分圈';
+  String get publishFeed => _strings['publishFeed'] ?? '发布动态';
+  String get liveStream => _strings['liveStream'] ?? '直播';
+  String get startLive => _strings['startLive'] ?? '开播';
+  String get endLive => _strings['endLive'] ?? '结束直播';
+  String get sendGift => _strings['sendGift'] ?? '送礼物';
+  String get charmValue => _strings['charmValue'] ?? '魅力值';
+  String get withdrawLabel => _strings['withdrawLabel'] ?? '提现';
+  String get loveCoin => _strings['loveCoin'] ?? '珍爱币';
+  String get rechargeLabel => _strings['rechargeLabel'] ?? '充值';
+  String get vipMember => _strings['vipMember'] ?? 'VIP 会员';
+  String get superBoost => _strings['superBoost'] ?? '超级推荐';
+  String get realAuth => _strings['realAuth'] ?? '实名认证';
+  String get workAuth => _strings['workAuth'] ?? '工作认证';
+  String get eduAuth => _strings['eduAuth'] ?? '学历认证';
+  String get noRecommend => _strings['noRecommend'] ?? '暂无推荐';
+  String get messagesLabel => _strings['messagesLabel'] ?? '消息';
+
 
 
 
@@ -696,6 +732,42 @@ class _AppLocalizationsDelegate
       'claimCoupon': isZh ? '领取' : 'Claim',
       'myCoupons': isZh ? '我的优惠券' : 'My Coupons',
       'noProductsHint': isZh ? '暂无商品' : 'No products',
+      'datingTab': isZh ? '婚恋' : 'Dating',
+      'editProfile': isZh ? '编辑资料' : 'Edit Profile',
+      'gender': isZh ? '性别' : 'Gender',
+      'maleLabel': isZh ? '男士' : 'Male',
+      'femaleLabel': isZh ? '女士' : 'Female',
+      'birthdayLabel': isZh ? '生日' : 'Birthday',
+      'heightLabel': isZh ? '身高' : 'Height',
+      'educationLabel': isZh ? '学历' : 'Education',
+      'incomeLabel': isZh ? '月收入' : 'Income',
+      'maritalStatusLabel': isZh ? '婚姻状况' : 'Marital Status',
+      'tagsLabel': isZh ? '标签' : 'Tags',
+      'aboutMeLabel': isZh ? '关于我' : 'About Me',
+      'aiGenerate': isZh ? 'AI 生成' : 'AI Generate',
+      'matchRecommend': isZh ? '推荐' : 'Recommendations',
+      'likeDating': isZh ? '喜欢' : 'Like',
+      'superLikeLabel': isZh ? '超级喜欢' : 'Super Like',
+      'matchedLabel': isZh ? '匹配成功' : 'Matched',
+      'noteLabel': isZh ? '小纸条' : 'Note',
+      'sendNote': isZh ? '发小纸条' : 'Send Note',
+      'datingFeed': isZh ? '缘分圈' : 'Moments',
+      'publishFeed': isZh ? '发布动态' : 'Post',
+      'liveStream': isZh ? '直播' : 'Live',
+      'startLive': isZh ? '开播' : 'Go Live',
+      'endLive': isZh ? '结束直播' : 'End Live',
+      'sendGift': isZh ? '送礼物' : 'Send Gift',
+      'charmValue': isZh ? '魅力值' : 'Charm',
+      'withdrawLabel': isZh ? '提现' : 'Withdraw',
+      'loveCoin': isZh ? '珍爱币' : 'Love Coins',
+      'rechargeLabel': isZh ? '充值' : 'Recharge',
+      'vipMember': isZh ? 'VIP 会员' : 'VIP Member',
+      'superBoost': isZh ? '超级推荐' : 'Super Boost',
+      'realAuth': isZh ? '实名认证' : 'ID Verify',
+      'workAuth': isZh ? '工作认证' : 'Work Verify',
+      'eduAuth': isZh ? '学历认证' : 'Edu Verify',
+      'noRecommend': isZh ? '暂无推荐' : 'No Recommendations',
+      'messagesLabel': isZh ? '消息' : 'Messages',
       'noOrdersHint': isZh ? '暂无订单' : 'No orders',
 
     });
