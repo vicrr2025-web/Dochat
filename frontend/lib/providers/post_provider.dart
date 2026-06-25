@@ -137,6 +137,15 @@ class PostProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> toggleFollow(String userId) async {
+    try {
+      await _postService.toggleFollow(userId);
+    } catch (e) {
+      _errorMessage = 'networkError';
+      notifyListeners();
+    }
+  }
+
   void clearError() {
     _errorMessage = null;
     notifyListeners();

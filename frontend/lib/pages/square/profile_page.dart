@@ -29,30 +29,28 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const Text(
-                    'User',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  Text(
+                    l10n.userLabel,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    'ID: 10001',
-                    style: TextStyle(fontSize: 13, color: CupertinoColors.systemGrey),
+                  Text(
+                    l10n.userIdLabel('10001'),
+                    style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey),
                   ),
                   const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: const [
-                          Text('0', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                          Text('Following', style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+                      Column(children: [
+                          const Text('0', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                          Text(l10n.myFollowing, style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
                         ],
                       ),
                       const SizedBox(width: 32),
-                      Column(
-                        children: const [
-                          Text('0', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                          Text('Followers', style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+                      Column(children: [
+                          const Text('0', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                          Text(l10n.myFollowers, style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
                         ],
                       ),
                     ],

@@ -175,7 +175,7 @@ class _CommentListPageState extends State<CommentListPage> {
                 Row(
                   children: [
                     Text(
-                      _formatTime(comment.createdAt),
+                      _formatTime(comment.createdAt, l10n),
                       style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
                     ),
                     const Spacer(),
@@ -186,9 +186,9 @@ class _CommentListPageState extends State<CommentListPage> {
                           _replyToNickname = comment.userNickname;
                         });
                       },
-                      child: const Text(
-                        'Reply',
-                        style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+                      child: Text(
+                        l10n.reply,
+                        style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -246,14 +246,14 @@ class _CommentListPageState extends State<CommentListPage> {
     );
   }
 
-  String _formatTime(String isoTimestamp) {
+  String _formatTime(String isoTimestamp, AppLocalizations l10n) {
     try {
       final dt = DateTime.parse(isoTimestamp);
       final now = DateTime.now();
       final diff = now.difference(dt);
-      if (diff.inMinutes < 1) return 'just now';
-      if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
-      if (diff.inHours < 24) return '${diff.inHours}h ago';
+      if (diff.inMinutes < 1) return l10n.justNow;
+      if (diff.inMinutes < 60) return '${diff.inMinutes}${l10n.minAgo}';
+      if (diff.inHours < 24) return '${diff.inHours}${l10n.hourAgo}';
       return '${dt.month}/${dt.day}';
     } catch (_) {
       return isoTimestamp;

@@ -51,8 +51,8 @@ class _CreatePostPageState extends State<CreatePostPage> {
       builder: (ctx) {
         final l10n = AppLocalizations.of(ctx);
         return CupertinoAlertDialog(
-          title: Text(l10n.cancel),
-          content: Text(l10n.confirm),
+          title: Text(l10n.discardEdit),
+          content: Text(l10n.discardEditHint),
           actions: [
             CupertinoDialogAction(
               child: Text(l10n.cancel),

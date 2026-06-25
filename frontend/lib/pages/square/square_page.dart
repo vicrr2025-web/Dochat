@@ -222,6 +222,7 @@ class _PostCard extends StatefulWidget {
 
 class _PostCardState extends State<_PostCard> {
   bool _contentExpanded = false;
+  bool _isFollowed = false;
 
   PostInfo get post => widget.post;
 
@@ -313,7 +314,7 @@ class _PostCardState extends State<_PostCard> {
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
               Text(
-                _formatTime(post.createdAt),
+                _formatTime(post.createdAt, l10n),
                 style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
               ),
             ],
@@ -331,7 +332,13 @@ class _PostCardState extends State<_PostCard> {
             l10n.follow,
             style: const TextStyle(fontSize: 12, color: CupertinoColors.activeBlue),
           ),
-          onPressed: () {},
+          onPressed: () {
+            final provider = context.read<PostProvider>();
+            provider.toggleFollow(widget.post.userId);
+            setState(() {
+              _isFollowed = !_isFollowed;
+            });
+          },
         ),
       ],
     );
@@ -496,15 +503,15 @@ class _PostCardState extends State<_PostCard> {
     );
   }
 
-  String _formatTime(String isoTimestamp) {
+  String _formatTime(String isoTimestamp, AppLocalizations l10n) {
     try {
       final dt = DateTime.parse(isoTimestamp);
       final now = DateTime.now();
       final diff = now.difference(dt);
-      if (diff.inMinutes < 1) return 'just now';
-      if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
-      if (diff.inHours < 24) return '${diff.inHours}h ago';
-      if (diff.inDays < 7) return '${diff.inDays}d ago';
+      if (diff.inMinutes < 1) return l10n.justNow;
+      if (diff.inMinutes < 60) return '${diff.inMinutes}${l10n.minAgo}';
+      if (diff.inHours < 24) return '${diff.inHours}${l10n.hourAgo}';
+      if (diff.inDays < 7) return '${diff.inDays}${l10n.dayAgo}';
       return '${dt.month}/${dt.day}';
     } catch (_) {
       return isoTimestamp;

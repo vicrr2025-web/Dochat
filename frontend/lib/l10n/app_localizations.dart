@@ -87,6 +87,26 @@ class AppLocalizations {
   String get points => _strings['points'] ?? '点';
   String get noTrajectoryData => _strings['noTrajectoryData'] ?? '暂无轨迹数据';
 
+  
+  String get justNow => _strings['justNow'] ?? '刚刚';
+  String get minAgo => _strings['minAgo'] ?? '分钟前';
+  String get hourAgo => _strings['hourAgo'] ?? '小时前';
+  String get dayAgo => _strings['dayAgo'] ?? '天前';
+  String get reply => _strings['reply'] ?? '回复';
+  String get myFollowing => _strings['myFollowing'] ?? '我的关注';
+  String get myFollowers => _strings['myFollowers'] ?? '我的粉丝';
+  String get posts_ => _strings['posts_'] ?? '动态';
+  String get userLabel => _strings['userLabel'] ?? '用户';
+
+  String get discardEdit => _strings['discardEdit'] ?? '放弃编辑？';
+  String get discardEditHint => _strings['discardEditHint'] ?? '退出后内容不会保存';
+
+  String userIdLabel(String id) {
+    final label = _strings['userIdLabel'];
+    if (label != null) return label.replaceAll('{id}', id);
+    return 'ID: $id';
+  }
+
   String tryCount(int remaining) {
     final zh = '密码错误，还剩$remaining次尝试机会';
     final en = 'Wrong password, $remaining attempts remaining';
@@ -121,7 +141,6 @@ class AppLocalizations {
   String get comingSoon => _strings['comingSoon'] ?? '即将上线';
   String get read => _strings['read'] ?? '已读';
   String get unread => _strings['unread'] ?? '未读';
-  String get justNow => _strings['justNow'] ?? '刚刚';
   String get yesterday => _strings['yesterday'] ?? '昨天';
   String get copied => _strings['copied'] ?? '已复制';
   String get clearChat => _strings['clearChat'] ?? '清空聊天记录';
@@ -183,8 +202,6 @@ class AppLocalizations {
   String get drafts => _strings['drafts'] ?? '草稿箱';
   String get noDrafts => _strings['noDrafts'] ?? '暂无草稿';
   String get myPosts => _strings['myPosts'] ?? '我的动态';
-  String get myFollowing => _strings['myFollowing'] ?? '我的关注';
-  String get myFollowers => _strings['myFollowers'] ?? '我的粉丝';
   String get favorites => _strings['favorites'] ?? '收藏';
   String get viewHistory => _strings['viewHistory'] ?? '浏览记录';
   String get editProfile => _strings['editProfile'] ?? '编辑资料';
@@ -341,6 +358,14 @@ class _AppLocalizationsDelegate
 
       'square': isZh ? '广场' : 'Square',
       'recommend': isZh ? '推荐' : 'Recommend',
+      
+      'myFollowing': isZh ? '我的关注' : 'My Following',
+      'myFollowers': isZh ? '我的粉丝' : 'My Followers',
+      'reply': isZh ? '回复' : 'Reply',
+      'posts_': isZh ? '动态' : 'Posts',
+      'userLabel': isZh ? '用户' : 'User',
+      'discardEdit': isZh ? '放弃编辑？' : 'Discard editing?',
+      'discardEditHint': isZh ? '退出后内容不会保存' : 'Content will not be saved',
       'following': isZh ? '关注' : 'Following',
       'moments': isZh ? '动态' : 'Moments',
       'follow': isZh ? '关注' : 'Follow',
@@ -364,8 +389,6 @@ class _AppLocalizationsDelegate
       'drafts': isZh ? '草稿箱' : 'Drafts',
       'noDrafts': isZh ? '暂无草稿' : 'No drafts',
       'myPosts': isZh ? '我的动态' : 'My Posts',
-      'myFollowing': isZh ? '我的关注' : 'My Following',
-      'myFollowers': isZh ? '我的粉丝' : 'My Followers',
       'favorites': isZh ? '收藏' : 'Favorites',
       'viewHistory': isZh ? '浏览记录' : 'View History',
       'editProfile': isZh ? '编辑资料' : 'Edit Profile',
