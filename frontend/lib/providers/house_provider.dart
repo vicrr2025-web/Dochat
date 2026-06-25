@@ -100,7 +100,15 @@ class HouseProvider extends ChangeNotifier {
 
   Future<void> toggleFavorite(String houseId) async {
     try {
-      await _service.addFavorite(houseId);
+      final isFav = _favorites.any((f) => f.houseId == houseId);
+      if (isFav) {
+        await _service.removeFavorite(houseId);
+        _favorites.removeWhere((f) => f.houseId == houseId);
+      } else {
+        await _service.addFavorite(houseId);
+        _favorites.add(HouseFavorite(userId: '', houseId: houseId));
+      }
+      notifyListeners();
     } catch (_) {}
   }
 
@@ -121,11 +129,11 @@ class HouseProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> loadAppointments({int page = 0}) async {
+  Future<void> loadAppointments({int page = 0, String? type}) async {
     _loading = true;
     notifyListeners();
     try {
-      _appointments = await _service.getAppointments(page: page);
+      _appointments = await _service.getAppointments(page: page, type: type);
     } catch (_) {}
     _loading = false;
     notifyListeners();

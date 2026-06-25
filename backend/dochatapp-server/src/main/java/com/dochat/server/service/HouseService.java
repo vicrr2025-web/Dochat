@@ -42,10 +42,19 @@ public class HouseService {
     // === 1. getNewHouses ===
     public HouseListResponse getNewHouses(int page, int size, String region) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
-        Page<House> result = houseRepository.findByType("new", pageable);
-        if (result.isEmpty()) {
-            generateMockHouses(15, "new");
+        Page<House> result;
+        if (region != null && !region.isEmpty()) {
+            result = houseRepository.findByTypeAndAddressContaining("new", region, pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(15, "new");
+                result = houseRepository.findByTypeAndAddressContaining("new", region, pageable);
+            }
+        } else {
             result = houseRepository.findByType("new", pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(15, "new");
+                result = houseRepository.findByType("new", pageable);
+            }
         }
         return new HouseListResponse(result.getContent(), page, size, result.getTotalElements());
     }
@@ -64,10 +73,19 @@ public class HouseService {
     // === 3. getRentHouses ===
     public HouseListResponse getRentHouses(int page, int size, String subType) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
-        Page<House> result = houseRepository.findByType("rent", pageable);
-        if (result.isEmpty()) {
-            generateMockHouses(20, "rent");
+        Page<House> result;
+        if (subType != null && !subType.isEmpty()) {
+            result = houseRepository.findByTypeAndSubType("rent", subType, pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(20, "rent");
+                result = houseRepository.findByTypeAndSubType("rent", subType, pageable);
+            }
+        } else {
             result = houseRepository.findByType("rent", pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(20, "rent");
+                result = houseRepository.findByType("rent", pageable);
+            }
         }
         return new HouseListResponse(result.getContent(), page, size, result.getTotalElements());
     }
@@ -75,10 +93,19 @@ public class HouseService {
     // === 4. getCommercialHouses ===
     public HouseListResponse getCommercialHouses(int page, int size, String subType) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
-        Page<House> result = houseRepository.findByType("commercial", pageable);
-        if (result.isEmpty()) {
-            generateMockHouses(10, "commercial");
+        Page<House> result;
+        if (subType != null && !subType.isEmpty()) {
+            result = houseRepository.findByTypeAndSubType("commercial", subType, pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(10, "commercial");
+                result = houseRepository.findByTypeAndSubType("commercial", subType, pageable);
+            }
+        } else {
             result = houseRepository.findByType("commercial", pageable);
+            if (result.isEmpty()) {
+                generateMockHouses(10, "commercial");
+                result = houseRepository.findByType("commercial", pageable);
+            }
         }
         return new HouseListResponse(result.getContent(), page, size, result.getTotalElements());
     }

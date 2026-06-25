@@ -61,8 +61,10 @@ class HouseService {
     return HouseAppointment.fromJson(res.data['data'] as Map<String, dynamic>);
   }
 
-  Future<List<HouseAppointment>> getAppointments({int page = 0, int size = 10}) async {
-    final res = await _api.client.get('/house/appointments', queryParameters: {'page': page, 'size': size});
+  Future<List<HouseAppointment>> getAppointments({int page = 0, int size = 10, String? type}) async {
+    final Map<String, dynamic> queryParams = {'page': page, 'size': size};
+    if (type != null) queryParams['type'] = type;
+    final res = await _api.client.get('/house/appointments', queryParameters: queryParams);
     final data = res.data['data'];
     if (data is List) return List<HouseAppointment>.from(data.map((e) => HouseAppointment.fromJson(e as Map<String, dynamic>)));
     return [];

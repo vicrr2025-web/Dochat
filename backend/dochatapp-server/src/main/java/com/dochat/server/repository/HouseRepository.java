@@ -21,4 +21,8 @@ public interface HouseRepository extends JpaRepository<House, Long> {
     Page<House> findByPublisherId(String publisherId, Pageable pageable);
 
     List<House> findByPublisherId(String publisherId);
+
+    Page<House> findByTypeAndSubType(String type, String subType, Pageable pageable);
+    Page<House> findByTypeAndAddressContaining(String type, String address, Pageable pageable);
+
 }

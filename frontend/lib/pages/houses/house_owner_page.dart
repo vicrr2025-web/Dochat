@@ -81,8 +81,7 @@ class _HouseOwnerPageState extends State<HouseOwnerPage> {
                                       _valuationPriceController.text);
                                   if (area != null && price != null) {
                                     provider.evaluateHouse({
-                                      'area': area,
-                                      'price': price,
+                                      'houseInfo': '{"area":' + area.toString() + ',"price":' + price.toString() + '}',
                                     });
                                   }
                                 },
