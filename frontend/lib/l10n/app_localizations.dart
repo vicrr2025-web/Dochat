@@ -513,9 +513,41 @@ class AppLocalizations {
   String get creditScoreChange => _strings['creditScoreChange'] ?? '信誉分变动';
 
 
-
-
-
+  String get expressTab => _strings['expressTab'] ?? '速运';
+  String get expressTaxi => _strings['expressTaxi'] ?? '打车';
+  String get expressErrand => _strings['expressErrand'] ?? '跑腿';
+  String get expressFreight => _strings['expressFreight'] ?? '货运';
+  String get selectVehicle => _strings['selectVehicle'] ?? '选择车型';
+  String get vehicleType => _strings['vehicleType'] ?? '车型';
+  String get expressCar => _strings['expressCar'] ?? '快车';
+  String get specialCar => _strings['specialCar'] ?? '专车';
+  String get carpool => _strings['carpool'] ?? '拼车';
+  String get estimatePrice => _strings['estimatePrice'] ?? '预估费用';
+  String get originAddress => _strings['originAddress'] ?? '起点';
+  String get destAddress => _strings['destAddress'] ?? '终点';
+  String get cargoInfo => _strings['cargoInfo'] ?? '货物信息';
+  String get cargoWeight => _strings['cargoWeight'] ?? '货物重量';
+  String get driverInfo => _strings['driverInfo'] ?? '司机信息';
+  String get driverRating => _strings['driverRating'] ?? '司机评分';
+  String get acceptOrder => _strings['acceptOrder'] ?? '接单';
+  String get rejectOrder => _strings['rejectOrder'] ?? '拒单';
+  String get startTrip => _strings['startTrip'] ?? '开始行程';
+  String get arrived => _strings['arrived'] ?? '已到达';
+  String get completeTrip => _strings['completeTrip'] ?? '完成行程';
+  String get expressInsurance => _strings['expressInsurance'] ?? '货物保险';
+  String get buyInsurance => _strings['buyInsurance'] ?? '购买保险';
+  String get claimInsurance => _strings['claimInsurance'] ?? '申请理赔';
+  String get driverRegister => _strings['driverRegister'] ?? '司机入驻';
+  String get driverAuth => _strings['driverAuth'] ?? '司机认证';
+  String get driverIncome => _strings['driverIncome'] ?? '我的收入';
+  String get withdrawCash => _strings['withdrawCash'] ?? '提现';
+  String get expressCreditScore => _strings['expressCreditScore'] ?? '信用分';
+  String get expressDispute => _strings['expressDispute'] ?? '纠纷处理';
+  String get submitEvidence => _strings['submitEvidence'] ?? '提交证据';
+  String get trackingMap => _strings['trackingMap'] ?? '实时追踪';
+  String get etaMinutes => _strings['etaMinutes'] ?? '预计到达';
+  String get contactDriver => _strings['contactDriver'] ?? '联系司机';
+  String get orderId => _strings['orderId'] ?? '订单号';
 }
 
 class _AppLocalizationsDelegate
@@ -1006,6 +1038,41 @@ class _AppLocalizationsDelegate
       'mailPort': isZh ? '端口' : 'Port',
       'mailDefault': isZh ? '默认' : 'Default',
       'noOrdersHint': isZh ? '暂无订单' : 'No orders',
+      'expressTab': isZh ? '速运' : 'Express',
+      'expressTaxi': isZh ? '打车' : 'Taxi',
+      'expressErrand': isZh ? '跑腿' : 'Errand',
+      'expressFreight': isZh ? '货运' : 'Freight',
+      'selectVehicle': isZh ? '选择车型' : 'Select Vehicle',
+      'vehicleType': isZh ? '车型' : 'Vehicle Type',
+      'expressCar': isZh ? '快车' : 'Express Car',
+      'specialCar': isZh ? '专车' : 'Special Car',
+      'carpool': isZh ? '拼车' : 'Carpool',
+      'estimatePrice': isZh ? '预估费用' : 'Estimate Price',
+      'originAddress': isZh ? '起点' : 'Origin',
+      'destAddress': isZh ? '终点' : 'Destination',
+      'cargoInfo': isZh ? '货物信息' : 'Cargo Info',
+      'cargoWeight': isZh ? '货物重量' : 'Cargo Weight',
+      'driverInfo': isZh ? '司机信息' : 'Driver Info',
+      'driverRating': isZh ? '司机评分' : 'Driver Rating',
+      'acceptOrder': isZh ? '接单' : 'Accept',
+      'rejectOrder': isZh ? '拒单' : 'Reject',
+      'startTrip': isZh ? '开始行程' : 'Start Trip',
+      'arrived': isZh ? '已到达' : 'Arrived',
+      'completeTrip': isZh ? '完成行程' : 'Complete',
+      'expressInsurance': isZh ? '货物保险' : 'Insurance',
+      'buyInsurance': isZh ? '购买保险' : 'Buy Insurance',
+      'claimInsurance': isZh ? '申请理赔' : 'Claim',
+      'driverRegister': isZh ? '司机入驻' : 'Driver Register',
+      'driverAuth': isZh ? '司机认证' : 'Driver Auth',
+      'driverIncome': isZh ? '我的收入' : 'Income',
+      'withdrawCash': isZh ? '提现' : 'Withdraw',
+      'expressCreditScore': isZh ? '信用分' : 'Credit Score',
+      'expressDispute': isZh ? '纠纷处理' : 'Dispute',
+      'submitEvidence': isZh ? '提交证据' : 'Submit Evidence',
+      'trackingMap': isZh ? '实时追踪' : 'Tracking',
+      'etaMinutes': isZh ? '预计到达' : 'ETA',
+      'contactDriver': isZh ? '联系司机' : 'Contact Driver',
+      'orderId': isZh ? '订单号' : 'Order ID',
 
     });
     return localizations;
