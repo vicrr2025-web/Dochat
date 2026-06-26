@@ -172,6 +172,20 @@ public class ExpressController {
         }
     }
 
+    @PutMapping("/cancel")
+    public ResponseEntity<ApiResponse<ExpressOrder>> cancelOrder(
+            @AuthenticationPrincipal String userId,
+            @RequestParam String orderId) {
+        try {
+            ExpressOrder order = expressService.cancelOrder(userId, orderId);
+            return ResponseEntity.ok(ApiResponse.success(order));
+        } catch (ExpressService.ExpressServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(10001, e.getMessage()));
+        }
+    }
+
     @PostMapping("/dispute")
     public ResponseEntity<ApiResponse<ExpressDispute>> createDispute(
             @AuthenticationPrincipal String userId,

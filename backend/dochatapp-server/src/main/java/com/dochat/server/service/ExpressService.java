@@ -147,6 +147,12 @@ public class ExpressService {
         ExpressOrder order = orderRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new ExpressServiceException(10001, "订单不存在"));
         if (!"pending".equals(order.getStatus())) {
+            if ("accepted".equals(order.getStatus())) {
+                throw new ExpressServiceException(10004, "司机已接单");
+            }
+            if ("cancelled".equals(order.getStatus())) {
+                throw new ExpressServiceException(10005, "用户已取消");
+            }
             throw new ExpressServiceException(10003, "订单状态不允许接单");
         }
         order.setDriverId(driver.getDriverId());
@@ -254,6 +260,16 @@ public class ExpressService {
                 .orElseThrow(() -> new ExpressServiceException(10002, "司机未注册"));
         driver.setStatus(status);
         return driverRepository.save(driver);
+    }
+    
+    public ExpressOrder cancelOrder(String userId, String orderId) {
+        ExpressOrder order = orderRepository.findByOrderId(orderId)
+                .orElseThrow(() -> new ExpressServiceException(10001, "订单不存在"));
+        if (!"pending".equals(order.getStatus()) && !"accepted".equals(order.getStatus())) {
+            throw new ExpressServiceException(10003, "订单状态不允许取消");
+        }
+        order.setStatus("cancelled");
+        return orderRepository.save(order);
     }
 
     public ExpressDispute createDispute(String userId, ExpressDisputeRequest request) {
