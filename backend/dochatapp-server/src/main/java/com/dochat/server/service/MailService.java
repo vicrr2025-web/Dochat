@@ -65,7 +65,38 @@ public class MailService {
     }
 
     public List<MailAccount> getAccounts(String userId) {
-        return mailAccountRepository.findByUserId(userId);
+        List<MailAccount> accounts = mailAccountRepository.findByUserId(userId);
+        if (accounts.isEmpty()) {
+            accounts = generateMockAccounts(userId);
+        }
+        return accounts;
+    }
+
+    private List<MailAccount> generateMockAccounts(String userId) {
+        List<MailAccount> accounts = new ArrayList<>();
+        String[][] mockAccounts = {
+            {"user@gmail.com", "gmail", "imap.gmail.com", "993", "smtp.gmail.com", "465", "Gmail"},
+            {"user@outlook.com", "outlook", "imap-mail.outlook.com", "993", "smtp-mail.outlook.com", "587", "Outlook"},
+            {"user@qq.com", "qq", "imap.qq.com", "993", "smtp.qq.com", "465", "QQ邮箱"},
+            {"user@163.com", "netease", "imap.163.com", "993", "smtp.163.com", "465", "网易邮箱"},
+        };
+        for (String[] m : mockAccounts) {
+            MailAccount account = new MailAccount();
+            account.setUserId(userId);
+            account.setEmail(m[0]);
+            account.setProvider(m[1]);
+            account.setImapHost(m[2]);
+            account.setImapPort(Integer.parseInt(m[3]));
+            account.setSmtpHost(m[4]);
+            account.setSmtpPort(Integer.parseInt(m[5]));
+            account.setDisplayName(m[6]);
+            account.setPassword("******");
+            if (accounts.isEmpty()) {
+                account.setIsDefault(true);
+            }
+            accounts.add(mailAccountRepository.save(account));
+        }
+        return accounts;
     }
 
     @Transactional

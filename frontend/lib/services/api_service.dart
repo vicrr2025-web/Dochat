@@ -9,7 +9,7 @@ class ApiService {
   late final Dio dio;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
-  static const String baseUrl = 'http://127.0.0.1:8080/api';
+  static const String baseUrl = 'http://192.168.31.130:8080/api';
 
   // 防止并发刷新
   bool _isRefreshing = false;

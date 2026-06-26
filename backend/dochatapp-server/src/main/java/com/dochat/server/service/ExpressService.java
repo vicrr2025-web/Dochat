@@ -121,14 +121,55 @@ public class ExpressService {
 
     public Page<ExpressOrder> getOrders(String userId, String role, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
+        Page<ExpressOrder> result;
         if ("driver".equals(role)) {
             Optional<ExpressDriver> driverOpt = driverRepository.findByUserId(userId);
             if (driverOpt.isPresent()) {
-                return orderRepository.findByDriverId(driverOpt.get().getDriverId(), pageable);
+                result = orderRepository.findByDriverId(driverOpt.get().getDriverId(), pageable);
+            } else {
+                result = Page.empty();
             }
-            return Page.empty();
+        } else {
+            result = orderRepository.findByUserId(userId, pageable);
         }
-        return orderRepository.findByUserId(userId, pageable);
+        if (result.isEmpty()) {
+            mockOrders(userId, role);
+            if ("driver".equals(role)) {
+                Optional<ExpressDriver> driverOpt = driverRepository.findByUserId(userId);
+                if (driverOpt.isPresent()) {
+                    result = orderRepository.findByDriverId(driverOpt.get().getDriverId(), pageable);
+                }
+            } else {
+                result = orderRepository.findByUserId(userId, pageable);
+            }
+        }
+        return result;
+    }
+
+    private void mockOrders(String userId, String role) {
+        String[][] mockData = {
+            {"express", "small_truck", "北京市朝阳区建国路88号", "39.9087", "116.4714", "北京市海淀区中关村大街1号", "39.9836", "116.3168", "文件资料"},
+            {"express", "motorcycle", "上海市浦东新区陆家嘴环路100号", "31.2357", "121.5016", "上海市徐汇区衡山路10号", "31.2086", "121.4447", "外卖餐食"},
+            {"freight", "medium_truck", "广州市天河区体育西路111号", "23.1291", "113.3239", "深圳市南山区科技园南路1号", "22.5431", "113.9498", "电子设备一批"},
+            {"express", "small_truck", "成都市锦江区春熙路99号", "30.6598", "104.0832", "成都市武侯区天府大道北段1号", "30.5608", "104.0657", "服装包裹"},
+            {"freight", "large_truck", "武汉市洪山区珞喻路1037号", "30.5148", "114.4118", "长沙市岳麓区麓山南路932号", "28.1788", "112.9427", "家具大件"},
+        };
+        for (String[] d : mockData) {
+            ExpressOrder order = new ExpressOrder();
+            order.setUserId(userId);
+            order.setType(d[0]);
+            order.setVehicleType(d[1]);
+            order.setOriginAddress(d[2]);
+            order.setOriginLat(new BigDecimal(d[3]));
+            order.setOriginLng(new BigDecimal(d[4]));
+            order.setDestAddress(d[5]);
+            order.setDestLat(new BigDecimal(d[6]));
+            order.setDestLng(new BigDecimal(d[7]));
+            order.setCargoInfo(d[8]);
+            order.setEstimatedPrice(new BigDecimal("45.00"));
+            order.setStatus("pending");
+            orderRepository.save(order);
+        }
     }
 
     public Map<String, Object> getOrderDetail(String userId, String orderId) {

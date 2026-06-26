@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:dochat_app/l10n/app_localizations.dart';
 import 'package:dochat_app/providers/service_hub_provider.dart';
-import 'package:dochat_app/pages/auth/home_page.dart';
+import 'package:dochat_app/pages/chat/session_list_page.dart';
+import 'package:dochat_app/pages/friends/friend_list_page.dart';
 import 'package:dochat_app/pages/square/square_page.dart';
 import 'package:dochat_app/pages/services/service_hub_page.dart';
 import 'package:dochat_app/pages/settings/settings_page.dart';
@@ -128,9 +129,9 @@ class _MainShellPageState extends State<MainShellPage> {
       tabBuilder: (context, index) {
         switch (index) {
           case 0:
-            assert(false, "Invalid tab index"); return const SizedBox.shrink();
+            return const SessionListPage();
           case 1:
-            assert(false, "Invalid tab index"); return const SizedBox.shrink();
+            return const FriendListPage();
           case 2:
             return const SquarePage();
           case 3:

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:dochat_app/l10n/app_localizations.dart';
-import 'package:dochat_app/models/guarantee_models.dart';
 import 'package:dochat_app/providers/guarantee_provider.dart';
 import 'package:dochat_app/pages/services/guarantee_detail_page.dart';
 import 'package:dochat_app/pages/services/guarantee_create_page.dart';
@@ -41,6 +40,16 @@ class _GuaranteeListPageState extends State<GuaranteeListPage> {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text(l10n.guarantee),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(builder: (_) => const GuaranteeCreatePage()),
+            );
+          },
+          child: const Icon(CupertinoIcons.add, color: CupertinoColors.activeBlue),
+        ),
       ),
       child: SafeArea(
         child: Column(

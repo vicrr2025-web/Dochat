@@ -78,8 +78,9 @@ public class HomeController {
     @PutMapping("/order/accept")
     public ResponseEntity<ApiResponse<HomeOrder>> acceptOrder(
             @AuthenticationPrincipal String userId,
-            @RequestParam String orderId) {
+            @RequestBody Map<String, String> body) {
         try {
+            String orderId = body.get("orderId");
             HomeOrder order = homeService.acceptOrder(userId, orderId);
             return ResponseEntity.ok(ApiResponse.success(order));
         } catch (HomeService.HomeServiceException e) {
@@ -92,8 +93,9 @@ public class HomeController {
     @PutMapping("/order/start")
     public ResponseEntity<ApiResponse<HomeOrder>> startService(
             @AuthenticationPrincipal String userId,
-            @RequestParam String orderId) {
+            @RequestBody Map<String, String> body) {
         try {
+            String orderId = body.get("orderId");
             HomeOrder order = homeService.startService(userId, orderId);
             return ResponseEntity.ok(ApiResponse.success(order));
         } catch (HomeService.HomeServiceException e) {
@@ -106,8 +108,9 @@ public class HomeController {
     @PutMapping("/order/complete")
     public ResponseEntity<ApiResponse<HomeOrder>> completeService(
             @AuthenticationPrincipal String userId,
-            @RequestParam String orderId) {
+            @RequestBody Map<String, String> body) {
         try {
+            String orderId = body.get("orderId");
             HomeOrder order = homeService.completeService(userId, orderId);
             return ResponseEntity.ok(ApiResponse.success(order));
         } catch (HomeService.HomeServiceException e) {
@@ -120,9 +123,13 @@ public class HomeController {
     @PutMapping("/order/verify")
     public ResponseEntity<ApiResponse<HomeOrder>> verifyOrder(
             @AuthenticationPrincipal String userId,
-            @RequestParam String orderId) {
+            @RequestBody Map<String, Object> body) {
         try {
-            HomeOrder order = homeService.verifyOrder(userId, orderId);
+            String orderId = (String) body.get("orderId");
+            Boolean accept = body.get("accept") != null ? (Boolean) body.get("accept") : true;
+            Object ratingObj = body.get("rating");
+            Double rating = ratingObj != null ? ((Number) ratingObj).doubleValue() : null;
+            HomeOrder order = homeService.verifyOrder(userId, orderId, accept, rating);
             return ResponseEntity.ok(ApiResponse.success(order));
         } catch (HomeService.HomeServiceException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));

@@ -3,6 +3,16 @@ import 'package:dochat_app/models/home_models.dart';
 import 'package:dochat_app/services/api_service.dart';
 
 class HomeService {
+
+  List _extractList(dynamic data) {
+    if (data is Map && data.containsKey('content')) {
+      return (data['content'] as List?) ?? [];
+    } else if (data is List) {
+      return data;
+    }
+    return [];
+  }
+
   Dio get _client => ApiService().client;
 
   Future<List<HomeServiceItem>> getServices({
@@ -17,8 +27,16 @@ class HomeService {
       'page': page,
       'size': size,
     });
-    final list = res.data['data'] as List? ?? [];
-    return list.map((e) => HomeServiceItem.fromJson(e)).toList();
+    final data = res.data['data'];
+    final List list;
+    if (data is Map && data.containsKey('content')) {
+      list = (data['content'] as List?) ?? [];
+    } else if (data is List) {
+      list = data;
+    } else {
+      list = [];
+    }
+    return list.map((e) => HomeServiceItem.fromJson(e as Map<String, dynamic>)).toList();
   }
 
   Future<HomeServiceItem> getServiceDetail(String serviceId) async {
@@ -37,7 +55,7 @@ class HomeService {
       'page': page,
       'size': size,
     });
-    final list = res.data['data'] as List? ?? [];
+    final list = _extractList(res.data['data']);
     return list.map((e) => HomeOrder.fromJson(e)).toList();
   }
 
@@ -81,7 +99,7 @@ class HomeService {
       'page': page,
       'size': size,
     });
-    final list = res.data['data'] as List? ?? [];
+    final list = _extractList(res.data['data']);
     return list.map((e) => HomeWorker.fromJson(e)).toList();
   }
 
@@ -118,7 +136,7 @@ class HomeService {
       'page': page,
       'size': size,
     });
-    final list = res.data['data'] as List? ?? [];
+    final list = _extractList(res.data['data']);
     return list.map((e) => HomeTraining.fromJson(e)).toList();
   }
 
@@ -137,13 +155,13 @@ class HomeService {
 
   Future<List<HomeCategory>> getCategories() async {
     final res = await _client.get('/home/categories');
-    final list = res.data['data'] as List? ?? [];
+    final list = _extractList(res.data['data']);
     return list.map((e) => HomeCategory.fromJson(e)).toList();
   }
 
   Future<List<HomeFavorite>> getFavorites() async {
     final res = await _client.get('/home/favorites');
-    final list = res.data['data'] as List? ?? [];
+    final list = _extractList(res.data['data']);
     return list.map((e) => HomeFavorite.fromJson(e)).toList();
   }
 

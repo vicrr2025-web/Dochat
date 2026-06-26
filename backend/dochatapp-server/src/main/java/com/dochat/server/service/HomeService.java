@@ -171,7 +171,7 @@ public class HomeService {
     }
 
     // 8. verifyOrder
-    public HomeOrder verifyOrder(String userId, String orderId) {
+    public HomeOrder verifyOrder(String userId, String orderId, Boolean accept, Double rating) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         if (!"waiting_verify".equals(order.getStatus())) {

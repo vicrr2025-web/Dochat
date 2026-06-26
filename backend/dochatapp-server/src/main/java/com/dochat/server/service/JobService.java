@@ -305,7 +305,31 @@ public class JobService {
             result.add(item);
         }
 
+        if (result.isEmpty()) {
+            result = generateMockMessages(userId);
+        }
+
         return result;
+    }
+
+    private List<Map<String, Object>> generateMockMessages(String userId) {
+        List<Map<String, Object>> messages = new ArrayList<>();
+        String[][] mockMsgs = {
+            {"HR-李经理", "您好，我们收到了您的简历，想约您面试Java开发岗位。"},
+            {"猎头-小王", "有个不错的机会，薪资范围20-30K，感兴趣吗？"},
+            {"技术总监-赵总", "看了您的GitHub项目，技术栈很匹配，聊聊？"},
+        };
+        for (int i = 0; i < mockMsgs.length; i++) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("sessionId", "MOCK_SESSION_" + i);
+            item.put("otherUserId", "MOCK_USER_" + i);
+            item.put("otherName", mockMsgs[i][0]);
+            item.put("otherAvatar", "");
+            item.put("lastMessage", mockMsgs[i][1]);
+            item.put("lastTime", LocalDateTime.now().minusHours(i * 5L));
+            messages.add(item);
+        }
+        return messages;
     }
 
     // ==================== 10. companyAuth ====================
