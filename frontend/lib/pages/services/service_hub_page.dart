@@ -10,6 +10,7 @@ import 'package:dochat_app/pages/dating/dating_profile_page.dart';
 import 'package:dochat_app/pages/houses/house_home_page.dart';
 import 'package:dochat_app/pages/mails/mail_home_page.dart';
 import 'package:dochat_app/pages/express/express_home_page.dart';
+import 'package:dochat_app/pages/homes/home_home_page.dart';
 
 import 'package:dochat_app/pages/jobs/job_home_page.dart';
 String _ecosystemName(String key, AppLocalizations l10n) {
@@ -230,7 +231,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing' || badge.ecosystemKey == 'jobs' || badge.ecosystemKey == 'mail' || badge.ecosystemKey == 'express') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing' || badge.ecosystemKey == 'jobs' || badge.ecosystemKey == 'mail' || badge.ecosystemKey == 'express' || badge.ecosystemKey == 'homeService') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -240,6 +241,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                     if (badge.ecosystemKey == 'dating') return const DatingProfilePage();
                     if (badge.ecosystemKey == 'jobs') return const JobHomePage();
                     if (badge.ecosystemKey == 'express') return const ExpressHomePage();
+                    if (badge.ecosystemKey == 'homeService') return const HomeHomePage();
                     if (badge.ecosystemKey == 'mail') return const MailHomePage();
                     return const HouseHomePage();
                   },
@@ -275,7 +277,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                         Icon(
                           _iconForKey(badge.ecosystemKey),
                           size: 64,
-                          color: badge.ecosystemKey == 'express' ? const Color(0xFFFF9500) : CupertinoColors.systemBlue,
+                          color: badge.ecosystemKey == 'express' ? const Color(0xFFFF9500) : badge.ecosystemKey == 'homeService' ? const Color(0xFF5AC8FA) : CupertinoColors.systemBlue,
                         ),
                         const SizedBox(height: 8),
                         Text(

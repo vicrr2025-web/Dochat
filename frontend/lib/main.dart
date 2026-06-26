@@ -16,6 +16,7 @@ import 'package:dochat_app/providers/dating_provider.dart';
 import 'package:dochat_app/providers/house_provider.dart';
 import 'package:dochat_app/providers/mail_provider.dart';
 import 'package:dochat_app/providers/express_provider.dart';
+import 'package:dochat_app/providers/home_provider.dart';
 import 'package:dochat_app/pages/auth/splash_page.dart';
 
 void main() {
@@ -43,6 +44,7 @@ class DochatApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => JobProvider()),
         ChangeNotifierProvider(create: (_) => MailProvider()),
         ChangeNotifierProvider(create: (_) => ExpressProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
       ],
       child: CupertinoApp(
         debugShowCheckedModeBanner: false,

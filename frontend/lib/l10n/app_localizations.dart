@@ -411,7 +411,6 @@ class AppLocalizations {
   String get publishHouse => _strings['publishHouse'] ?? '发布房源';
   String get publishHouseTitle => _strings['publishHouseTitle'] ?? '发布房源';
   String get appointmentViewing => _strings['appointmentViewing'] ?? '预约看房';
-  String get appointmentTime => _strings['appointmentTime'] ?? '预约时间';
   String get freeBus => _strings['freeBus'] ?? '免费专车';
   String get communityInfo => _strings['communityInfo'] ?? '小区信息';
   String get communityReview => _strings['communityReview'] ?? '小区评测';
@@ -548,6 +547,42 @@ class AppLocalizations {
   String get etaMinutes => _strings['etaMinutes'] ?? '预计到达';
   String get contactDriver => _strings['contactDriver'] ?? '联系司机';
   String get orderId => _strings['orderId'] ?? '订单号';
+  String get homeTab => _strings['homeTab'] ?? '到家';
+  String get selectWorker => _strings['selectWorker'] ?? '选择师傅';
+  String get workerInfo => _strings['workerInfo'] ?? '师傅信息';
+  String get workerSkills => _strings['workerSkills'] ?? '技能';
+  String get workerCert => _strings['workerCert'] ?? '资质证书';
+  String get workerDeposit => _strings['workerDeposit'] ?? '保证金';
+  String get workerRegister => _strings['workerRegister'] ?? '师傅入驻';
+  String get priceType => _strings['priceType'] ?? '计价方式';
+  String get fixedPrice => _strings['fixedPrice'] ?? '一口价';
+  String get quotePrice => _strings['quotePrice'] ?? '报价单';
+  String get calcPrice => _strings['calcPrice'] ?? '计价器';
+  String get serviceVerify => _strings['serviceVerify'] ?? '服务验收';
+  String get afterSale => _strings['afterSale'] ?? '售后';
+  String get requestAfterSale => _strings['requestAfterSale'] ?? '申请售后';
+  String get warrantyPeriod => _strings['warrantyPeriod'] ?? '质保期';
+  String get homeTraining => _strings['homeTraining'] ?? '鲁班课堂';
+  String get trainingSkill => _strings['trainingSkill'] ?? '技能培训';
+  String get trainingRule => _strings['trainingRule'] ?? '平台规则';
+  String get trainingSafety => _strings['trainingSafety'] ?? '安全培训';
+  String get workerMall => _strings['workerMall'] ?? '工装商城';
+  String get workerUniform => _strings['workerUniform'] ?? '工装';
+  String get serviceCategory => _strings['serviceCategory'] ?? '服务分类';
+  String get allCategories => _strings['allCategories'] ?? '全部分类';
+  String get subCategory => _strings['subCategory'] ?? '子分类';
+  String get noServiceHint => _strings['noServiceHint'] ?? '暂无服务';
+  String get noWorkerHint => _strings['noWorkerHint'] ?? '暂无师傅';
+  String get secondVisit => _strings['secondVisit'] ?? '二次上门';
+  String get penaltyFee => _strings['penaltyFee'] ?? '罚金';
+  String get collectWorker => _strings['collectWorker'] ?? '收藏师傅';
+  String get collectedWorkers => _strings['collectedWorkers'] ?? '已收藏师傅';
+  String get completeTraining => _strings['completeTraining'] ?? '完成学习';
+  String get depositPay => _strings['depositPay'] ?? '缴纳保证金';
+  String get depositRefund => _strings['depositRefund'] ?? '退还保证金';
+
+
+  String get appointmentTime => _strings['appointmentTime'] ?? '预约时间';
 }
 
 class _AppLocalizationsDelegate
@@ -1073,6 +1108,39 @@ class _AppLocalizationsDelegate
       'etaMinutes': isZh ? '预计到达' : 'ETA',
       'contactDriver': isZh ? '联系司机' : 'Contact Driver',
       'orderId': isZh ? '订单号' : 'Order ID',
+      'homeTab': isZh ? '到家' : 'Home',
+      'selectWorker': isZh ? '选择师傅' : 'Select Worker',
+      'workerInfo': isZh ? '师傅信息' : 'Worker Info',
+      'workerSkills': isZh ? '技能' : 'Skills',
+      'workerCert': isZh ? '资质证书' : 'Certificates',
+      'workerDeposit': isZh ? '保证金' : 'Deposit',
+      'workerRegister': isZh ? '师傅入驻' : 'Register',
+      'priceType': isZh ? '计价方式' : 'Price Type',
+      'fixedPrice': isZh ? '一口价' : 'Fixed Price',
+      'quotePrice': isZh ? '报价单' : 'Quote',
+      'calcPrice': isZh ? '计价器' : 'Calculator',
+      'serviceVerify': isZh ? '服务验收' : 'Verify',
+      'afterSale': isZh ? '售后' : 'After Sale',
+      'requestAfterSale': isZh ? '申请售后' : 'Request After Sale',
+      'warrantyPeriod': isZh ? '质保期' : 'Warranty',
+      'homeTraining': isZh ? '鲁班课堂' : 'Training',
+      'trainingSkill': isZh ? '技能培训' : 'Skill Training',
+      'trainingRule': isZh ? '平台规则' : 'Platform Rules',
+      'trainingSafety': isZh ? '安全培训' : 'Safety Training',
+      'workerMall': isZh ? '工装商城' : 'Worker Mall',
+      'workerUniform': isZh ? '工装' : 'Uniform',
+      'serviceCategory': isZh ? '服务分类' : 'Categories',
+      'allCategories': isZh ? '全部分类' : 'All Categories',
+      'subCategory': isZh ? '子分类' : 'Sub Category',
+      'noServiceHint': isZh ? '暂无服务' : 'No Services',
+      'noWorkerHint': isZh ? '暂无师傅' : 'No Workers',
+      'secondVisit': isZh ? '二次上门' : 'Second Visit',
+      'penaltyFee': isZh ? '罚金' : 'Penalty',
+      'collectWorker': isZh ? '收藏师傅' : 'Collect Worker',
+      'collectedWorkers': isZh ? '已收藏师傅' : 'Collected',
+      'completeTraining': isZh ? '完成学习' : 'Complete',
+      'depositPay': isZh ? '缴纳保证金' : 'Pay Deposit',
+      'depositRefund': isZh ? '退还保证金' : 'Refund Deposit',
 
     });
     return localizations;
