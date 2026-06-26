@@ -84,9 +84,8 @@ class MailProvider extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
     try {
-      final data = await _service.getMailList(accountId, folder,
+      final list = await _service.getMailList(accountId, folder,
           page: page, size: size);
-      final list = data['content'] as List? ?? [];
       _messages = list
           .map((e) => MailMessage.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -150,13 +149,25 @@ class MailProvider extends ChangeNotifier {
     try {
       await _service.markMail(data);
       final messageId = data['messageId'] as String?;
+      final action = data['action'] as String?;
       if (messageId != null) {
         final idx = _messages.indexWhere((m) => m.messageId == messageId);
         if (idx != -1) {
-          final updated = _messages[idx].copyWith(
-            isRead: data['isRead'] as bool?,
-            isStarred: data['isStarred'] as bool?,
-          );
+          MailMessage updated = _messages[idx];
+          switch (action) {
+            case 'read':
+              updated = updated.copyWith(isRead: true);
+              break;
+            case 'unread':
+              updated = updated.copyWith(isRead: false);
+              break;
+            case 'star':
+              updated = updated.copyWith(isStarred: true);
+              break;
+            case 'unstar':
+              updated = updated.copyWith(isStarred: false);
+              break;
+          }
           _messages[idx] = updated;
           if (_currentMessage?.messageId == messageId) {
             _currentMessage = updated;
@@ -189,8 +200,8 @@ class MailProvider extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
     try {
-      final response = await _service.createFolder('');
-      _folders = [];
+      final list = await _service.getFolders();
+      _folders = list.map((e) => MailFolder.fromJson(e as Map<String, dynamic>)).toList();
     } catch (e) {
       _errorMessage = 'networkError';
     }
@@ -229,8 +240,8 @@ class MailProvider extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
     try {
-      final data = await _service.addFilter({});
-      _filters = [];
+      final list = await _service.getFilters();
+      _filters = list.map((e) => MailFilter.fromJson(e as Map<String, dynamic>)).toList();
     } catch (e) {
       _errorMessage = 'networkError';
     }

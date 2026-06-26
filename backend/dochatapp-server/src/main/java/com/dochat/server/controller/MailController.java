@@ -171,6 +171,17 @@ public class MailController {
         }
     }
 
+    @GetMapping("/folders")
+    public ResponseEntity<ApiResponse<List<MailFolder>>> getFolders(
+            @AuthenticationPrincipal String userId) {
+        try {
+            List<MailFolder> folders = mailService.getFolders(userId);
+            return ResponseEntity.ok(ApiResponse.success(folders));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(9006, e.getMessage()));
+        }
+    }
+
     @DeleteMapping("/folder")
     public ResponseEntity<ApiResponse<Void>> deleteFolder(
             @AuthenticationPrincipal String userId,
@@ -180,6 +191,17 @@ public class MailController {
             return ResponseEntity.ok(ApiResponse.success(null));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(9006, "文件夹不存在或无权操作"));
+        }
+    }
+
+    @GetMapping("/filters")
+    public ResponseEntity<ApiResponse<List<MailFilter>>> getFilters(
+            @AuthenticationPrincipal String userId) {
+        try {
+            List<MailFilter> filters = mailService.getFilters(userId);
+            return ResponseEntity.ok(ApiResponse.success(filters));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(9008, e.getMessage()));
         }
     }
 

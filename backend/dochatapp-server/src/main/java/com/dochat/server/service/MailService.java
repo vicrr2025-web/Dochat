@@ -212,6 +212,10 @@ public class MailService {
     }
 
     @Transactional
+    public List<MailFolder> getFolders(String userId) {
+        return mailFolderRepository.findByUserId(userId);
+    }
+
     public void deleteFolder(String userId, String folderId) {
         MailFolder folder = mailFolderRepository.findByFolderId(folderId)
                 .orElseThrow(() -> new IllegalArgumentException("9006"));
@@ -222,6 +226,10 @@ public class MailService {
     }
 
     @Transactional
+    public List<MailFilter> getFilters(String userId) {
+        return mailFilterRepository.findByUserId(userId);
+    }
+
     public MailFilter addFilter(String userId, String type, String addressPattern) {
         mailFilterRepository.findByUserIdAndTypeAndAddressPattern(userId, type, addressPattern)
                 .ifPresent(f -> { throw new IllegalArgumentException("9008"); });

@@ -17,7 +17,7 @@ class MailService {
     await _api.client.delete('/mail/account', queryParameters: {'accountId': accountId});
   }
 
-  Future<Map<String, dynamic>> getMailList(
+  Future<List<dynamic>> getMailList(
     String accountId,
     String folder, {
     int page = 0,
@@ -32,7 +32,7 @@ class MailService {
         'size': size,
       },
     );
-    return response.data['data'] as Map<String, dynamic>;
+    return response.data['data'] as List<dynamic> ?? [];
   }
 
   Future<Map<String, dynamic>> getMailDetail(String messageId) async {
@@ -72,6 +72,16 @@ class MailService {
 
   Future<void> deleteFolder(String folderId) async {
     await _api.client.delete('/mail/folder', queryParameters: {'folderId': folderId});
+  }
+
+  Future<List<dynamic>> getFolders() async {
+    final res = await _api.client.get('/mail/folders');
+    return res.data['data'] as List<dynamic> ?? [];
+  }
+
+  Future<List<dynamic>> getFilters() async {
+    final res = await _api.client.get('/mail/filters');
+    return res.data['data'] as List<dynamic> ?? [];
   }
 
   Future<Map<String, dynamic>> addFilter(Map<String, dynamic> data) async {
