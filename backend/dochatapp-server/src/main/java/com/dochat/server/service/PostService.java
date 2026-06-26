@@ -91,7 +91,7 @@ public class PostService {
                     return PostResponse.fromPost(post,
                             user != null ? user.getNickname() : "未知用户",
                             user != null ? user.getAvatar() : null,
-                            isLiked);
+                            isLiked, false);
                 })
                 .collect(Collectors.toList());
         return new PageResponse<>(responses, postPage.getTotalPages(),
@@ -133,7 +133,7 @@ public class PostService {
         return PostResponse.fromPost(post,
                 user != null ? user.getNickname() : "未知用户",
                 user != null ? user.getAvatar() : null,
-                false);
+                false, false);
     }
 
     public PostResponse getPost(String postId, String currentUserId) {
@@ -146,7 +146,7 @@ public class PostService {
         return PostResponse.fromPost(post,
                 user != null ? user.getNickname() : "未知用户",
                 user != null ? user.getAvatar() : null,
-                isLiked);
+                isLiked, false);
     }
 
     @Transactional
@@ -194,7 +194,7 @@ public class PostService {
                     return PostResponse.fromPost(post,
                             user != null ? user.getNickname() : "未知用户",
                             user != null ? user.getAvatar() : null,
-                            false);
+                            false, false);
                 })
                 .collect(Collectors.toList());
     }

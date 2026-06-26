@@ -128,9 +128,9 @@ class _MainShellPageState extends State<MainShellPage> {
       tabBuilder: (context, index) {
         switch (index) {
           case 0:
-            return const HomePage();
+            assert(false, "Invalid tab index"); return const SizedBox.shrink();
           case 1:
-            return const HomePage();
+            assert(false, "Invalid tab index"); return const SizedBox.shrink();
           case 2:
             return const SquarePage();
           case 3:
@@ -138,7 +138,7 @@ class _MainShellPageState extends State<MainShellPage> {
           case 4:
             return const SettingsPage();
           default:
-            return const HomePage();
+            assert(false, "Invalid tab index"); return const SizedBox.shrink();
         }
       },
     );

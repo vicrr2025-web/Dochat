@@ -166,6 +166,7 @@ class AppLocalizations {
   String get rejected => _strings['rejected'] ?? '已拒绝';
   String get removeFriend => _strings['removeFriend'] ?? '删除好友';
   String get removeFriendConfirm => _strings['removeFriendConfirm'] ?? '确定要删除该好友吗？';
+  String get removeDeviceConfirm => _strings['removeDeviceConfirm'] ?? '确定要移除该设备吗？';
   String get friendRequestSent => _strings['friendRequestSent'] ?? '好友申请已发送';
   String get alreadyFriends => _strings['alreadyFriends'] ?? '已经是好友';
   String get liveLocation => _strings['liveLocation'] ?? '实时定位';
@@ -510,8 +511,6 @@ class AppLocalizations {
   String get interviewTime => _strings['interviewTime'] ?? '面试时间';
   String get interviewType => _strings['interviewType'] ?? '面试方式';
   String get creditScoreChange => _strings['creditScoreChange'] ?? '信誉分变动';
-
-
   String get expressTab => _strings['expressTab'] ?? '速运';
   String get expressTaxi => _strings['expressTaxi'] ?? '打车';
   String get expressErrand => _strings['expressErrand'] ?? '跑腿';
@@ -580,8 +579,6 @@ class AppLocalizations {
   String get completeTraining => _strings['completeTraining'] ?? '完成学习';
   String get depositPay => _strings['depositPay'] ?? '缴纳保证金';
   String get depositRefund => _strings['depositRefund'] ?? '退还保证金';
-
-
   String get appointmentTime => _strings['appointmentTime'] ?? '预约时间';
 }
 
@@ -718,6 +715,7 @@ class _AppLocalizationsDelegate
       'rejected': isZh ? '已拒绝' : 'Rejected',
       'removeFriend': isZh ? '删除好友' : 'Remove Friend',
       'removeFriendConfirm': isZh ? '确定要删除该好友吗？' : 'Are you sure you want to remove this friend?',
+      'removeDeviceConfirm': isZh ? '确定要移除该设备吗？' : 'Are you sure you want to remove this device?',
       'friendRequestSent': isZh ? '好友申请已发送' : 'Friend request sent',
       'alreadyFriends': isZh ? '已经是好友' : 'Already friends',
       'liveLocation': isZh ? '实时定位' : 'Live Location',
@@ -918,7 +916,7 @@ class _AppLocalizationsDelegate
       'myCoupons': isZh ? '我的优惠券' : 'My Coupons',
       'noProductsHint': isZh ? '暂无商品' : 'No products',
       'datingTab': isZh ? '婚恋' : 'Dating',
-      'editProfile': isZh ? '编辑资料' : 'Edit Profile',
+
       'gender': isZh ? '性别' : 'Gender',
       'maleLabel': isZh ? '男士' : 'Male',
       'femaleLabel': isZh ? '女士' : 'Female',
@@ -1035,8 +1033,6 @@ class _AppLocalizationsDelegate
       'interviewTime': isZh ? '面试时间' : 'Time',
       'interviewType': isZh ? '面试方式' : 'Type',
       'creditScoreChange': isZh ? '信誉分变动' : 'Credit Change',
-
-
       'mailTab': isZh ? '邮箱' : 'Mail',
       'addAccount': isZh ? '添加账户' : 'Add Account',
       'mailProvider': isZh ? '服务商' : 'Provider',

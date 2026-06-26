@@ -29,9 +29,10 @@ public class PostResponse {
     private int commentCount;
     private int shareCount;
     private boolean isLiked;
+    private boolean isFollowing;
     private String createdAt;
 
-    public static PostResponse fromPost(Post post, String userNickname, String userAvatar, boolean isLiked) {
+    public static PostResponse fromPost(Post post, String userNickname, String userAvatar, boolean isLiked, boolean isFollowing) {
         PostResponse r = new PostResponse();
         r.postId = post.getPostId();
         r.userId = post.getUserId();
@@ -53,6 +54,7 @@ public class PostResponse {
         r.commentCount = post.getCommentCount();
         r.shareCount = post.getShareCount();
         r.isLiked = isLiked;
+        r.isFollowing = isFollowing;
         r.createdAt = post.getCreatedAt() != null ? post.getCreatedAt().format(ISO_FORMATTER) : null;
         return r;
     }
@@ -98,6 +100,9 @@ public class PostResponse {
 
     public boolean getIsLiked() { return isLiked; }
     public void setIsLiked(boolean isLiked) { this.isLiked = isLiked; }
+
+    public boolean getIsFollowing() { return isFollowing; }
+    public void setIsFollowing(boolean isFollowing) { this.isFollowing = isFollowing; }
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }

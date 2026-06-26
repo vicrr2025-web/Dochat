@@ -19,7 +19,7 @@ class AuthResponse {
       token: json['token'] as String,
       refreshToken: json['refreshToken'] as String,
       userSig: json['userSig'] as String,
-      expiresIn: json['expiresIn'] as int,
+      expiresIn: (json['expiresIn'] as num?)?.toInt() ?? 0,
     );
   }
 

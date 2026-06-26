@@ -1,4 +1,5 @@
 import 'package:dochat_app/models/post_models.dart';
+import 'package:dochat_app/models/chat_models.dart';
 import 'package:dochat_app/models/friend_models.dart';
 import 'package:dochat_app/services/api_service.dart';
 
@@ -39,16 +40,16 @@ class PostService {
     return LikeResult.fromJson(response.data['data'] as Map<String, dynamic>);
   }
 
-  Future<List<CommentInfo>> getComments(String postId, int page) async {
+  Future<PageResponse<CommentInfo>> getComments(String postId, int page) async {
     final response = await _api.client.get(
       '/v1/posts/$postId/comments',
       queryParameters: {'page': page},
     );
     final data = response.data['data'];
-    final list = data['content'] as List;
-    return list
-        .map((e) => CommentInfo.fromJson(e as Map<String, dynamic>))
-        .toList();
+    return PageResponse.fromJson(
+      data as Map<String, dynamic>,
+      fromJsonT: (e) => CommentInfo.fromJson(e),
+    );
   }
 
   Future<CommentInfo> addComment(

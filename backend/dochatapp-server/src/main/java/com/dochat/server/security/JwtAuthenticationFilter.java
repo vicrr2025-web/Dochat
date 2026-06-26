@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = extractToken(request);
         if (StringUtils.hasText(token) && jwtUtil.validateToken(token)) {
             // 检查 Token 是否在黑名单中
-            String blacklistKey = "token:blacklist:" + token;
+            String blacklistKey = "token_blacklist:" + token;
             String blacklisted = redisTemplate.opsForValue().get(blacklistKey);
             if (blacklisted != null) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

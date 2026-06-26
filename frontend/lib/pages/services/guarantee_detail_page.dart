@@ -93,7 +93,7 @@ class _GuaranteeDetailPageState extends State<GuaranteeDetailPage> {
         final chatResp = await guaranteeService.getChatSession(trade.tradeId);
         final chatService = ChatService();
         final sessions = await chatService.getSessions();
-        final sessionInfo = sessions.where(
+        final sessionInfo = sessions.content.where(
           (s) => s.sessionId == chatResp.sessionId,
         ).toList();
         if (sessionInfo.isNotEmpty && mounted) {
@@ -138,7 +138,7 @@ class _GuaranteeDetailPageState extends State<GuaranteeDetailPage> {
     try {
       final chatService = ChatService();
       final sessions = await chatService.getSessions();
-      final sessionInfo = sessions.where(
+      final sessionInfo = sessions.content.where(
         (s) => s.sessionId == trade.sessionId,
       ).toList();
       if (sessionInfo.isNotEmpty && mounted) {

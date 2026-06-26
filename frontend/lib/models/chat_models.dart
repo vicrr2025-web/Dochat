@@ -24,8 +24,8 @@ class PageResponse<T> {
       content: contentJson
           .map((e) => fromJsonT(e as Map<String, dynamic>))
           .toList(),
-      page: json['page'] as int,
-      size: json['size'] as int,
+      page: (json['currentPage'] as int?) ?? (json['page'] as int?) ?? 0,
+      size: (json['size'] as int?) ?? 20,
       totalElements: json['totalElements'] as int,
       totalPages: json['totalPages'] as int,
       hasMore: json['hasMore'] as bool? ?? false,

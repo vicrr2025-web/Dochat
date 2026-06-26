@@ -80,8 +80,13 @@ class PostProvider extends ChangeNotifier {
 
   Future<void> loadMore() async {
     if (_isLoading || !_hasMore) return;
+    final prevPage = _currentPage;
     _currentPage++;
-    await loadFeed(_currentFeed);
+    try {
+      await loadFeed(_currentFeed);
+    } catch (_) {
+      _currentPage = prevPage;
+    }
   }
 
   Future<void> toggleLike(String postId) async {

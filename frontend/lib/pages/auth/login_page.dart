@@ -5,6 +5,7 @@ import 'package:dochat_app/l10n/app_localizations.dart';
 import 'package:dochat_app/providers/auth_provider.dart';
 import 'package:dochat_app/pages/auth/register_page.dart';
 import 'package:dochat_app/pages/auth/forgot_password_page.dart';
+import 'package:dochat_app/pages/auth/main_shell_page.dart';
 import 'package:dochat_app/pages/auth/home_page.dart';
 import 'package:dochat_app/pages/auth/widgets/sms_button.dart';
 
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (authProvider.isLoggedIn) {
       Navigator.of(context).pushReplacement(
-        CupertinoPageRoute(builder: (_) => const HomePage()),
+        CupertinoPageRoute(builder: (_) => const MainShellPage()),
       );
     } else if (authProvider.errorMessage != null) {
       _showError(authProvider.errorMessage!);

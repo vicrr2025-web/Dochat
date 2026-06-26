@@ -9,7 +9,7 @@ class ApiService {
   late final Dio dio;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
-  static const String baseUrl = 'http://localhost:8080/api';
+  static const String baseUrl = 'http://127.0.0.1:8080/api';
 
   // 防止并发刷新
   bool _isRefreshing = false;
@@ -56,6 +56,7 @@ class ApiService {
                   await _storage.write(key: 'token', value: authResp.token);
                   await _storage.write(
                       key: 'refreshToken', value: authResp.refreshToken);
+                  await _storage.write(key: 'userId', value: authResp.userId);
 
                   // 重试原始请求
                   final retryOptions = error.requestOptions;

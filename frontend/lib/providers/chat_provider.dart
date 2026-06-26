@@ -17,6 +17,8 @@ class ChatProvider extends ChangeNotifier {
   bool _isLoadingSessions = false;
   bool _isLoadingMessages = false;
   bool _isSending = false;
+  bool _hasMoreSessions = true;
+  bool _hasMoreMessages = true;
   String? _errorMessage;
   String? _currentSessionId;
   String _currentUserId = '';
@@ -46,8 +48,13 @@ class ChatProvider extends ChangeNotifier {
 
     try {
       if (_currentUserId.isEmpty) await _loadUserId();
-      final sessions = await _chatService.getSessions(page: page);
-      _sessions = sessions;
+      final result = await _chatService.getSessions(page: page);
+      if (page == 0) {
+        _sessions = result.content;
+      } else {
+        _sessions.addAll(result.content);
+      }
+      _hasMoreSessions = result.page < result.totalPages - 1;
     } catch (e) {
       _errorMessage = 'networkError';
     }
@@ -66,7 +73,7 @@ class ChatProvider extends ChangeNotifier {
 
     try {
       if (_currentUserId.isEmpty) await _loadUserId();
-      final messages = await _chatService.getMessages(
+      final result = await _chatService.getMessages(
         sessionId,
         beforeMessageId: before,
         currentUserId: _currentUserId,
@@ -74,11 +81,12 @@ class ChatProvider extends ChangeNotifier {
 
       if (before != null) {
         final existing = _messagesCache[sessionId] ?? [];
-        existing.insertAll(0, messages);
+        existing.insertAll(0, result.content);
         _messagesCache[sessionId] = existing;
       } else {
-        _messagesCache[sessionId] = messages;
+        _messagesCache[sessionId] = result.content;
       }
+      _hasMoreMessages = result.page < result.totalPages - 1;
     } catch (e) {
       _errorMessage = 'networkError';
     }
@@ -91,14 +99,51 @@ class ChatProvider extends ChangeNotifier {
     _isSending = true;
     notifyListeners();
 
+    // Optimistic update: insert temp message
+    final tempId = 'temp_${DateTime.now().millisecondsSinceEpoch}';
+    final tempMsg = MessageInfo(
+      messageId: tempId,
+      sessionId: request.sessionId,
+      senderId: _currentUserId,
+      currentUserId: _currentUserId,
+      type: request.type,
+      content: request.content,
+      status: 'sending',
+      sentAt: DateTime.now(),
+    );
+    _addMessageToCache(request.sessionId, tempMsg);
+
     try {
       if (_currentUserId.isEmpty) await _loadUserId();
+      
+      // Upload media files first if present
+      var updatedRequest = request;
+      if (request.mediaUrl != null && request.mediaUrl!.isNotEmpty && !request.mediaUrl!.startsWith('http')) {
+        final uploadedUrl = await _chatService.uploadFile(request.mediaUrl!);
+        updatedRequest = SendMessageRequest(
+          sessionId: request.sessionId,
+          type: request.type,
+          content: request.content,
+          mediaUrl: uploadedUrl,
+          mediaDuration: request.mediaDuration,
+        );
+      }
+      
       final message = await _chatService.sendMessage(
-        request,
+        updatedRequest,
         currentUserId: _currentUserId,
       );
-      _addMessageToCache(request.sessionId, message);
+      // Replace temp message with real one
+      final messages = _messagesCache[request.sessionId] ?? [];
+      final idx = messages.indexWhere((m) => m.messageId == tempId);
+      if (idx != -1) {
+        messages[idx] = message;
+        _messagesCache[request.sessionId] = messages;
+      }
     } catch (e) {
+      // Remove temp message on failure
+      final messages = _messagesCache[request.sessionId] ?? [];
+      messages.removeWhere((m) => m.messageId == tempId);
       _errorMessage = 'sendFailed';
     }
 
@@ -138,6 +183,7 @@ class ChatProvider extends ChangeNotifier {
   }
 
   Future<void> markAsRead(String sessionId, String lastMessageId) async {
+    if (sessionId.isEmpty) return;
     try {
       await _chatService.markRead(sessionId, lastMessageId);
     } catch (_) {}
@@ -262,7 +308,7 @@ class ChatProvider extends ChangeNotifier {
           lastMessage: message.content ?? message.type,
           lastMessageType: message.type,
           lastTime: message.sentAt,
-          unreadCount: old.unreadCount + 1,
+          unreadCount: message.sessionId != _currentSessionId ? old.unreadCount + 1 : old.unreadCount,
           isPinned: old.isPinned,
           isMuted: old.isMuted,
         );

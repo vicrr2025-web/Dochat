@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:dochat_app/l10n/app_localizations.dart';
 import 'package:dochat_app/models/post_models.dart';
+import 'package:dochat_app/services/post_service.dart';
+import 'package:dochat_app/services/chat_service.dart';
 import 'package:dochat_app/providers/post_provider.dart';
 import 'package:dochat_app/pages/chat/image_picker_sheet.dart';
 
@@ -17,6 +19,7 @@ class CreatePostPage extends StatefulWidget {
 class _CreatePostPageState extends State<CreatePostPage> {
   late TextEditingController _contentController;
   String _visibility = 'public';
+  final List<String> _selectedFiles = [];
   String _mediaType = 'text';
   bool _hasContent = false;
 
@@ -226,9 +229,19 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
   Future<void> _publish() async {
     final provider = context.read<PostProvider>();
+    final chatService = ChatService();
+    
+    // Upload media files if selected
+    final List<String> uploadedUrls = [];
+    for (final file in _selectedFiles) {
+      final url = await chatService.uploadFile(file);
+      if (url != null) uploadedUrls.add(url);
+    }
+    
     final request = PostRequest(
       content: _contentController.text.trim(),
       mediaType: _mediaType,
+      mediaUrls: uploadedUrls,
       visibility: _visibility,
     );
     final post = await provider.createPost(request);

@@ -7,21 +7,21 @@ class FriendService {
   final ApiService _api = ApiService();
 
   Future<FriendInfo> searchUser(String phone) async {
-    final response = await _api.client.get('/api/v1/friends/search', queryParameters: {
+    final response = await _api.client.get('/v1/friends/search', queryParameters: {
       'phone': phone,
     });
     return FriendInfo.fromJson(response.data['data'] as Map<String, dynamic>);
   }
 
   Future<void> sendFriendRequest(String targetUserId, String message) async {
-    await _api.client.post('/api/v1/friends/requests', data: {
+    await _api.client.post('/v1/friends/requests', data: {
       'targetUserId': targetUserId,
       'message': message,
     });
   }
 
   Future<List<FriendRequestInfo>> getPendingRequests() async {
-    final response = await _api.client.get('/api/v1/friends/requests');
+    final response = await _api.client.get('/v1/friends/requests/pending');
     final data = response.data;
     if (data is Map && data['data'] is List) {
       return (data['data'] as List)
@@ -32,15 +32,15 @@ class FriendService {
   }
 
   Future<void> acceptRequest(String requestId) async {
-    await _api.client.put('/api/v1/friends/requests/$requestId/accept');
+    await _api.client.put('/v1/friends/requests/$requestId/accept');
   }
 
   Future<void> rejectRequest(String requestId) async {
-    await _api.client.put('/api/v1/friends/requests/$requestId/reject');
+    await _api.client.put('/v1/friends/requests/$requestId/reject');
   }
 
   Future<List<FriendInfo>> getFriends() async {
-    final response = await _api.client.get('/api/v1/friends');
+    final response = await _api.client.get('/v1/friends');
     final data = response.data;
     if (data is Map && data['data'] is List) {
       return (data['data'] as List)
@@ -51,6 +51,6 @@ class FriendService {
   }
 
   Future<void> removeFriend(String friendId) async {
-    await _api.client.delete('/api/v1/friends/$friendId');
+    await _api.client.delete('/v1/friends/$friendId');
   }
 }

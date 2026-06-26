@@ -79,7 +79,7 @@ class _DeviceManagePageState extends State<DeviceManagePage> {
                               context: context,
                               builder: (ctx) => CupertinoAlertDialog(
                                 title: Text(l10n.signOut),
-                                content: Text(l10n.removeFriendConfirm),
+                                content: Text(l10n.removeDeviceConfirm),
                                 actions: [
                                   CupertinoDialogAction(
                                     child: Text(l10n.cancel),
@@ -88,9 +88,9 @@ class _DeviceManagePageState extends State<DeviceManagePage> {
                                   CupertinoDialogAction(
                                     isDestructiveAction: true,
                                     child: Text(l10n.signOut),
-                                    onPressed: () {
+                                    onPressed: () async {
                                       Navigator.of(ctx).pop();
-                                      provider.removeDevice(d.deviceId);
+                                      await provider.removeDevice(d.deviceId);
                                     },
                                   ),
                                 ],
@@ -126,9 +126,9 @@ class _DeviceManagePageState extends State<DeviceManagePage> {
                               CupertinoDialogAction(
                                 isDestructiveAction: true,
                                 child: Text(l10n.confirm),
-                                onPressed: () {
+                                onPressed: () async {
                                   Navigator.of(ctx).pop();
-                                  provider.removeOtherDevices();
+                                  await provider.removeOtherDevices();
                                 },
                               ),
                             ],

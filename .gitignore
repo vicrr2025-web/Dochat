@@ -36,3 +36,6 @@ logs/
 
 # 操作系统
 Thumbs.db
+
+# 防止凭证泄露
+backend/dochatapp-server/src/main/resources/application.yml

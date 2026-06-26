@@ -13,7 +13,7 @@ class AuthService {
 
   Future<ApiResponse> sendSms(String phone, String type) async {
     try {
-      final response = await _api.client.post('/api/auth/sms/send', data: {
+      final response = await _api.client.post('/auth/sms/send', data: {
         'phone': phone,
         'type': type,
       });
@@ -24,62 +24,78 @@ class AuthService {
   }
 
   Future<AuthResponse> register(String phone, String smsCode, String password) async {
-    final response = await _api.client.post('/api/auth/register', data: {
+    final response = await _api.client.post('/auth/register', data: {
       'phone': phone,
       'smsCode': smsCode,
       'password': password,
     });
+    if (response.data['code'] != 0) {
+      throw Exception(response.data['message'] ?? '业务错误');
+    }
     final authResp = AuthResponse.fromJson(response.data['data']);
     await saveTokens(authResp);
     return authResp;
   }
 
   Future<AuthResponse> login(String phone, String password) async {
-    final response = await _api.client.post('/api/auth/login', data: {
+    final response = await _api.client.post('/auth/login', data: {
       'phone': phone,
       'password': password,
     });
+    if (response.data['code'] != 0) {
+      throw Exception(response.data['message'] ?? '业务错误');
+    }
     final authResp = AuthResponse.fromJson(response.data['data']);
     await saveTokens(authResp);
     return authResp;
   }
 
   Future<AuthResponse> loginBySms(String phone, String smsCode) async {
-    final response = await _api.client.post('/api/auth/login/sms', data: {
+    final response = await _api.client.post('/auth/login/sms', data: {
       'phone': phone,
       'smsCode': smsCode,
     });
+    if (response.data['code'] != 0) {
+      throw Exception(response.data['message'] ?? '业务错误');
+    }
     final authResp = AuthResponse.fromJson(response.data['data']);
     await saveTokens(authResp);
     return authResp;
   }
 
   Future<AuthResponse> refreshToken(String refreshToken) async {
-    final response = await _api.client.post('/api/auth/refresh',
+    final response = await _api.client.post('/auth/refresh',
         options: Options(headers: {'Authorization': 'Bearer $refreshToken'}));
+    if (response.data['code'] != 0) {
+      throw Exception(response.data['message'] ?? '业务错误');
+    }
     return AuthResponse.fromJson(response.data['data']);
   }
 
   Future<void> logout() async {
     try {
-      await _api.client.post('/api/auth/logout');
+      await _api.client.post('/auth/logout');
     } catch (_) {}
     await clearTokens();
   }
 
   Future<void> changePassword(String oldPassword, String newPassword) async {
-    await _api.client.put('/api/auth/password', data: {
+    await _api.client.put('/auth/password', data: {
       'oldPassword': oldPassword,
       'newPassword': newPassword,
     });
   }
 
-  Future<void> resetPassword(String phone, String smsCode, String newPassword) async {
-    await _api.client.post('/api/auth/password/reset', data: {
+  Future<Map<String, dynamic>> resetPassword(String phone, String smsCode, String newPassword) async {
+    final response = await _api.client.post('/auth/password/reset', data: {
       'phone': phone,
       'smsCode': smsCode,
       'newPassword': newPassword,
     });
+    if (response.data['code'] != 0) {
+      throw Exception(response.data['message'] ?? '业务错误');
+    }
+    return response.data as Map<String, dynamic>;
   }
 
   Future<void> saveTokens(AuthResponse response) async {

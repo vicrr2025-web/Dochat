@@ -103,7 +103,7 @@ public class FollowService {
                     return PostResponse.fromPost(post,
                             user != null ? user.getNickname() : "未知用户",
                             user != null ? user.getAvatar() : null,
-                            isLiked);
+                            isLiked, true);
                 })
                 .collect(Collectors.toList());
         return new PageResponse<>(responses, postPage.getTotalPages(),

@@ -13,6 +13,7 @@ class PostInfo {
   final int commentCount;
   final int shareCount;
   final bool isLiked;
+  final bool isFollowing;
   final String createdAt;
 
   const PostInfo({
@@ -30,6 +31,7 @@ class PostInfo {
     this.commentCount = 0,
     this.shareCount = 0,
     this.isLiked = false,
+    this.isFollowing = false,
     required this.createdAt,
   });
 
@@ -51,7 +53,8 @@ class PostInfo {
       commentCount: json['commentCount'] as int? ?? 0,
       shareCount: json['shareCount'] as int? ?? 0,
       isLiked: json['isLiked'] as bool? ?? false,
-      createdAt: json['createdAt'] as String,
+      isFollowing: json['isFollowing'] as bool? ?? false,
+      createdAt: (json['createdAt'] as String?) ?? '',
     );
   }
 
@@ -71,6 +74,7 @@ class PostInfo {
       'commentCount': commentCount,
       'shareCount': shareCount,
       'isLiked': isLiked,
+      'isFollowing': isFollowing,
       'createdAt': createdAt,
     };
   }
@@ -90,6 +94,7 @@ class PostInfo {
     int? commentCount,
     int? shareCount,
     bool? isLiked,
+    bool? isFollowing,
     String? createdAt,
   }) {
     return PostInfo(
@@ -107,6 +112,7 @@ class PostInfo {
       commentCount: commentCount ?? this.commentCount,
       shareCount: shareCount ?? this.shareCount,
       isLiked: isLiked ?? this.isLiked,
+      isFollowing: isFollowing ?? this.isFollowing,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -145,7 +151,7 @@ class CommentInfo {
       likeCount: json['likeCount'] as int? ?? 0,
       parentId: json['parentId'] as String?,
       replyToUserId: json['replyToUserId'] as String?,
-      createdAt: json['createdAt'] as String,
+      createdAt: (json['createdAt'] as String?) ?? '',
     );
   }
 

@@ -464,13 +464,6 @@ class _SettingsPageState extends State<SettingsPage> {
       header: Text(l10n.general),
       children: [
         CupertinoListTile(
-          title: Text(l10n.darkMode),
-          trailing: const CupertinoSwitch(
-            value: false,
-            onChanged: null,
-          ),
-        ),
-        CupertinoListTile(
           title: Text(l10n.language),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
@@ -483,11 +476,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
           onTap: () => _showLanguageSheet(context, l10n),
-        ),
-        CupertinoListTile(
-          title: Text(l10n.paymentSettings),
-          trailing: const Icon(CupertinoIcons.chevron_right, color: CupertinoColors.systemGrey3),
-          onTap: () => _showPaymentDialog(context, l10n),
         ),
       ],
     );
@@ -529,11 +517,6 @@ class _SettingsPageState extends State<SettingsPage> {
       header: Text(l10n.about),
       children: [
         CupertinoListTile(
-          title: Text(l10n.feedback),
-          trailing: const Icon(CupertinoIcons.chevron_right, color: CupertinoColors.systemGrey3),
-          onTap: () => _showPlaceholder(context, l10n.feedback),
-        ),
-        CupertinoListTile(
           title: Text(l10n.aboutUs),
           trailing: const Icon(CupertinoIcons.chevron_right, color: CupertinoColors.systemGrey3),
           onTap: () => _showAboutDialog(context, l10n),
@@ -546,16 +529,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return CupertinoListSection.insetGrouped(
       header: Text(l10n.other),
       children: [
-        CupertinoListTile(
-          title: Text(l10n.userAgreement),
-          trailing: const Icon(CupertinoIcons.chevron_right, color: CupertinoColors.systemGrey3),
-          onTap: () => _showPlaceholder(context, l10n.userAgreement),
-        ),
-        CupertinoListTile(
-          title: Text(l10n.privacyPolicy),
-          trailing: const Icon(CupertinoIcons.chevron_right, color: CupertinoColors.systemGrey3),
-          onTap: () => _showPlaceholder(context, l10n.privacyPolicy),
-        ),
       ],
     );
   }

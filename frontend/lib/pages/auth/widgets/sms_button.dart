@@ -36,23 +36,24 @@ class _SmsButtonState extends State<SmsButton> {
 
     setState(() => _isSending = true);
 
-    await _authService.sendSms(widget.phone, widget.type);
+    final result = await _authService.sendSms(widget.phone, widget.type);
 
-    setState(() {
-      _isSending = false;
-      _countdown = 60;
-    });
+    setState(() => _isSending = false);
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_countdown > 1) {
-          _countdown--;
-        } else {
-          _countdown = 0;
-          _timer?.cancel();
-        }
+    if (result.code == 0) {
+      setState(() => _countdown = 60);
+
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        setState(() {
+          if (_countdown > 1) {
+            _countdown--;
+          } else {
+            _countdown = 0;
+            _timer?.cancel();
+          }
+        });
       });
-    });
+    }
   }
 
   @override

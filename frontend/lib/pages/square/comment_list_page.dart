@@ -22,12 +22,19 @@ class _CommentListPageState extends State<CommentListPage> {
   bool _isLoading = true;
   String? _replyToUserId;
   String? _replyToNickname;
+  String? _replyToCommentId;
   int _page = 0;
+  bool _hasMore = true;
 
   @override
   void initState() {
     super.initState();
     _loadComments();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+        _loadMoreComments();
+      }
+    });
   }
 
   @override
@@ -39,14 +46,25 @@ class _CommentListPageState extends State<CommentListPage> {
 
   Future<void> _loadComments() async {
     try {
-      final comments = await _postService.getComments(widget.postId, _page);
+      final result = await _postService.getComments(widget.postId, _page);
       setState(() {
-        _comments = comments;
+        if (_page == 0) {
+          _comments = result.content;
+        } else {
+          _comments.addAll(result.content);
+        }
+        _hasMore = result.page < result.totalPages - 1;
         _isLoading = false;
       });
     } catch (_) {
       setState(() => _isLoading = false);
     }
+  }
+
+  Future<void> _loadMoreComments() async {
+    if (!_hasMore || _isLoading) return;
+    _page++;
+    await _loadComments();
   }
 
   Future<void> _sendComment() async {
@@ -58,11 +76,13 @@ class _CommentListPageState extends State<CommentListPage> {
         widget.postId,
         content,
         replyToUserId: _replyToUserId,
+        parentId: _replyToCommentId,
       );
       _inputController.clear();
       setState(() {
         _replyToUserId = null;
         _replyToNickname = null;
+        _replyToCommentId = null;
       });
       _page = 0;
       await _loadComments();
@@ -184,6 +204,7 @@ class _CommentListPageState extends State<CommentListPage> {
                         setState(() {
                           _replyToUserId = comment.userId;
                           _replyToNickname = comment.userNickname;
+                          _replyToCommentId = comment.commentId;
                         });
                       },
                       child: Text(

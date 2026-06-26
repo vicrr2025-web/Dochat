@@ -18,7 +18,7 @@ class SettingsService {
 
   Future<void> changePassword(String current, String newPwd) async {
     await _api.client.put('/user/password', data: {
-      'currentPassword': current,
+      'oldPassword': current,
       'newPassword': newPwd,
     });
   }

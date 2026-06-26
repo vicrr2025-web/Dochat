@@ -224,6 +224,12 @@ class _PostCardState extends State<_PostCard> {
   bool _contentExpanded = false;
   bool _isFollowed = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _isFollowed = post.isFollowing;
+  }
+
   PostInfo get post => widget.post;
 
   @override
@@ -329,8 +335,11 @@ class _PostCardState extends State<_PostCard> {
           padding: EdgeInsets.zero,
           minSize: 28,
           child: Text(
-            l10n.follow,
-            style: const TextStyle(fontSize: 12, color: CupertinoColors.activeBlue),
+            _isFollowed ? l10n.following : l10n.follow,
+            style: TextStyle(
+              fontSize: 12,
+              color: _isFollowed ? CupertinoColors.systemGrey : CupertinoColors.activeBlue,
+            ),
           ),
           onPressed: () {
             final provider = context.read<PostProvider>();

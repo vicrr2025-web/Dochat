@@ -24,6 +24,7 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _profile = await _service.getProfile();
+      _errorMessage = null;
     } catch (_) {
       _errorMessage = 'networkError';
     }
@@ -32,8 +33,11 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   Future<bool> updateProfile({String? nickname, String? avatar}) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.updateProfile(nickname: nickname, avatar: avatar);
+      _errorMessage = null;
       if (nickname != null && _profile != null) {
         _profile = ProfileInfo(
           userId: _profile!.userId,
@@ -46,31 +50,44 @@ class SettingsProvider extends ChangeNotifier {
         );
         notifyListeners();
       }
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'networkError';
+      _isLoading = false;
       notifyListeners();
       return false;
     }
   }
 
   Future<bool> changePassword(String current, String newPwd) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.changePassword(current, newPwd);
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'wrongPassword';
+      _isLoading = false;
       notifyListeners();
       return false;
     }
   }
 
   Future<bool> submitVerify(String realName, String idNumber, String faceId) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.submitVerify(realName, idNumber, faceId);
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'networkError';
+      _isLoading = false;
       notifyListeners();
       return false;
     }
@@ -81,6 +98,7 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _devices = await _service.getDevices();
+      _errorMessage = null;
     } catch (_) {
       _errorMessage = 'networkError';
     }
@@ -89,26 +107,36 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   Future<bool> removeDevice(String deviceId) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.removeDevice(deviceId);
       _devices.removeWhere((d) => d.deviceId == deviceId);
       notifyListeners();
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'networkError';
+      _isLoading = false;
       notifyListeners();
       return false;
     }
   }
 
   Future<bool> removeOtherDevices() async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.removeOtherDevices();
       _devices.removeWhere((d) => !d.isCurrent);
       notifyListeners();
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'networkError';
+      _isLoading = false;
       notifyListeners();
       return false;
     }
@@ -119,6 +147,7 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _storage = await _service.getStorage();
+      _errorMessage = null;
     } catch (_) {
       _errorMessage = 'networkError';
     }
@@ -131,6 +160,7 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _privacy = await _service.getPrivacy();
+      _errorMessage = null;
     } catch (_) {
       _errorMessage = 'networkError';
     }
@@ -139,13 +169,18 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   Future<bool> updatePrivacy(PrivacySettings settings) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _service.updatePrivacy(settings);
       _privacy = settings;
       notifyListeners();
+      _isLoading = false;
+      notifyListeners();
       return true;
     } catch (_) {
       _errorMessage = 'networkError';
+      _isLoading = false;
       notifyListeners();
       return false;
     }

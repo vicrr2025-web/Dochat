@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:dochat_app/models/post_models.dart';
+import 'package:provider/provider.dart';
+import 'package:dochat_app/providers/post_provider.dart';
 
 class VideoBrowsePage extends StatefulWidget {
   final PostInfo post;
@@ -34,11 +36,13 @@ class _VideoBrowsePageState extends State<VideoBrowsePage> {
       child: Stack(
         children: [
           GestureDetector(
-            onDoubleTap: () {
+            onDoubleTap: () async {
+              await Provider.of<PostProvider>(context, listen: false)
+                  .toggleLike(widget.post.postId);
+              _showLikeAnimation();
               setState(() {
                 _isLiked = !_isLiked;
               });
-              _showLikeAnimation();
             },
             child: Center(
               child: Container(
