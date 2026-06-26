@@ -41,7 +41,7 @@ class _MailDetailPageState extends State<MailDetailPage> {
             if (msg != null) {
               provider.markMail({
                 'messageId': msg.messageId,
-                'isStarred': !(msg.isStarred == true),
+                'action': (msg.isStarred == true) ? 'unstar' : 'star',
               });
             }
           },
@@ -301,7 +301,7 @@ class _MailDetailPageState extends State<MailDetailPage> {
                           () {
                             provider.markMail({
                               'messageId': msg.messageId,
-                              'isStarred': !(msg.isStarred == true),
+                              'action': (msg.isStarred == true) ? 'unstar' : 'star',
                             });
                           },
                         ),
