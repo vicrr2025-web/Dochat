@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import java.math.BigDecimal;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api/home")
@@ -210,4 +213,138 @@ public class HomeController {
             return ResponseEntity.badRequest().body(ApiResponse.error(400, e.getMessage()));
         }
     }
+
+    @GetMapping("/order/detail")
+    public ResponseEntity<ApiResponse<HomeOrder>> getOrderDetail(
+            @AuthenticationPrincipal String userId,
+            @RequestParam String orderId) {
+        try {
+            HomeOrder order = homeService.getOrderDetail(userId, orderId);
+            return ResponseEntity.ok(ApiResponse.success(order));
+        } catch (HomeService.HomeServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11003, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/worker/detail")
+    public ResponseEntity<ApiResponse<HomeWorker>> getWorkerDetail(
+            @RequestParam String workerId) {
+        try {
+            HomeWorker worker = homeService.getWorkerDetail(workerId);
+            return ResponseEntity.ok(ApiResponse.success(worker));
+        } catch (HomeService.HomeServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11002, e.getMessage()));
+        }
+    }
+
+    @PutMapping("/worker/status")
+    public ResponseEntity<ApiResponse<HomeWorker>> updateWorkerStatus(
+            @AuthenticationPrincipal String userId,
+            @RequestBody Map<String, String> body) {
+        try {
+            HomeWorker worker = homeService.updateWorkerStatus(userId, body.get("status"));
+            return ResponseEntity.ok(ApiResponse.success(worker));
+        } catch (HomeService.HomeServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11002, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/worker/income")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getWorkerIncome(
+            @AuthenticationPrincipal String userId) {
+        try {
+            Map<String, Object> income = homeService.getWorkerIncome(userId);
+            return ResponseEntity.ok(ApiResponse.success(income));
+        } catch (HomeService.HomeServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11002, e.getMessage()));
+        }
+    }
+
+    @PostMapping("/worker/withdraw")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> withdraw(
+            @AuthenticationPrincipal String userId,
+            @RequestBody Map<String, BigDecimal> body) {
+        try {
+            Map<String, Object> result = homeService.withdraw(userId, body.get("amount"));
+            return ResponseEntity.ok(ApiResponse.success(result));
+        } catch (HomeService.HomeServiceException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getCode(), e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11008, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<ApiResponse<List<HomeCategory>>> getCategories() {
+        try {
+            List<HomeCategory> categories = homeService.getCategories();
+            return ResponseEntity.ok(ApiResponse.success(categories));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/trainings")
+    public ResponseEntity<ApiResponse<List<HomeTraining>>> getTrainings() {
+        try {
+            List<HomeTraining> trainings = homeService.getTrainings();
+            return ResponseEntity.ok(ApiResponse.success(trainings));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/favorites")
+    public ResponseEntity<ApiResponse<List<HomeWorker>>> getFavorites(
+            @AuthenticationPrincipal String userId) {
+        try {
+            List<HomeWorker> workers = homeService.getFavorites(userId);
+            return ResponseEntity.ok(ApiResponse.success(workers));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
+    @PostMapping("/favorite")
+    public ResponseEntity<ApiResponse<String>> addFavorite(
+            @AuthenticationPrincipal String userId,
+            @RequestBody Map<String, String> body) {
+        try {
+            homeService.addFavorite(userId, body.get("workerId"));
+            return ResponseEntity.ok(ApiResponse.success("ok"));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
+    @DeleteMapping("/favorite")
+    public ResponseEntity<ApiResponse<String>> removeFavorite(
+            @AuthenticationPrincipal String userId,
+            @RequestBody Map<String, String> body) {
+        try {
+            homeService.removeFavorite(userId, body.get("workerId"));
+            return ResponseEntity.ok(ApiResponse.success("ok"));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
+    @GetMapping("/worker/mall")
+    public ResponseEntity<ApiResponse<List<Map<String, Object>>>> getWorkerMall() {
+        try {
+            List<Map<String, Object>> items = homeService.getWorkerMall();
+            return ResponseEntity.ok(ApiResponse.success(items));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error(11001, e.getMessage()));
+        }
+    }
+
 }

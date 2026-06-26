@@ -11,7 +11,7 @@ class HomeService {
     int page = 0,
     int size = 20,
   }) async {
-    final res = await _client.get('/home/services', queryParameters: {
+    final res = await _client.get('/home/service', queryParameters: {
       if (category != null) 'category': category,
       if (subCategory != null) 'subCategory': subCategory,
       'page': page,

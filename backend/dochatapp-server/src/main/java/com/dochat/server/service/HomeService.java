@@ -10,6 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -123,7 +128,7 @@ public class HomeService {
     // 5. acceptOrder
     public HomeOrder acceptOrder(String userId, String orderId) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new HomeServiceException(11001, "订单不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         HomeWorker worker = homeWorkerRepository.findByUserId(userId)
                 .orElseThrow(() -> new HomeServiceException(11002, "工作者未注册"));
         if (!"pending".equals(order.getStatus())) {
@@ -144,7 +149,7 @@ public class HomeService {
     // 6. startService
     public HomeOrder startService(String userId, String orderId) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new HomeServiceException(11001, "订单不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         if (!"accepted".equals(order.getStatus())) {
             throw new HomeServiceException(11004, "订单状态不允许开始服务");
         }
@@ -156,7 +161,7 @@ public class HomeService {
     // 7. completeService
     public HomeOrder completeService(String userId, String orderId) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new HomeServiceException(11001, "订单不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         if (!"serving".equals(order.getStatus())) {
             throw new HomeServiceException(11004, "订单状态不允许完成服务");
         }
@@ -168,7 +173,7 @@ public class HomeService {
     // 8. verifyOrder
     public HomeOrder verifyOrder(String userId, String orderId) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new HomeServiceException(11001, "订单不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         if (!"waiting_verify".equals(order.getStatus())) {
             throw new HomeServiceException(11004, "订单状态不允许验收");
         }
@@ -262,7 +267,7 @@ public class HomeService {
     // 12. createDispute
     public HomeDispute createDispute(String userId, String orderId, String reason) {
         HomeOrder order = homeOrderRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new HomeServiceException(11001, "订单不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
         if (!"waiting_verify".equals(order.getStatus()) && !"completed".equals(order.getStatus())) {
             throw new HomeServiceException(11004, "订单状态不允许发起争议");
         }
@@ -280,7 +285,7 @@ public class HomeService {
     // 13. submitEvidence
     public HomeDispute submitEvidence(String userId, String disputeId, String evidence) {
         HomeDispute dispute = homeDisputeRepository.findByDisputeId(disputeId)
-                .orElseThrow(() -> new HomeServiceException(11001, "争议不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "争议订单不存在"));
         dispute.setEvidence(evidence);
         return homeDisputeRepository.save(dispute);
     }
@@ -288,7 +293,7 @@ public class HomeService {
     // 14. getJuryStatus
     public Map<String, Object> getJuryStatus(String disputeId) {
         HomeDispute dispute = homeDisputeRepository.findByDisputeId(disputeId)
-                .orElseThrow(() -> new HomeServiceException(11001, "争议不存在"));
+                .orElseThrow(() -> new HomeServiceException(11003, "争议订单不存在"));
         // Mock: randomize votes for demo
         Random random = new Random();
         int votesFor = random.nextInt(18);
@@ -312,6 +317,131 @@ public class HomeService {
         result.put("totalJurors", dispute.getTotalJurors());
         result.put("verdict", dispute.getVerdict());
         return result;
+    }
+
+
+    // === getOrderDetail ===
+    public HomeOrder getOrderDetail(String userId, String orderId) {
+        return homeOrderRepository.findByOrderId(orderId)
+                .orElseThrow(() -> new HomeServiceException(11003, "订单不存在"));
+    }
+
+    // === getWorkerDetail ===
+    public HomeWorker getWorkerDetail(String workerId) {
+        return homeWorkerRepository.findByWorkerId(workerId)
+                .orElseThrow(() -> new HomeServiceException(11002, "师傅不存在"));
+    }
+
+    // === updateWorkerStatus ===
+    public HomeWorker updateWorkerStatus(String userId, String status) {
+        HomeWorker worker = homeWorkerRepository.findByUserId(userId)
+                .orElseThrow(() -> new HomeServiceException(11002, "师傅不存在"));
+        if (!"approved".equals(worker.getAuthStatus())) {
+            throw new HomeServiceException(11007, "师傅入驻审核中");
+        }
+        worker.setStatus(status);
+        return homeWorkerRepository.save(worker);
+    }
+
+    // === getWorkerIncome ===
+    public Map<String, Object> getWorkerIncome(String userId) {
+        HomeWorker worker = homeWorkerRepository.findByUserId(userId)
+                .orElseThrow(() -> new HomeServiceException(11002, "师傅不存在"));
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("totalIncome", worker.getTotalIncome());
+        result.put("balance", worker.getBalance());
+        result.put("completedOrders", worker.getCompletedOrders());
+        return result;
+    }
+
+    // === withdraw ===
+    public Map<String, Object> withdraw(String userId, BigDecimal amount) {
+        HomeWorker worker = homeWorkerRepository.findByUserId(userId)
+                .orElseThrow(() -> new HomeServiceException(11002, "师傅不存在"));
+        if (worker.getBalance().compareTo(amount) < 0) {
+            throw new HomeServiceException(11008, "保证金不足");
+        }
+        worker.setBalance(worker.getBalance().subtract(amount));
+        homeWorkerRepository.save(worker);
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("withdrawn", amount);
+        result.put("balance", worker.getBalance());
+        return result;
+    }
+
+    // === getCategories ===
+    public List<HomeCategory> getCategories() {
+        List<HomeCategory> cats = homeCategoryRepository.findByLevel(1);
+        if (cats.isEmpty()) {
+            String[][] mockCats = {{"家电维修", "wrench"}, {"房屋装修", "house"}, {"家政保洁", "sparkles"}, {"搬家运输", "cube_box"}, {"管道疏通", "drop"}, {"开锁换锁", "lock"}};
+            for (int i = 0; i < mockCats.length; i++) {
+                HomeCategory c = new HomeCategory();
+                c.setName(mockCats[i][0]);
+                c.setLevel(1);
+                c.setSortOrder(i);
+                c.setIcon(mockCats[i][1]);
+                homeCategoryRepository.save(c);
+            }
+            cats = homeCategoryRepository.findByLevel(1);
+        }
+        return cats;
+    }
+
+    // === getTrainings ===
+    public List<HomeTraining> getTrainings() {
+        List<HomeTraining> list = homeTrainingRepository.findAll();
+        if (list.isEmpty()) {
+            String[][] mock = {{"家电维修基础", "skill"}, {"平台服务规范", "rule"}, {"上门安全指南", "safety"}, {"空调维修进阶", "skill"}, {"客户沟通技巧", "rule"}};
+            for (int i = 0; i < mock.length; i++) {
+                HomeTraining t = new HomeTraining();
+                t.setTitle(mock[i][0]);
+                t.setCategory(mock[i][1]);
+                t.setDuration(30 + i * 10);
+                t.setContent("培训内容：" + mock[i][0]);
+                homeTrainingRepository.save(t);
+            }
+            list = homeTrainingRepository.findAll();
+        }
+        return list;
+    }
+
+    // === getFavorites ===
+    public List<HomeWorker> getFavorites(String userId) {
+        List<HomeFavorite> favs = homeFavoriteRepository.findByUserId(userId);
+        if (favs.isEmpty()) return new java.util.ArrayList<>();
+        List<HomeWorker> workers = new java.util.ArrayList<>();
+        for (HomeFavorite f : favs) {
+            homeWorkerRepository.findByWorkerId(f.getWorkerId()).ifPresent(workers::add);
+        }
+        return workers;
+    }
+
+    // === addFavorite ===
+    public void addFavorite(String userId, String workerId) {
+        if (homeFavoriteRepository.existsByUserIdAndWorkerId(userId, workerId)) return;
+        HomeFavorite f = new HomeFavorite();
+        f.setUserId(userId);
+        f.setWorkerId(workerId);
+        homeFavoriteRepository.save(f);
+    }
+
+    // === removeFavorite ===
+    public void removeFavorite(String userId, String workerId) {
+        homeFavoriteRepository.deleteByUserIdAndWorkerId(userId, workerId);
+    }
+
+    // === getWorkerMall（Mock） ===
+    public java.util.List<Map<String, Object>> getWorkerMall() {
+        java.util.List<Map<String, Object>> items = new java.util.ArrayList<>();
+        String[][] mock = {{"夏季工装套装", "89"}, {"防滑安全鞋", "129"}, {"工具箱套装", "199"}, {"防护手套", "29"}, {"工作围裙", "49"}, {"安全头盔", "69"}};
+        for (String[] m : mock) {
+            Map<String, Object> item = new java.util.HashMap<>();
+            item.put("name", m[0]);
+            item.put("price", Integer.parseInt(m[1]));
+            item.put("image", "");
+            items.add(item);
+        }
+        return items;
     }
 
     public static class HomeServiceException extends RuntimeException {
