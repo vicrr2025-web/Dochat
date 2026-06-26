@@ -8,6 +8,7 @@ import 'package:dochat_app/pages/services/guarantee_list_page.dart';
 import 'package:dochat_app/pages/services/mall_list_page.dart';
 import 'package:dochat_app/pages/dating/dating_profile_page.dart';
 import 'package:dochat_app/pages/houses/house_home_page.dart';
+import 'package:dochat_app/pages/mails/mail_home_page.dart';
 
 import 'package:dochat_app/pages/jobs/job_home_page.dart';
 String _ecosystemName(String key, AppLocalizations l10n) {
@@ -21,6 +22,7 @@ String _ecosystemName(String key, AppLocalizations l10n) {
     case 'emailService': return l10n.emailService;
     case 'shipping': return l10n.shipping;
     case 'homeService': return l10n.homeService;
+    case 'mail': return l10n.mailTab;
     default: return key;
   }
 }
@@ -44,6 +46,8 @@ IconData _iconForKey(String key) {
       return CupertinoIcons.cube_box_fill;
     case 'homeService':
       return CupertinoIcons.wrench_fill;
+    case 'mail':
+      return CupertinoIcons.envelope_fill;
     default:
       return CupertinoIcons.question_circle_fill;
   }
@@ -222,7 +226,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
           return GestureDetector(
             onTap: () {
               provider.addToRecent(badge);
-              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing' || badge.ecosystemKey == 'jobs') {
+              if (badge.ecosystemKey == 'guarantee' || badge.ecosystemKey == 'mall' || badge.ecosystemKey == 'dating' || badge.ecosystemKey == 'housing' || badge.ecosystemKey == 'jobs' || badge.ecosystemKey == 'mail') {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -231,6 +235,7 @@ class _ServiceHubPageState extends State<ServiceHubPage> {
                     if (badge.ecosystemKey == 'mall') return const MallListPage();
                     if (badge.ecosystemKey == 'dating') return const DatingProfilePage();
                     if (badge.ecosystemKey == 'jobs') return const JobHomePage();
+                    if (badge.ecosystemKey == 'mail') return const MailHomePage();
                     return const HouseHomePage();
                   },
                   ),

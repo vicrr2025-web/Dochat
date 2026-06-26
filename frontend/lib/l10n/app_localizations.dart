@@ -432,6 +432,41 @@ class AppLocalizations {
   String get noHouseHint => _strings['noHouseHint'] ?? '暂无房源';
   String get contactLandlord => _strings['contactLandlord'] ?? '联系房东';
   String get houseTags => _strings['houseTags'] ?? '标签';
+  String get mailTab => _strings['mailTab'] ?? '邮箱';
+  String get addAccount => _strings['addAccount'] ?? '添加账户';
+  String get mailProvider => _strings['mailProvider'] ?? '服务商';
+  String get mailInbox => _strings['mailInbox'] ?? '收件箱';
+  String get mailSent => _strings['mailSent'] ?? '已发送';
+  String get mailDrafts => _strings['mailDrafts'] ?? '草稿箱';
+  String get mailTrash => _strings['mailTrash'] ?? '回收站';
+  String get mailStarred => _strings['mailStarred'] ?? '星标邮件';
+  String get mailCompose => _strings['mailCompose'] ?? '写邮件';
+  String get mailTo => _strings['mailTo'] ?? '收件人';
+  String get mailCc => _strings['mailCc'] ?? '抄送';
+  String get mailBcc => _strings['mailBcc'] ?? '密送';
+  String get mailSubject => _strings['mailSubject'] ?? '主题';
+  String get mailBody => _strings['mailBody'] ?? '正文';
+  String get mailReply => _strings['mailReply'] ?? '回复';
+  String get mailReplyAll => _strings['mailReplyAll'] ?? '回复全部';
+  String get mailForward => _strings['mailForward'] ?? '转发';
+  String get mailDelete => _strings['mailDelete'] ?? '删除';
+  String get mailMarkRead => _strings['mailMarkRead'] ?? '标记已读';
+  String get mailMarkUnread => _strings['mailMarkUnread'] ?? '标记未读';
+  String get mailStar => _strings['mailStar'] ?? '星标';
+  String get mailAttachments => _strings['mailAttachments'] ?? '附件';
+  String get mailAddAttachment => _strings['mailAddAttachment'] ?? '添加附件';
+  String get mailFolders => _strings['mailFolders'] ?? '文件夹';
+  String get mailNewFolder => _strings['mailNewFolder'] ?? '新建文件夹';
+  String get mailFilters => _strings['mailFilters'] ?? '过滤规则';
+  String get mailBlacklist => _strings['mailBlacklist'] ?? '黑名单';
+  String get mailWhitelist => _strings['mailWhitelist'] ?? '白名单';
+  String get mailDailyRead => _strings['mailDailyRead'] ?? '每日悦读';
+  String get mailSearch => _strings['mailSearch'] ?? '搜索邮件';
+  String get mailNoMessages => _strings['mailNoMessages'] ?? '暂无邮件';
+  String get mailImapHost => _strings['mailImapHost'] ?? 'IMAP 服务器';
+  String get mailSmtpHost => _strings['mailSmtpHost'] ?? 'SMTP 服务器';
+  String get mailPort => _strings['mailPort'] ?? '端口';
+  String get mailDefault => _strings['mailDefault'] ?? '默认';
   String get aiTitle => _strings['aiTitle'] ?? 'AI 生成标题';
   String get messagesLabel => _strings['messagesLabel'] ?? '消息';
   String get jobTab => _strings['jobTab'] ?? '直聘';
@@ -934,6 +969,42 @@ class _AppLocalizationsDelegate
       'interviewType': isZh ? '面试方式' : 'Type',
       'creditScoreChange': isZh ? '信誉分变动' : 'Credit Change',
 
+
+      'mailTab': isZh ? '邮箱' : 'Mail',
+      'addAccount': isZh ? '添加账户' : 'Add Account',
+      'mailProvider': isZh ? '服务商' : 'Provider',
+      'mailInbox': isZh ? '收件箱' : 'Inbox',
+      'mailSent': isZh ? '已发送' : 'Sent',
+      'mailDrafts': isZh ? '草稿箱' : 'Drafts',
+      'mailTrash': isZh ? '回收站' : 'Trash',
+      'mailStarred': isZh ? '星标邮件' : 'Starred',
+      'mailCompose': isZh ? '写邮件' : 'Compose',
+      'mailTo': isZh ? '收件人' : 'To',
+      'mailCc': isZh ? '抄送' : 'Cc',
+      'mailBcc': isZh ? '密送' : 'Bcc',
+      'mailSubject': isZh ? '主题' : 'Subject',
+      'mailBody': isZh ? '正文' : 'Body',
+      'mailReply': isZh ? '回复' : 'Reply',
+      'mailReplyAll': isZh ? '回复全部' : 'Reply All',
+      'mailForward': isZh ? '转发' : 'Forward',
+      'mailDelete': isZh ? '删除' : 'Delete',
+      'mailMarkRead': isZh ? '标记已读' : 'Mark Read',
+      'mailMarkUnread': isZh ? '标记未读' : 'Mark Unread',
+      'mailStar': isZh ? '星标' : 'Star',
+      'mailAttachments': isZh ? '附件' : 'Attachments',
+      'mailAddAttachment': isZh ? '添加附件' : 'Add File',
+      'mailFolders': isZh ? '文件夹' : 'Folders',
+      'mailNewFolder': isZh ? '新建文件夹' : 'New Folder',
+      'mailFilters': isZh ? '过滤规则' : 'Filters',
+      'mailBlacklist': isZh ? '黑名单' : 'Blocked',
+      'mailWhitelist': isZh ? '白名单' : 'Allowed',
+      'mailDailyRead': isZh ? '每日悦读' : 'Daily Read',
+      'mailSearch': isZh ? '搜索邮件' : 'Search',
+      'mailNoMessages': isZh ? '暂无邮件' : 'No Messages',
+      'mailImapHost': isZh ? 'IMAP 服务器' : 'IMAP Host',
+      'mailSmtpHost': isZh ? 'SMTP 服务器' : 'SMTP Host',
+      'mailPort': isZh ? '端口' : 'Port',
+      'mailDefault': isZh ? '默认' : 'Default',
       'noOrdersHint': isZh ? '暂无订单' : 'No orders',
 
     });
