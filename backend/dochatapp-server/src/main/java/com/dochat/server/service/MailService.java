@@ -131,6 +131,10 @@ public class MailService {
         if (request.getTo() == null || request.getTo().isEmpty()) {
             throw new IllegalArgumentException("9003");
         }
+        // 9004: 附件总大小检查（Mock：限制10MB）
+        if (request.getAttachments() != null && request.getAttachments().length() > 10 * 1024 * 1024) {
+            throw new IllegalArgumentException("9004");
+        }
         MailMessage message = new MailMessage();
         message.setAccountId(request.getAccountId());
         message.setFolder("sent");
@@ -139,6 +143,11 @@ public class MailService {
         message.setBody(request.getBody());
         message.setSender("user@example.com");
         message.setReceivedAt(LocalDateTime.now());
+        // 如有附件则标记
+        if (request.getAttachments() != null && !request.getAttachments().isEmpty()) {
+            message.setHasAttachments(true);
+            message.setAttachments(request.getAttachments());
+        }
         return mailMessageRepository.save(message);
     }
 
